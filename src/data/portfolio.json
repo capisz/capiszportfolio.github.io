@@ -13,16 +13,10 @@
             "url": "https://elephit-fitness-app.vercel.app/user-profile"
         },
         {
-            "cover": "/portfolio/1/one.gif",
-            "title": "Facebook Messenger",
-            "description": "Facebook messenger clone",
-            "url": "http://Facebook.com"
-        },
-        {
-            "cover": "/portfolio/1/four.gif",
-            "title": "Airbnb Clone",
-            "description": "Airbnb clone",
-            "url": "http://airbnb.com"
+            "cover": "/public/portfolio/1/brunson-game-winner-250501 copy.mp4",
+            "title": "Daily Fantasy Generator",
+            "description": "Draftkings Optimizing Generator",
+            "url": ""
         }
     ]
 }
