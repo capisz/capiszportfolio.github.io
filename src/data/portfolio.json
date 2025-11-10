@@ -1,0 +1,28 @@
+{
+    "portfolio": [
+        {
+            "cover": "/portfolio/1/dragapult-pokemon.mp4",
+            "title": "Dragapultist for Pokemon TCG",
+            "description": "Pokemon Live Tcg Analyzer",
+            "url": "https://dragapultist.vercel.app"
+        },
+        {
+            "cover": "/portfolio/1/elephit.mp4",
+            "title": "Elephit Fitness App",
+            "description": "Dynamic Fitness and Calorie Logging",
+            "url": "https://elephit-fitness-app.vercel.app/user-profile"
+        },
+        {
+            "cover": "/portfolio/1/one.gif",
+            "title": "Facebook Messenger",
+            "description": "Facebook messenger clone",
+            "url": "http://Facebook.com"
+        },
+        {
+            "cover": "/portfolio/1/four.gif",
+            "title": "Airbnb Clone",
+            "description": "Airbnb clone",
+            "url": "http://airbnb.com"
+        }
+    ]
+}
