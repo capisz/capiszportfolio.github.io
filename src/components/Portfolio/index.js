@@ -14,43 +14,46 @@ const Portfolio = () => {
     return () => clearTimeout(timer)
   }, []) // ✅ add dependency array
 
-  const renderPortfolio = (items) => {
-    return (
-      <div className="images-container">
-        {items.map((item, idx) => (
-          <div className="image-box" key={idx}>
-            {String(item.cover).toLowerCase().endsWith(".mp4") ? (
-              <video
-                src={item.cover}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="portfolio-video"
-              />
-            ) : (
-              <img
-                src={item.cover}
-                alt={item.title}
-                className="portfolio-image"
-              />
-            )}
+  const renderPortfolio = (portfolioArray) => {
+  return (
+    <div className="images-container">
+      {portfolioArray.map((item, idx) => (
+        <div
+          className={`image-box ${
+            item.status === "in-progress" ? "in-progress" : ""
+          }`}
+          key={idx}
+        >
+          {item.cover.endsWith(".mp4") ? (
+            <video
+              src={item.cover}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="portfolio-video"
+            />
+          ) : (
+            <img
+              src={item.cover}
+              alt={item.title}
+              className="portfolio-image"
+            />
+          )}
 
-            <div className="content">
-              <p className="title">{item.title}</p>
-              <h4 className="description">{item.description}</h4>
-              <button
-                className="btn"
-                onClick={() => window.open(item.url, "_blank", "noopener,noreferrer")}
-              >
-                View
-              </button>
-            </div>
+          <div className="content">
+            <p className="title">{item.title}</p>
+            <h4 className="description">{item.description}</h4>
+            <button className="btn" onClick={() => window.open(item.url)}>
+              View
+            </button>
           </div>
-        ))}
-      </div>
-    )
-  }
+        </div>
+      ))}
+    </div>
+  );
+};
+
 
   return (
     <>

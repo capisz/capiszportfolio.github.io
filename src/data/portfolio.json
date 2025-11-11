@@ -4,19 +4,36 @@
             "cover": "/portfolio/1/dragapult-pokemon.mp4",
             "title": "Dragapultist for Pokemon TCG",
             "description": "Pokemon Live Tcg Analyzer",
-            "url": "https://dragapultist.vercel.app"
+            "url": "https://dragapultist.vercel.app",
+            "status":"complete"
         },
         {
             "cover": "/portfolio/1/elephit.mp4",
             "title": "Elephit Fitness App",
             "description": "Dynamic Fitness and Calorie Logging",
-            "url": "https://elephit-fitness-app.vercel.app/user-profile"
+            "url": "https://elephit-fitness-app.vercel.app/user-profile",
+            "status":"complete"
         },
         {
             "cover": "/portfolio/1/brunson-game-winner-250501 copy.mp4",
             "title": "Daily Fantasy Generator",
             "description": "Draftkings Optimizing Generator",
-            "url": ""
+            "url": "",
+            "status":"complete"
+        },
+        {
+            "cover": "/portfolio/1/pokemonshuffle.mp4",
+            "title": "Pokemon Prize Checker",
+            "description": "Perfect your tcg prize-checking",
+            "url": "",
+            "status": "in-progress"
+        },
+        {
+            "cover": "/portfolio/1/room.mp4",
+            "title": "Amazon Room Generator",
+            "description": "Room design in seconds",
+            "url": "",
+            "status": "in-progress"
         }
     ]
 }
