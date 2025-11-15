@@ -10,7 +10,7 @@
         {
             "cover": "/portfolio/1/elephit.mp4",
             "title": "Elephit Fitness App",
-            "description": "Dynamic Fitness and Calorie Logging",
+            "description": "Fitness and Calorie Logging",
             "url": "https://elephit-fitness-app.vercel.app/user-profile",
             "status":"complete"
         },
@@ -18,7 +18,7 @@
             "cover": "/portfolio/1/brunson-game-winner-250501 copy.mp4",
             "title": "Daily Fantasy Generator",
             "description": "Draftkings Optimizing Generator",
-            "url": "",
+            "url": "https://draftkings-optimizer-kky86zyyc-hudsonchess-yahoocoms-projects.vercel.app/",
             "status":"complete"
         },
         {
