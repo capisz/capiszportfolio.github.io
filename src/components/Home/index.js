@@ -18,7 +18,7 @@ const Home = () => {
           <a href="#contact" className="flat-button">
             CONTACT ME
           </a>
-          <a href="/resume.pdf" className="flat-button secondary" download>
+          <a href="/chris_capizzuto_resume.pdf" className="flat-button secondary" download="christopher-capizzuto-resume.pdf">
             DOWNLOAD RESUME  <span className="btn-icon">⬇</span>
           </a>
         </div>
