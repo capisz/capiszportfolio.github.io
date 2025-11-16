@@ -49,6 +49,14 @@ textarea {
   animation-fill-mode: forwards;
 }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+
 html {
   scroll-behavior: smooth;
 }

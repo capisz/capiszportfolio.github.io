@@ -4,13 +4,13 @@
   /* Layout is handled in Layout/index.scss */
 }
 
-/* Cube container: own column, no clipping */
+/* Cube container: own column, no clipping on desktop */
 .stage-cube-cont {
   position: relative;
   width: 280px;
   height: 280px;
   margin: 0 auto;
-  overflow: visible; /* let faces rotate fully */
+  overflow: visible; /* let faces rotate fully on large screens */
 }
 
 /* Spinner cube – keep original animation, just sized to the container */
@@ -91,4 +91,14 @@
 .about-page .text-zone h1 {
   color: #f4f8ff;
   margin-bottom: 24px;
+}
+
+/* ---------- MOBILE: smaller cube + no sideways overflow ---------- */
+@media (max-width: 900px) {
+  .stage-cube-cont {
+    width: 220px;
+    height: 220px;
+    overflow: hidden;   /* hide rotating corners so they don't cause horizontal scroll */
+    margin: 0 auto 8px;
+  }
 }

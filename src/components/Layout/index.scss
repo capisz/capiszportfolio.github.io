@@ -68,7 +68,7 @@
   vertical-align: initial;
 }
 
-/* Contact text block – nudged a bit up and to the right */
+/* Contact text block – nudged a bit up and to the right on desktop */
 .container.contact-page .text-zone {
   position: relative;
   left: 0;
@@ -115,12 +115,54 @@
   padding: 80px 24px;
 }
 
+/* ---------- MOBILE LAYOUT FIXES ---------- */
+@media (max-width: 900px) {
+  /* Let sections use full width with smaller side padding */
+  .container.about-page,
+  .container.contact-page,
+  .container.portfolio-page {
+    max-width: 100%;
+    padding: 60px 16px;
+  }
+
+  /* Stack About text + cube vertically instead of 2-column grid */
+  .container.about-page {
+    display: block;
+    grid-template-columns: none;
+    gap: 24px;
+    min-height: auto;
+  }
+
+  .container.about-page .text-zone {
+    max-width: 100%;
+    margin-bottom: 24px;
+  }
+
+  /* Contact text shouldn’t be shifted off-screen on mobile */
+  .container.contact-page .text-zone {
+    transform: none;
+    max-width: 100%;
+  }
+
+  /* Cube sits under the text with a little breathing room */
+  .container.about-page .stage-cube-cont {
+    margin: 24px auto 0;
+  }
+
+  /* Optional: make the yellow “tags” smaller on phones */
+  .tags {
+    left: 16px;
+    font-size: 16px;
+  }
+}
+
 /* Keep animated letter hover effect from original theme */
 .text-animate-hover {
   &:hover {
     color: #fff;
   }
 }
+
 /* Global button style used across the site */
 .flat-button {
   color: #ffd700;
@@ -165,6 +207,7 @@
   font-size: 14px;
   line-height: 1;
 }
+
 /* Accessibility: tone down animations for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .fade-section {
