@@ -56,10 +56,10 @@ body {
   overflow-x: hidden;
 }
 
-
 html {
   scroll-behavior: smooth;
 }
+
 /* Generic fade/slide animation for sections */
 .fade-section {
   opacity: 0;
@@ -71,9 +71,8 @@ html {
   opacity: 1;
   transform: translateY(0);
 }
-/* Make main section headings match the "Chris" yellow */
-/* Make AnimatedLetters headings yellow on About / Portfolio / Contact */
 
+/* Make AnimatedLetters headings yellow on About / Portfolio / Contact */
 .about-page .text-zone h1 .text-animate,
 .about-page .text-zone h1 .text-animate-hover,
 .portfolio-page .page-title .text-animate,
@@ -82,6 +81,7 @@ html {
 .contact-page .text-zone h1 .text-animate-hover {
   color: #ffd700 !important;
 }
+
 /* Global button style used across the site */
 .flat-button {
   color: #ffd700;
@@ -126,6 +126,24 @@ html {
   font-size: 14px;
   line-height: 1;
 }
+
+/* ---------- MOBILE TWEAKS FOR HERO (home page) ---------- */
+@media (max-width: 768px) {
+  .home-page .text-zone {
+    padding: 0 16px;
+  }
+
+  .home-page .text-zone h1 {
+    font-size: 40px;
+    line-height: 1.1;
+  }
+
+  .home-page .text-zone h2 {
+    font-size: 14px;
+    letter-spacing: 0.18em;
+  }
+}
+
 /* Accessibility: tone down animations for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .fade-section {
@@ -151,4 +169,3 @@ html {
     box-shadow: none !important;
   }
 }
-

@@ -53,7 +53,7 @@
   min-height: calc(100vh - 80px); /* fill screen under nav */
 }
 
-/* About text block (unchanged) */
+/* About text block */
 .container.about-page .text-zone {
   position: relative;
   left: 0;
@@ -73,7 +73,6 @@
   position: relative;
   left: 0;
   top: 0;
-  /* move slightly right and higher */
   transform: translate(24px, -46px);
 
   width: 100%;
@@ -107,53 +106,12 @@
   right: auto;
 }
 
-/* PORTFOLIO container: centered; details in Portfolio/index.scss */
+/* PORTFOLIO container: centered; card details in Portfolio/index.scss */
 .container.portfolio-page {
   position: relative;
   max-width: 1100px;
   margin: 0 auto;
   padding: 80px 24px;
-}
-
-/* ---------- MOBILE LAYOUT FIXES ---------- */
-@media (max-width: 900px) {
-  /* Let sections use full width with smaller side padding */
-  .container.about-page,
-  .container.contact-page,
-  .container.portfolio-page {
-    max-width: 100%;
-    padding: 60px 16px;
-  }
-
-  /* Stack About text + cube vertically instead of 2-column grid */
-  .container.about-page {
-    display: block;
-    grid-template-columns: none;
-    gap: 24px;
-    min-height: auto;
-  }
-
-  .container.about-page .text-zone {
-    max-width: 100%;
-    margin-bottom: 24px;
-  }
-
-  /* Contact text shouldn’t be shifted off-screen on mobile */
-  .container.contact-page .text-zone {
-    transform: none;
-    max-width: 100%;
-  }
-
-  /* Cube sits under the text with a little breathing room */
-  .container.about-page .stage-cube-cont {
-    margin: 24px auto 0;
-  }
-
-  /* Optional: make the yellow “tags” smaller on phones */
-  .tags {
-    left: 16px;
-    font-size: 16px;
-  }
 }
 
 /* Keep animated letter hover effect from original theme */
@@ -163,52 +121,70 @@
   }
 }
 
-/* Global button style used across the site */
-.flat-button {
-  color: #ffd700;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 4px;
-  font-family: sans-serif;
-  text-decoration: none;
-  padding: 10px 20px;
-  border: 1px solid #ffd700;
+/* ---------- MOBILE LAYOUT TWEAKS (≤ 768px) ---------- */
+@media (max-width: 768px) {
+  .page {
+    padding-top: 72px;
+  }
 
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  .tags {
+    left: 16px;
+    font-size: 16px;
+  }
 
-  white-space: nowrap;
-  background: transparent;
-  cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  .top-tags {
+    top: 80px;
+  }
 
-  &:hover {
-    color: #333;
-    background: #ffd700;
-    border-color: #ffd700;
+  .bottom-tags {
+    bottom: 24px;
+  }
+
+  .container.about-page,
+  .container.contact-page,
+  .container.portfolio-page {
+    max-width: 100%;
+    padding: 56px 16px 64px;
+  }
+
+  /* About becomes single-column: text then cube */
+  .container.about-page {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: flex-start;
+    min-height: auto;
+  }
+
+  .container.about-page .text-zone,
+  .container.contact-page .text-zone {
+    max-width: 100%;
+  }
+
+  /* Remove the contact-page offset on mobile */
+  .container.contact-page .text-zone {
+    transform: none;
+    margin-top: 8px;
+  }
+
+  /* Slightly smaller headings & copy */
+  .container.about-page .text-zone h1,
+  .container.contact-page .text-zone h1 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .container.about-page .text-zone p,
+  .container.contact-page .text-zone p {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .container.about-page .stage-cube-cont {
+    margin: 0 auto 8px;
   }
 }
 
-/* Secondary (white) variant for the resume button */
-.flat-button.secondary {
-  color: #ffffff;
-  border-color: #ffffff;
-
-  &:hover {
-    color: #333;
-    background: #ffffff;
-    border-color: #ffffff;
-  }
-}
-
-/* Icon span inside buttons (for the download arrow) */
-.flat-button .btn-icon {
-  font-size: 14px;
-  line-height: 1;
-}
-
-/* Accessibility: tone down animations for users who prefer reduced motion */
+/* Reduced-motion accessibility */
 @media (prefers-reduced-motion: reduce) {
   .fade-section {
     opacity: 1 !important;
