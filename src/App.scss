@@ -169,3 +169,64 @@ html {
     box-shadow: none !important;
   }
 }
+/* ===========================================================
+   STRONG MOBILE OVERRIDES (make things breathe on phones)
+   ========================================================== */
+@media (max-width: 768px) {
+  /* Hero / home */
+  .home-page .text-zone {
+    padding: 0 18px !important;
+  }
+
+  .home-page .text-zone h1 {
+    font-size: 34px !important;
+    line-height: 1.15 !important;
+    margin-bottom: 18px !important;
+  }
+
+  .home-page .text-zone h2 {
+    font-size: 13px !important;
+    letter-spacing: 0.14em !important;
+  }
+
+  /* Shared section containers */
+  .container.about-page,
+  .container.contact-page,
+  .container.portfolio-page {
+    max-width: 100% !important;
+    padding: 56px 18px 64px !important;
+  }
+
+  /* About / Contact headings + body text */
+  .container.about-page .text-zone h1,
+  .container.contact-page .text-zone h1 {
+    font-size: 30px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 18px !important;
+  }
+
+  .container.about-page .text-zone p,
+  .container.contact-page .text-zone p {
+    font-size: 14px !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Portfolio title */
+  .portfolio-page h1.page-title {
+    font-size: 30px !important;
+    margin-bottom: 24px !important;
+  }
+
+  /* Portfolio cards – slightly tighter + more inner padding */
+  .portfolio-page .image-box {
+    padding: 18px 18px 20px 18px !important;
+  }
+
+  .portfolio-page .title {
+    font-size: 20px !important;
+  }
+
+  .portfolio-page .description {
+    font-size: 14px !important;
+  }
+}
