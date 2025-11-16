@@ -1,51 +1,136 @@
-import './index.scss'
-import { Link, NavLink } from 'react-router-dom'
-import LogoS from '../../assets/images/logo-s.png'
-import LogoSubtitle from '../../assets/images/logo_sub.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faUser, faHome, faSuitcase } from '@fortawesome/free-solid-svg-icons'
-import { faDiscord, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { useState, useEffect } from "react";
+import "./index.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faDiscord,
+  faGithub,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
 
-const Sidebar = () => (
-<div className='nav-bar'>
-    <Link className='logo' to='/'>
-        <img src={LogoS} alt='logo' />
-        <img className='sub-logo' src={LogoSubtitle} alt='slobodan' />
-    </Link>
-    <nav>
-        <NavLink exact='true' activeclassname='active' to='/'>
-            <FontAwesomeIcon icon={faHome} color='#4d4d4e' />
-        </NavLink>
-        <NavLink exact='true' activeclassname='active' className='about-link' to='/about'>
-            <FontAwesomeIcon icon={faUser} color='#4d4d4e' />
-        </NavLink>
-        <NavLink exact='true' activeclassname='active' className='contact-link' to='/contact'>
-            <FontAwesomeIcon icon={faEnvelope} color='#4d4d4e' />
-        </NavLink>
-        <NavLink exact='true' activeclassname='active' className='portfolio-link' to='/portfolio'>
-            <FontAwesomeIcon icon={faSuitcase} color='#4d4d4e' />
-        </NavLink>
-    </nav>
-    <ul>
+const SECTION_IDS = ["about", "portfolio", "contact"];
+
+const Sidebar = () => {
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const viewportHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      const viewportCenter = viewportHeight / 2;
+
+      let current = "";
+
+      // Which section covers the center of the screen?
+      SECTION_IDS.forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        const rect = el.getBoundingClientRect();
+        const top = rect.top;
+        const bottom = rect.bottom;
+
+        if (top <= viewportCenter && bottom >= viewportCenter) {
+          current = id;
+        }
+      });
+
+      // If nothing matched and we're basically at the bottom,
+      // force "contact" active so it highlights while using the form.
+      const nearBottom = scrollY + viewportHeight >= docHeight - 5;
+      if (!current && nearBottom) {
+        current = "contact";
+      }
+
+      setActiveSection(current);
+    };
+
+    handleScroll(); // run once on mount
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
+
+  const scrollToSection = (id) => (e) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  return (
+    <header className="nav-bar">
+      {/* Left: name/brand */}
+      <div className="brand">
+        <span className="brand-name"></span>
+      </div>
+
+      {/* Center: HTML-style section links */}
+      <nav>
+        <a
+          href="#about"
+          onClick={scrollToSection("about")}
+          className={`nav-link ${activeSection === "about" ? "active" : ""}`}
+        >
+          &lt;About&gt;
+        </a>
+        <a
+          href="#portfolio"
+          onClick={scrollToSection("portfolio")}
+          className={`nav-link ${activeSection === "portfolio" ? "active" : ""}`}
+        >
+          &lt;Portfolio&gt;
+        </a>
+        <a
+          href="#contact"
+          onClick={scrollToSection("contact")}
+          className={`nav-link ${activeSection === "contact" ? "active" : ""}`}
+        >
+          &lt;Contact&gt;
+        </a>
+      </nav>
+
+      {/* Right: socials */}
+      <ul>
         <li>
-            <a target='_blank' rel='noreferrer' href='https://www.linkedin.com/?original_referer='>
-                <FontAwesomeIcon icon={faLinkedin} color='#4d4d4e'/>
-            </a>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.linkedin.com" 
+            // TODO: replace with your real LinkedIn URL
+          >
+            <FontAwesomeIcon icon={faLinkedin} />
+          </a>
         </li>
         <li>
-            <a target='_blank' rel='noreferrer' href='https://www.github.com'>
-                <FontAwesomeIcon icon={faGithub} color='#4d4d4e'/>
-            </a>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://github.com/capisz"
+          >
+            <FontAwesomeIcon icon={faGithub} />
+          </a>
         </li>
-
         <li>
-            <a target='_blank' rel='noreferrer' href='https://www.discord.com'>
-                <FontAwesomeIcon icon={faDiscord} color='#4d4d4e'/>
-            </a>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://discord.com"
+          >
+            <FontAwesomeIcon icon={faDiscord} />
+          </a>
         </li>
-    </ul>
-</div>
+      </ul>
+    </header>
+  );
+};
 
-)
-
-export default Sidebar
+export default Sidebar;

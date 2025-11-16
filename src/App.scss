@@ -48,3 +48,99 @@ textarea {
   animation: fadeOut 1s 1s;
   animation-fill-mode: forwards;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+/* Generic fade/slide animation for sections */
+.fade-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Make main section headings match the "Chris" yellow */
+/* Make AnimatedLetters headings yellow on About / Portfolio / Contact */
+
+.about-page .text-zone h1 .text-animate,
+.about-page .text-zone h1 .text-animate-hover,
+.portfolio-page .page-title .text-animate,
+.portfolio-page .page-title .text-animate-hover,
+.contact-page .text-zone h1 .text-animate,
+.contact-page .text-zone h1 .text-animate-hover {
+  color: #ffd700 !important;
+}
+/* Global button style used across the site */
+.flat-button {
+  color: #ffd700;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  font-family: sans-serif;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid #ffd700;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  white-space: nowrap;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+
+  &:hover {
+    color: #333;
+    background: #ffd700;
+    border-color: #ffd700;
+  }
+}
+
+/* Secondary (white) variant for the resume button */
+.flat-button.secondary {
+  color: #ffffff;
+  border-color: #ffffff;
+
+  &:hover {
+    color: #333;
+    background: #ffffff;
+    border-color: #ffffff;
+  }
+}
+
+/* Icon span inside buttons (for the download arrow) */
+.flat-button .btn-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+/* Accessibility: tone down animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-section {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .stage-cube-cont {
+    animation: none !important;
+  }
+
+  .text-animate,
+  .text-animate-hover {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .scroll-arrow {
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+

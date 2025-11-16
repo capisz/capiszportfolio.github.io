@@ -1,121 +1,112 @@
 .nav-bar {
-    background: #181818;
-    width: 60px;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    z-index: 3;
-    min-height: 500px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: #181818;
+  z-index: 10;
 
-    .logo {
-        display: block;
-        padding: 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
 
-        img {
-            display: block;
-            margin: 8px auto;
-            width: 24px;
-            height: auto;
+/* Name / brand on the left */
+.brand-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+}
 
-            &.sub-logo {
-                width: 50px;
-            }
-        }
-    }
+/* Center nav links */
+.nav-bar nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
 
-    nav {
-        display: block;
-        text-align: center;
-        position: absolute;
-        height: 210px;
-        top: 50%;
-        margin-top: -120px;
-        width: 100%;
+.nav-bar .nav-link {
+  font-family: "Fira Code", monospace;
+  font-size: 15px;
+  color: #dddddd;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
 
-        a {
-            font-size: 22px;
-            color: #4d4d4e;
-            display: block;
-            line-height: 51px;
-            height: 51px;
-            position: relative;
-            text-decoration: none;
+/* Hover state */
+.nav-bar .nav-link:hover {
+  color: #ffd700;
+  transform: translateY(-1px);
+}
 
-            i {
-                transition: all 0.3s ease-out;
-            }
-            &:hover {
-                color: #ffd700;
+/* ACTIVE link when section is in view */
+.nav-bar .nav-link.active {
+  color: #ffd700;
+  position: relative;
+}
 
-                svg {
-                    opacity: 0;
-                }
-            &:after {
-                opacity: 1;
-                }
-            }
-        &::after {
-            content: '';
-            font-size: 9px;
-            letter-spacing: 2px;
-            position: absolute;
-            bottom: 0;
-            display: block;
-            width: 100%;
-            text-align: center;
-            opacity: 0;
-            transition: all 0.3s ease-out;
-          }
+.nav-bar .nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: #ffd700;
+  border-radius: 999px;
+}
 
-          &:first-child {
-                &::after {
-                    content: 'HOME'
-                }
-          }
-        }
+/* Keyboard focus */
+.nav-bar .nav-link:focus-visible {
+  outline: 2px solid #ffd700;
+  outline-offset: 3px;
+}
 
-        a.about-link {
-            &::after{
-                content: 'ABOUT';
-            }
-        }
-        a.contact-link {
-            &::after {
-                content: 'CONTACT';
-            }
-        }
-        a.portfolio-link {
-            &::after {
-                content: 'MY WORK';
-            }
-        }
-        a.active {
-            svg {
-                color: #ffd700;
-            }
-        }
-    }
-    ul{
-        position: absolute;
-        bottom: 20px;
-        width: 100%;
-        display: block;
-        padding: 0;
-        list-style: none;
-        text-align: center;
-        margin: 0;
+/* Right socials */
+.nav-bar ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-        li {
-            a{
-                padding: 7px 0;
-                display: block;
-                font-size: 15px;
-                line-height: 16px;
+.nav-bar ul li a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #4d4d4e;
+  transition: color 0.2s ease;
+}
 
-                &:hover svg {
-                    color: #ffd700;
-                }
-            }
-        }
-    }
+.nav-bar ul li a:hover {
+  color: #ffd700;
+}
+
+.nav-bar ul li a:focus-visible {
+  outline: 2px solid #ffd700;
+  outline-offset: 3px;
+}
+
+/* Small screens */
+@media (max-width: 700px) {
+  .brand-name {
+    font-size: 16px;
+  }
+
+  .nav-bar {
+    padding: 0 16px;
+  }
+
+  .nav-bar nav {
+    gap: 16px;
+  }
+
+  .nav-bar .nav-link {
+    font-size: 13px;
+  }
 }

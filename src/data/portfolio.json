@@ -3,35 +3,40 @@
         {
             "cover": "/portfolio/1/dragapult-pokemon.mp4",
             "title": "Dragapultist for Pokemon TCG",
-            "description": "Pokemon Live Tcg Analyzer",
+            "description": "Import your Pokemon tcg-live export files here to analyze your games and improve as a player! Sample file below to paste",
             "url": "https://dragapultist.vercel.app",
-            "status":"complete"
+            "status":"complete",
+            "codeUrl": "https://github.com/capisz/dragapultist"
+
         },
         {
             "cover": "/portfolio/1/elephit.mp4",
             "title": "Elephit Fitness App",
-            "description": "Fitness and Calorie Logging",
+            "description": "Your body changes every day, so should your fitness logging. Your calorie needs change week-to-week or even day-to-day, so allow Elephit to figure that out for you.",
             "url": "https://elephit-fitness-app.vercel.app/user-profile",
-            "status":"complete"
+            "status":"complete",
+            "codeUrl": "https://github.com/capisz/elephit-fitness-app"
         },
         {
-            "cover": "/portfolio/1/brunson-game-winner-250501 copy.mp4",
-            "title": "Daily Fantasy Generator",
-            "description": "Draftkings Optimizing Generator",
+            "cover": "/portfolio/1/brunson-game-winner-250501.mp4",
+            "title": "NBA Daily Fantasy Generator",
+            "description": "For those short of time, or just needing an edge let this app generate you the most price efficient lineup for players that day without you needing to search for hours ",
             "url": "https://draftkings-optimizer-kky86zyyc-hudsonchess-yahoocoms-projects.vercel.app/",
-            "status":"complete"
+            "status":"complete",
+            "codeUrl": "https://github.com/capisz/draftkings-optimizer"
+
         },
         {
             "cover": "/portfolio/1/pokemonshuffle.mp4",
             "title": "Pokemon Prize Checker",
-            "description": "Perfect your tcg prize-checking",
+            "description": "Finally a tool to simulate and perfect your pokemon tcg prize-checking without using physical cards, meant to be used any time, any place and with no setup needed",
             "url": "",
             "status": "in-progress"
         },
         {
             "cover": "/portfolio/1/room.mp4",
             "title": "Amazon Room Generator",
-            "description": "Room design in seconds",
+            "description": "Provide measurements, press generate a room layout, then buy what you like. Fit for your room, perfect your for you. No. more guessing games or search stress",
             "url": "",
             "status": "in-progress"
         }

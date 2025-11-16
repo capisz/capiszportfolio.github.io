@@ -1,0 +1,43 @@
+.scroll-arrow {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+
+  border: 1px solid #ffd700;
+  background: rgba(2, 24, 40, 0.92);
+  color: #ffd700;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  z-index: 20;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.scroll-arrow svg {
+  font-size: 18px;
+}
+
+/* Hover: lift + brighter */
+.scroll-arrow:hover {
+  transform: translateY(-3px);
+  background: rgba(3, 36, 60, 0.96);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* Small screens: pull it up a bit */
+@media (max-width: 700px) {
+  .scroll-arrow {
+    right: 16px;
+    bottom: 16px;
+  }
+}

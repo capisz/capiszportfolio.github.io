@@ -1,79 +1,125 @@
 .contact-form {
+  width: 100%;
+  margin-top: 20px;
+
+  ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      margin-bottom: 10px;
+      overflow: hidden;
+      display: block;
+      position: relative;
+      opacity: 0;
+      animation: fadeInUp 2s 2s;
+      animation-fill-mode: forwards;
+      clear: both;
+    }
+
+    li.half {
+      width: 49%;
+      margin-left: 2%;
+      float: left;
+      clear: none;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  input[type="text"],
+  input[type="email"] {
     width: 100%;
-    margin-top: 20px;
+    border: 0;
+    background: #115173;
+    height: 50px;
+    font-size: 16px;
+    color: #fff;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
 
-    ul {
-        padding: 0;
-        margin: 0;
+  textarea {
+    width: 100%;
+    border: 0;
+    background: #115173;
+    height: 50px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px;
+    min-height: 150px;
+    box-sizing: border-box;
+  }
 
-        li {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            margin-bottom: 10px;
-            overflow: hidden;
-            display: block;
-            position: relative;
-            opacity: 0;
-            animation: fadeInUp 2s 2s;
-            animation-fill-mode: forwards;
-            clear: both;
-        }
+  .flat-button {
+    color: #ffd700;
+    background: 0 0;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-decoration: none;
+    padding: 8px 10px;
+    border: 1px solid #ffd700;
+    float: right;
+    border-radius: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
 
-        li.half {
-            width: 49%;
-            margin-left: 2%;
-            float: left;
-            clear: none;
-
-            &:first-child{
-                margin-left: 0;
-            }
-        }
+    &:hover {
+      color: #fff;
+      border: 1px solid #fff;
     }
 
-    input[type='text'],
-    input[type='email']{
-        width: 100%;
-        border: 0;
-        background: #115173;
-        height: 50px;
-        font-size: 16px;
-        color: #fff;
-        padding: 0 20px;
-        box-sizing: border-box;
+    &:active {
+      color: #ffd700;
+      border: 1px solid #ffd700;
     }
-    textarea {
-        width: 100%;
-        border: 0;
-        background: #115173;
-        height: 50px;
-        font-size: 16px;
-        color: #fff;
-        padding: 20px;
-        min-height: 150px;
-        box-sizing: border-box;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
-    .flat-button{
-        color: #ffd700;
-        background: 0 0;
-        font: 11px;
-        letter-spacing: 3px;
-        text-decoration: none;
-        padding: 8px 10px;
-        border: 1px solid #ffd700;
-        float: right;
-        border-radius: 4px;
 
-        &:hover {
-            color: #fff;
-            border: 1px solid #fff;
-
-            &:active {
-                color: #ffd700;
-                border: 1px #ffd700 solid;
-            }
-        }
-
+    &:disabled:hover {
+      color: #ffd700;
+      border: 1px solid #ffd700;
+      background: transparent;
     }
+  }
+}
+
+/* Email link styling in the contact intro text */
+.container.contact-page .text-zone a {
+  color: #ffd700;
+  text-decoration: none;
+}
+
+.container.contact-page .text-zone a:hover {
+  text-decoration: underline;
+}
+
+/* status text (success / error) under the form */
+.status-message {
+  margin-top: 12px;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-message svg {
+  font-size: 16px;
+}
+
+.status-message.success {
+  color: #9be7a0; /* soft green */
+}
+
+.status-message.error {
+  color: #ff8a80; /* soft red */
 }

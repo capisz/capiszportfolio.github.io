@@ -1,69 +1,85 @@
-import './index.scss'
-import AnimatedLetters from '../../AnimatedLetters'
-import { useEffect, useState} from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngular, faCss3, faGitAlt, faHtml5, faJsSquare, faReact } from '@fortawesome/free-brands-svg-icons'
-import Loader from 'react-loaders'
-
+import { useEffect, useState } from "react";
+import Loader from "react-loaders";
+import AnimatedLetters from "../../AnimatedLetters";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAngular,
+  faCss3,
+  faGit,
+  faHtml5,
+  faJsSquare,
+  faReact,
+} from "@fortawesome/free-brands-svg-icons";
+import useInView from "../../../hooks/useInView";
+import "./index.scss";
 
 const About = () => {
+  const [letterClass, setLetterClass] = useState("text-animate");
+  const [ref, inView] = useInView();
 
-    const [letterClass, setLetterClass] = useState('text-animate')
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLetterClass("text-animate-hover");
+    }, 3000);
 
-    useEffect(() => {
-        setTimeout(() => {
-           setLetterClass('text-animate-hover')
-         }, 3000)
-       }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
-    return (
-        <>
-        <div className='container about-page'>
-            <div className='text-zone'>
-                <h1>
-                    <AnimatedLetters
-                    letterClass={letterClass}
-                        strArray={['A', 'b', 'o', 'u', 't',' ', 'm', 'e']}
-                        idx={5}
-                    />
-                </h1>
-                <p>
-                I am steadfast in my commitment to lifelong learning, empathy, understanding, colloboration and building fresh new ideas to adapt and solve complex problems.
-                </p>
-                <p>
-                Challenges bring out my best, and I perform well under pressure. My adaptability allows me to seamlessly adjust to different surroundings and situations. I truly enjoy the process of acquiring new skills and knowledge independently, and I will contribute positively to any group I become a part of.
-                </p>
-                <p>
-                  I am a programmer and digital marketer with a diverse skillset and digital 'toolbelt'. When i'm not working or problem solving I am practicing fingerstyle guitar, doing portrait art in charcoal and graphite, taking 35mm film photography, learning new languages, hiking, biking or at the gym.
-                </p>
-            </div>
-
-            <div className='stage-cube-cont'>
-                <div className='cubespinner'>
-                <div className='face1'>
-                        <FontAwesomeIcon icon={faJsSquare} color='#EFD81D' />
-                    </div>
-                    <div className='face2'>
-                        <FontAwesomeIcon icon={faAngular} color='#DD0031' />
-                    </div>
-                    <div className='face3'>
-                        <FontAwesomeIcon icon={faHtml5} color='#F06529' />
-                    </div>
-                    <div className='face4'>
-                        <FontAwesomeIcon icon={faCss3} color='#28A4D9' />
-                    </div>
-                    <div className='face5'>
-                        <FontAwesomeIcon icon={faReact} color='#5ED4F4' />
-                    </div>
-                    <div className='face6'>
-                        <FontAwesomeIcon icon={faGitAlt} color='#EC4' />
-                    </div>
-                </div>
-            </div>
+  return (
+    <>
+      <div
+        id="about"
+        ref={ref}
+        className={`container about-page fade-section ${
+          inView ? "in-view" : ""
+        }`}
+      >
+        <div className="text-zone">
+          <h1>
+            <AnimatedLetters
+              letterClass={letterClass}
+              strArray={"A little about me".split("")}
+              index={15}
+            />
+          </h1>
+          <p>
+           I’m a full-stack developer who loves turning ideas into fast, clean, and usable interfaces. I work primarily with React, Next.js, TypeScript, and modern CSS, and I enjoy building data-driven apps that actually solve real problems—whether that’s a DraftKings NBA lineup recommender, a smarter calorie-tracking app, or tools for the Pokémon TCG.
+          </p>
+          <p>
+            My background in digital marketing taught me how to think from the user’s perspective, test ideas quickly, and communicate clearly with teammates. I’m comfortable debugging weird edge cases, refactoring messy code, and iterating on designs until they feel right.
+          </p>
+          <p>
+           Outside of coding, I’m usually practicing fingerstyle guitar, doing portrait art in charcoal and graphite, shooting 35mm film, learning new languages, playing card games like Pokemon, RiftBound or Magic the Gathering, hiking or biking, or at the gym. I like challenging myself in and out of tech, and I bring that same curiosity and persistence to every project I work on.
+          </p>
         </div>
-        <Loader type='pacman' />
-        </>
-    )
-}
 
-export default About
+        <div className="stage-cube-cont">
+          <div className="cubespinner">
+            <div className="face1">
+              <FontAwesomeIcon icon={faAngular} color="#dd0031" />
+            </div>
+            <div className="face2">
+              <FontAwesomeIcon icon={faHtml5} color="#f06529" />
+            </div>
+            <div className="face3">
+              <FontAwesomeIcon icon={faCss3} color="#28a4d9" />
+            </div>
+            <div className="face4">
+              <FontAwesomeIcon icon={faReact} color="#5ed4f4" />
+            </div>
+            <div className="face5">
+              <FontAwesomeIcon icon={faJsSquare} color="#efd81d" />
+            </div>
+            <div className="face6">
+              <FontAwesomeIcon icon={faGit} color="#ec4d28" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Loader type="pacman" />
+    </>
+  );
+};
+
+export default About;

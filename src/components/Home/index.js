@@ -1,72 +1,38 @@
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import Loader from 'react-loaders'
-import Logo from './Logo'
-import AnimatedLetters from '../AnimatedLetters'
-import LogoTitle from '../../assets/images/logo-s.png'
-import './index.scss'
-
+import './index.scss';
 
 const Home = () => {
-
-    const [letterClass, setLetterClass] = useState('text-animate')
-    const nameArray = ['h', 'r', 'i', 's',',']
-    const jobArray = [
-        ' W',
-        'e',
-        'b',
-        ' ',
-        'D',
-        'e',
-        'v',
-        'e',
-        'l',
-        'o',
-        'p',
-        'e',
-        'r',
-        '.',
-      ]
-
-      useEffect(() => {
-       setTimeout(() => {
-          setLetterClass('text-animate-hover')
-        }, 4000)
-      }, [])
-
-
-    return (
-        <>
-        <div className="container home-page">
-            <div className='text-zone'>
+  return (
+    <div id="home" className="container home-page">
+      {/* Text on the LEFT */}
+      <div className="text-zone">
         <h1>
-           <span className={letterClass}>H</span>
+          Hi,
+          <br />
+          I'm <span className="highlight-c">Chris</span>,
+          <br />
+          Fullstack Developer.
+        </h1>
+        <h2>FULLSTACK DEVELOPER / JAVASCRIPT, TYPESCRIPT, HTML/CSS, REACT</h2>
 
-            <span className={`${letterClass} _12`}>i</span>
-            <span className={letterClass}>,</span>
-            <br />
-            <span className={`${letterClass} _13`}>I</span>
-            <span className={`${letterClass} _14`}>'m</span>
-            <img src={LogoTitle} alt='Javascript developer' />
-            <AnimatedLetters letterClass={letterClass}
-            strArray={nameArray}
-            idx={18}
-            />
-            <br />
-            <AnimatedLetters
-            letterClass={letterClass}
-            strArray={jobArray}
-            idx={-2} />
-            </h1>
-            <h2>Frontend Developer /  Javascript, HTML/CSS, React </h2>
-            <Link to='/contact' className='flat-button'>CONTACT ME</Link>
+        <div className="button-row">
+          <a href="#contact" className="flat-button">
+            CONTACT ME
+          </a>
+          <a href="/resume.pdf" className="flat-button secondary" download>
+            DOWNLOAD RESUME  <span className="btn-icon">⬇</span>
+          </a>
         </div>
-        <Logo />
+      </div>
+
+      {/* Illustration on the RIGHT */}
+      <div className="hero-illustration">
+        <img
+          src="/dev-hero.gif"
+          alt="Developer at desk with dual monitors"
+        />
+      </div>
     </div>
+  );
+};
 
-    <Loader type="pacman" />
-    </>
-    )
-}
-
-export default Home
+export default Home;

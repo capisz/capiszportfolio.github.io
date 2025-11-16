@@ -1,82 +1,143 @@
 .home-page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
 
-    .text-zone {
-        position: absolute;
-        left: 10%;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 40%;
-        max-height: 90%;
-    }
+  /* smaller top padding so it sits closer to the header */
+  padding: 145px 24px 60px;
 
-    h1 {
+  /* let the content decide the height instead of forcing near-full viewport */
+  min-height: auto;
 
-        color:#fff;
-        font-size: 53px;
-        margin: 0;
-        font-family: 'Coolvetica';
-        font-weight: 400;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 1fr);
+  column-gap: 40px;
 
-        &::before {
-            content: '<h1>';
-            font-family: 'La Belle Aurore';
-            color: #ffd700;
-            font-size: 18px;
-            position: absolute;
-            margin-top: -40px;
-            left: 15px;
-            opacity: 0.6;
-        }
+  /* TOP-align the columns instead of centering them vertically */
+  align-items: flex-start;
 
-        &::after {
-            content: '<h1/>';
-            font-family: 'La Belle Aurore';
-            color:#ffd700;
-            font-size: 18px;
-            position: absolute;
-            margin-top: 18px;
-            margin-left: 20px;
-            animation: fadeIn 1s 1.7s backwards;
-            opacity: 0.6;
-        }
+  position: relative;
+}
 
-        img {
-        width: 32px;
-        margin-left: 20px;
-        opacity: 0;
-        height: auto;
-        animation: rotateIn 1s linear both;
-        animation-delay: 1.4s;
-        }
-    }
 
-    h2 {
-        color: #8d8d8d;
-        margin-top: 20px;
-        font-weight: 400;
-        font-size: 11px;
-        font-family: sans-serif;
-        letter-spacing: 3px;
-        animation: fadeIn 1s 1.8s backwards;
-    }
+/* Text block (now left column) */
+.home-page .text-zone {
+  width: 100%;
+  max-width: 650px;
+  margin: 0;
+  animation: fadeInUp 0.9s ease 0.2s backwards;
+}
 
-    .flat-button {
-        color: #ffd700;
-        font-size: 13px;
-        font-weight: 400;
-        letter-spacing: 4px;
-        font-family: sans-serif;
-        text-decoration: none;
-        padding: 10px 18px;
-        border: 1px solid #ffd700;
-        margin-top: 25px;
-        float: left;
-        animation: fadeIn 1s 1.8s backwards;
-        white-space: nowrap;
+/* Illustration card (right column) */
+.hero-illustration {
+  justify-self: center;
+  max-width: 340px;
+  width: 100%;
 
-        &:hover {
-            color:#333;
-            background: #ffd700;
-        }
-    }
+  background: #022436;
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+
+  animation: fadeInUp 0.9s ease 0.3s backwards;
+}
+
+.hero-illustration img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Headings */
+.home-page h1 {
+  margin: 0 0 24px;
+  font-size: 56px;
+  line-height: 1.1;
+  color: #f4f8ff;
+}
+
+.home-page h2 {
+  margin: 0 0 40px;
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8fa5c9;
+  animation: fadeInUp 0.9s ease 0.4s backwards;
+}
+
+/* Highlight the C in "Chris" */
+.highlight-c {
+  color: #ffd700;
+  font-weight: 500;
+  animation: fadeInUp 0.9s ease 0.6s backwards;
+}
+
+/* Button row */
+.button-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  animation: fadeInUp 0.9s ease 0.8s backwards;
+}
+
+/* Primary yellow button */
+.home-page .flat-button {
+  color: #ffd700;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  font-family: sans-serif;
+  text-decoration: none;
+  padding: 10px 18px;
+  border: 1px solid #ffd700;
+  display: inline-block;
+  white-space: nowrap;
+  background: transparent;
+  transition: background 0.25s ease, color 0.25s ease;
+
+  &:hover {
+    color: #333;
+    background: #ffd700;
+  }
+}
+
+/* Secondary resume button */
+.home-page .flat-button.secondary {
+  color: #ffffff;
+  border-color: #ffffff;
+
+  &:hover {
+    color: #333;
+    background: #ffffff;
+  }
+}
+
+/* Fade + slide-up animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile: stack and shrink */
+@media (max-width: 900px) {
+  .home-page {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+    padding-top: 90px;
+    padding-bottom: 70px;
+  }
+
+  .hero-illustration {
+    max-width: 260px;
+    justify-self: center;
+  }
 }

@@ -1,115 +1,192 @@
+/* Main page wrapper under the fixed top nav */
 .page {
-    width: 100%;
-    height: 100%;
-    position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  padding-top: 80px; /* leaves room for the top nav bar */
+}
+
+/* Yellow fake HTML tags on the left */
+.tags {
+  color: #ffd700;
+  opacity: 0.6;
+  position: fixed;
+  left: 40px;
+  font-size: 20px;
+  font-family: 'La Belle Aurore';
+  z-index: 0;
+  pointer-events: none;
 }
 
 .top-tags {
-    bottom: auto;
-    top: 35px;
+  top: 90px;
 }
 
-.tags {
-    color: #ffd700;
-    opacity: 0.6;
-    position: absolute;
-    bottom: 0;
-    left: 120px;
-    font-size: 20px;
-    font-family: 'La Belle Aurore';
+.bottom-tags {
+  bottom: 40px;
 }
 
 .bottom-tag-html {
-    margin-left: -20px;
-
+  margin-left: -20px;
 }
 
-// .container {
-//     width: 100%;
-//     will-change: contents;
-//     height: 90%;
-//     min-height: 566px;
-//     position: absolute;
-//     opacity: 0;
-//     top: 5%;
-//     margin: 0 auto;
-//     z-index: 1;
-//     transform-style: preserve-3d;
-//     animation: fadeIn 1s forwards;
-//     animation-delay: 1s;
-// }
+/* Generic container */
+.container {
+  width: 100%;
+}
 
+/* ABOUT + CONTACT: centered sections */
 .container.about-page,
-.container.portfolio-page,
 .container.contact-page {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
 
+/* ABOUT: grid layout, full viewport height so portfolio doesn't peek */
+.container.about-page {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  gap: 40px;
+  align-items: center;
+  min-height: calc(100vh - 80px); /* fill screen under nav */
+}
 
-        h1 {
-            font-size: 54px;
-            font-family: 'Coolvetica';
-            color: #ffd700;
-            font-weight: 400;
-            margin-top: 0;
-            position: relative;
-            margin-bottom: 40px;
-            left: 10px;
+/* About text block (unchanged) */
+.container.about-page .text-zone {
+  position: relative;
+  left: 0;
+  top: 0;
+  transform: none;
 
-            &::before {
-                content: '<h1>';
-                font-family: 'La Belle Aurore';
-                font-size: 18px;
-                position: absolute;
-                margin-top: -10px;
-                left: -10px;
-                opacity: 0.6;
-                line-height: 18px;
-            }
+  width: 100%;
+  max-width: 900px;
+  margin: 0;
+  max-height: none;
+  display: block;
+  vertical-align: initial;
+}
 
-            &::after{
-                content: '<h1 />';
-                font-family: 'La Belle Aurore';
-                font-size: 18px;
-                line-height: 18px;
-                position: absolute;
-                left: -30px;
-                bottom: -20px;
-                margin-left: 20px;
-                opacity: 0.6;
-            }
-        }
+/* Contact text block – nudged a bit up and to the right */
+.container.contact-page .text-zone {
+  position: relative;
+  left: 0;
+  top: 0;
+  /* move slightly right and higher */
+  transform: translate(24px, -46px);
 
-        p {
-            font-style: 13px;
-            color: #fff;
-            // font-family: sans-serif;
-            font-weight: 300;
-            max-width: fit-content;
-            animation: pulse 1s;
-            font-size: 15px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0;
+  max-height: none;
+  display: block;
+  vertical-align: initial;
+}
 
-            &:nth-of-type(1) {
-                animation-delay: 1.1s;
-            }
-            &:nth-of-type(2) {
-                animation-delay: 1.5s;
-            }
-            &:nth-of-type(3) {
-                animation-delay: 1.9s;
-            }
-        }
-        .text-zone {
-            position: absolute;
-            left: 10%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 35%;
-            vertical-align: middle;
-            display: table-cell;
-            max-height: 90%;
-    }
-    .text-animate-hover {
-        &:hover{
-            color: #fff;
-        }
-    }
+/* Typography */
+.container.about-page .text-zone h1,
+.container.contact-page .text-zone h1 {
+  font-size: 40px;
+  margin-bottom: 24px;
+  color: #f4f8ff;
+}
+
+.container.about-page .text-zone p,
+.container.contact-page .text-zone p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #e0edf8;
+}
+
+/* Cube container: sits in its own column, NO overlap */
+.container.about-page .stage-cube-cont {
+  position: relative;
+  margin: 0 auto;
+  top: auto;
+  right: auto;
+}
+
+/* PORTFOLIO container: centered; details in Portfolio/index.scss */
+.container.portfolio-page {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+/* Keep animated letter hover effect from original theme */
+.text-animate-hover {
+  &:hover {
+    color: #fff;
+  }
+}
+/* Global button style used across the site */
+.flat-button {
+  color: #ffd700;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  font-family: sans-serif;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid #ffd700;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  white-space: nowrap;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+
+  &:hover {
+    color: #333;
+    background: #ffd700;
+    border-color: #ffd700;
+  }
+}
+
+/* Secondary (white) variant for the resume button */
+.flat-button.secondary {
+  color: #ffffff;
+  border-color: #ffffff;
+
+  &:hover {
+    color: #333;
+    background: #ffffff;
+    border-color: #ffffff;
+  }
+}
+
+/* Icon span inside buttons (for the download arrow) */
+.flat-button .btn-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+/* Accessibility: tone down animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-section {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .stage-cube-cont {
+    animation: none !important;
+  }
+
+  .text-animate,
+  .text-animate-hover {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .scroll-arrow {
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
 }
