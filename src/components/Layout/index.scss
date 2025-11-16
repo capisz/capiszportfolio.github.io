@@ -1,3 +1,10 @@
+/* Make padding count inside width so we don't overflow on mobile */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 /* Main page wrapper under the fixed top nav */
 .page {
   width: 100%;
@@ -44,7 +51,7 @@
   padding: 80px 24px;
 }
 
-/* ABOUT: grid layout, full viewport height so portfolio doesn't peek */
+/* ABOUT: 2-column grid on desktop */
 .container.about-page {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
@@ -68,7 +75,7 @@
   vertical-align: initial;
 }
 
-/* Contact text block – nudged a bit up and to the right on desktop */
+/* Contact text block – a little offset on desktop */
 .container.contact-page .text-zone {
   position: relative;
   left: 0;
@@ -121,7 +128,7 @@
   }
 }
 
-/* Global button style used across the site */
+/* Global button style used across the site (contact + hero) */
 .flat-button {
   color: #ffd700;
   font-size: 13px;
@@ -166,6 +173,36 @@
   line-height: 1;
 }
 
+/* ---------- MOBILE LAYOUT FIXES ---------- */
+@media (max-width: 900px) {
+  .tags {
+    left: 16px;
+    font-size: 16px;
+  }
+
+  .container.about-page,
+  .container.contact-page,
+  .container.portfolio-page {
+    max-width: 100%;
+    padding: 60px 16px 60px;
+  }
+
+  /* Stack ABOUT into a single column so it doesn't stick out to the right */
+  .container.about-page {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .container.about-page .stage-cube-cont {
+    margin-top: 40px;
+  }
+
+  /* Remove desktop nudge on contact text so the form doesn't bleed off screen */
+  .container.contact-page .text-zone {
+    transform: none;
+  }
+}
+
 /* Accessibility: tone down animations for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .fade-section {
@@ -189,36 +226,5 @@
     transition: none !important;
     transform: none !important;
     box-shadow: none !important;
-  }
-}
-
-/* =========================
-   MOBILE / TABLET LAYOUT
-   ========================= */
-@media (max-width: 768px) {
-  .container.about-page,
-  .container.contact-page,
-  .container.portfolio-page {
-    max-width: 100%;
-    padding: 60px 16px;
-  }
-
-  .container.about-page {
-    display: block;
-    min-height: auto;
-  }
-
-  .container.about-page .text-zone,
-  .container.contact-page .text-zone {
-    transform: none; /* remove desktop offset so we don't bleed off-screen */
-  }
-
-  .container.about-page .text-zone h1,
-  .container.contact-page .text-zone h1 {
-    font-size: 32px;
-  }
-
-  .tags {
-    left: 16px;
   }
 }
