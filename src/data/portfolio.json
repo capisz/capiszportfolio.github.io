@@ -6,7 +6,7 @@
             "description": "Import your Pokemon tcg-live export files here to analyze your games and improve as a player! Sample file below to paste",
             "url": "https://dragapultist.vercel.app",
             "status":"complete",
-            "codeUrl": "https://github.com/capisz/dragapultist"
+            "app": "https://github.com/capisz/dragapultist"
 
         },
         {
@@ -15,7 +15,7 @@
             "description": "Your body changes every day, so should your fitness logging. Your calorie needs change week-to-week or even day-to-day, so allow Elephit to figure that out for you.",
             "url": "https://elephit-fitness-app.vercel.app/user-profile",
             "status":"complete",
-            "codeUrl": "https://github.com/capisz/elephit-fitness-app"
+            "app": "https://github.com/capisz/elephit-fitness-app"
         },
         {
             "cover": "/portfolio/1/brunson-game-winner-250501.mp4",
@@ -23,7 +23,7 @@
             "description": "For those short of time, or just needing an edge let this app generate you the most price efficient lineup for players that day without you needing to search for hours ",
             "url": "https://draftkings-optimizer-kky86zyyc-hudsonchess-yahoocoms-projects.vercel.app/",
             "status":"complete",
-            "codeUrl": "https://github.com/capisz/draftkings-optimizer"
+            "app": "https://github.com/capisz/draftkings-optimizer"
 
         },
         {

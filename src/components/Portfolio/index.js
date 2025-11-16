@@ -5,6 +5,11 @@ import AnimatedLetters from "../AnimatedLetters";
 import portfolioData from "../../data/portfolio.json";
 import useInView from "../../hooks/useInView";
 
+// Icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+
 const Portfolio = () => {
   const [letterClass, setLetterClass] = useState("text-animate");
   const [ref, inView] = useInView();
@@ -55,23 +60,30 @@ const Portfolio = () => {
               <h4 className="description">{item.description}</h4>
               {item.tag && <h5 className="tag">{item.tag}</h5>}
 
-              {/* View App (Vercel) + View Code (GitHub) */}
               <div className="project-buttons">
-                {item.url && (
+                {item.app && (
                   <button
-                    className="btn"
-                    onClick={() => window.open(item.url, "_blank")}
+                    className="btn btn-app btn-small"
+                    onClick={() => window.open(item.app, "_blank")}
                   >
-                    App
+                    <FontAwesomeIcon
+                      icon={faArrowUpRightFromSquare}
+                      className="app-icon"
+                    />
+                    <span> APP</span>
                   </button>
                 )}
 
-                {item.codeUrl && (
+                {item.url && (
                   <button
-                    className="btn"
-                    onClick={() => window.open(item.codeUrl, "_blank")}
+                    className="btn btn-code btn-small"
+                    onClick={() => window.open(item.url, "_blank")}
                   >
-                    Code
+                    <FontAwesomeIcon
+                      icon={faGithub}
+                      className="github-icon"
+                    />
+                    <span> CODE</span>
                   </button>
                 )}
               </div>

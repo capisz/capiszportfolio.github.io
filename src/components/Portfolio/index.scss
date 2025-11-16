@@ -1,14 +1,17 @@
-// Simple color variables for reuse
+// --------- Shared color variables ----------
 $accent-yellow: #ffd700;
 $bg-card: #021a2b;
 $text-main: #f4f8ff;
 $text-subtle: #e0f0ff;
 
+// ==========================================
+//             PORTFOLIO SECTION
+// ==========================================
 .portfolio-page {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1280px;              // wider layout so buttons have room
   margin: 0 auto;
-  padding: 80px 24px 80px;
+  padding: 80px 40px 80px;
 
   h1.page-title {
     margin: 0 0 40px;
@@ -19,53 +22,41 @@ $text-subtle: #e0f0ff;
   .images-container {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px;
+    gap: 40px;                    // more space between cards
   }
 
-  /* Each project card */
+  // ---- Each project card ----
   .image-box {
     display: flex;
     gap: 20px;
     background: $bg-card;
     border-radius: 16px;
-    padding: 20px;
+    padding: 24px 36px 24px 24px; // extra right padding for buttons
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 
-    /* cascading fade-in base state */
+    // cascading fade-in base state
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   }
 
-  /* When portfolio section is in view, reveal cards with staggered delays */
+  // Reveal cards when section is in view (staggered)
   &.in-view {
     .image-box {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .image-box:nth-child(1) {
-      transition-delay: 0.05s;
-    }
-    .image-box:nth-child(2) {
-      transition-delay: 0.15s;
-    }
-    .image-box:nth-child(3) {
-      transition-delay: 0.25s;
-    }
-    .image-box:nth-child(4) {
-      transition-delay: 0.35s;
-    }
-    .image-box:nth-child(5) {
-      transition-delay: 0.45s;
-    }
-    .image-box:nth-child(6) {
-      transition-delay: 0.55s;
-    }
+    .image-box:nth-child(1) { transition-delay: 0.05s; }
+    .image-box:nth-child(2) { transition-delay: 0.15s; }
+    .image-box:nth-child(3) { transition-delay: 0.25s; }
+    .image-box:nth-child(4) { transition-delay: 0.35s; }
+    .image-box:nth-child(5) { transition-delay: 0.45s; }
+    .image-box:nth-child(6) { transition-delay: 0.55s; }
   }
 
-  /* Left side: square media – same box for img & video */
+  // ---- Left side: media (img / video) ----
   .media {
     position: relative;
     flex: 0 0 240px;
@@ -79,7 +70,7 @@ $text-subtle: #e0f0ff;
   .media video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* crop instead of stretch */
+    object-fit: cover;
     display: block;
     transition: transform 0.4s ease;
   }
@@ -89,7 +80,7 @@ $text-subtle: #e0f0ff;
     transform: scale(1.05);
   }
 
-  /* In-progress badge */
+  // In-progress badge + desaturation
   .image-box.in-progress .media img,
   .image-box.in-progress .media video {
     filter: grayscale(80%) brightness(0.7);
@@ -108,7 +99,7 @@ $text-subtle: #e0f0ff;
     letter-spacing: 1px;
   }
 
-  /* Right side: text content */
+  // ---- Right side: text content ----
   .content {
     flex: 1;
     display: flex;
@@ -140,22 +131,49 @@ $text-subtle: #e0f0ff;
     font-weight: 500;
   }
 
-  /* Row of buttons under each project card */
+  // Row of buttons under each project card
   .project-buttons {
     display: flex;
-    gap: 14px;
+    gap: 16px;
     margin-top: 24px;
     flex-wrap: nowrap;
   }
 
-  /* Responsive: stack on small screens */
+  // APP button (yellow outline, yellow text)
+  .btn-app {
+    border-color: $accent-yellow;
+    color: $accent-yellow;
+  }
+
+  .btn-app:hover {
+    background: $accent-yellow;
+    color: #001b2a;
+  }
+
+  // CODE button (white outline, white text)
+  .btn-code {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.btn-code:hover {
+  background: #ffffff;
+  color: #001b2a;
+}
+
+
+  // --------- Responsive tweaks ---------
   @media (max-width: 900px) {
+    padding: 60px 20px 60px;
+
     .images-container {
       grid-template-columns: 1fr;
+      gap: 28px;
     }
 
     .image-box {
       flex-direction: column;
+      padding: 20px;
     }
 
     .media {
@@ -165,9 +183,8 @@ $text-subtle: #e0f0ff;
     }
   }
 
-  /* Tighten things further on very small screens */
   @media (max-width: 600px) {
-    padding: 60px 16px 60px;
+    padding: 48px 16px 48px;
 
     .image-box {
       padding: 16px;
@@ -180,8 +197,10 @@ $text-subtle: #e0f0ff;
   }
 }
 
-/* --- GLOBAL BUTTON STYLE (used by portfolio, hero, etc.) --- */
-
+// ==========================================
+//           GLOBAL BUTTON STYLE
+// (used by hero, portfolio, contact form)
+// ==========================================
 .btn {
   align-self: flex-start;
   margin-top: 16px;
@@ -198,21 +217,38 @@ $text-subtle: #e0f0ff;
   letter-spacing: 3px;
   cursor: pointer;
   transition: all 0.3s ease;
-  white-space: nowrap; /* keep “VIEW CODE” / “DOWNLOAD RESUME” on one line */
+  white-space: nowrap; // keep “VIEW CODE” / “DOWNLOAD RESUME” on one line
 }
+
+/* Smaller variant just for portfolio cards */
+.btn-small {
+  padding: 0 16px;    // a bit tighter
+  min-width: 110px;   // slightly narrower
+  height: 36px;
+  line-height: 32px;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 8px;   // <— space between icon and text for BOTH buttons
+}
+
 
 .btn:hover {
   background: $accent-yellow;
   color: #000;
 }
 
-/* keyboard focus style */
 .btn:focus-visible {
   outline: 2px solid $accent-yellow;
   outline-offset: 3px;
 }
 
-/* disabled state for EmailJS sending, etc. */
 .btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -223,7 +259,9 @@ $text-subtle: #e0f0ff;
   color: #fff;
 }
 
-/* Reduced-motion support */
+// ==========================================
+//       Reduced-motion accessibility
+// ==========================================
 @media (prefers-reduced-motion: reduce) {
   .fade-section {
     opacity: 1 !important;
