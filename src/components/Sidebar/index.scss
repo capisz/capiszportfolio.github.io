@@ -128,3 +128,36 @@
     margin-left: 8px;
   }
 }
+@media (max-width: 900px) {
+  /* Main bar: a bit shorter and narrower padding */
+  .nav-bar {
+    height: 56px;            // smaller than desktop
+    padding: 0 10px;
+  }
+
+  /* Your text links: <About> <Portfolio> <Contact> */
+  .nav-bar nav a {
+    font-size: 12px;         // was bigger on desktop
+    letter-spacing: 2px;     // slightly tighter
+    margin: 0 6px;           // less horizontal spacing
+  }
+
+  /* If your label text is wrapped in spans, keep them from stretching */
+  .nav-bar nav a span {
+    white-space: nowrap;
+  }
+
+  /* Icon links on the right (GitHub / LinkedIn / etc.) */
+  .nav-bar .social-links a,
+  .nav-bar .social a {
+    font-size: 18px;         // shrink icons a bit
+    margin-left: 6px;
+  }
+
+  /* If your name/logo is in the bar, reduce it too */
+  .nav-bar .logo h1,
+  .nav-bar .logo span {
+    font-size: 16px;
+  }
+}
+
