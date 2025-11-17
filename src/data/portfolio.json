@@ -4,26 +4,26 @@
             "cover": "/portfolio/1/dragapult-pokemon.mp4",
             "title": "Dragapultist for Pokemon TCG",
             "description": "Import your Pokemon tcg-live export files here to analyze your games and improve as a player! Sample file below to paste",
-            "url": "https://dragapultist.vercel.app",
+            "app": "https://dragapultist.vercel.app",
             "status":"complete",
-            "app": "https://github.com/capisz/dragapultist"
+            "url": "https://github.com/capisz/dragapultist"
 
         },
         {
             "cover": "/portfolio/1/elephit.mp4",
             "title": "Elephit Fitness App",
             "description": "Your body changes every day, so should your fitness logging. Your calorie needs change week-to-week or even day-to-day, so allow Elephit to figure that out for you.",
-            "url": "https://elephit-fitness-app.vercel.app/user-profile",
+            "app": "https://elephit-fitness-app.vercel.app/user-profile",
             "status":"complete",
-            "app": "https://github.com/capisz/elephit-fitness-app"
+            "url": "https://github.com/capisz/elephit-fitness-app"
         },
         {
             "cover": "/portfolio/1/brunson-game-winner-250501.mp4",
             "title": "NBA Daily Fantasy Generator",
             "description": "For those short of time, or just needing an edge let this app generate you the most price efficient lineup for players that day without you needing to search for hours ",
-            "url": "https://draftkings-optimizer-kky86zyyc-hudsonchess-yahoocoms-projects.vercel.app/",
+            "app": "https://draftkings-optimizer-kky86zyyc-hudsonchess-yahoocoms-projects.vercel.app/",
             "status":"complete",
-            "app": "https://github.com/capisz/draftkings-optimizer"
+            "url": "https://github.com/capisz/draftkings-optimizer"
 
         },
         {
