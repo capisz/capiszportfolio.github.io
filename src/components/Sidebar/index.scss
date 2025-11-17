@@ -110,3 +110,21 @@
     font-size: 13px;
   }
 }
+@media (max-width: 900px) {
+  .top-nav {
+    padding: 0 10px;
+  }
+
+  /* Text links: <About> <Portfolio> <Contact> */
+  .top-nav .nav-links a {
+    font-size: 14px;   /* was probably ~18px */
+    letter-spacing: 1px;
+    margin: 0 6px;     /* tighter spacing between links */
+  }
+
+  /* Icon links: LinkedIn / GitHub / Discord */
+  .top-nav .nav-icons a {
+    font-size: 18px;   /* shrink icons a bit */
+    margin-left: 8px;
+  }
+}

@@ -175,9 +175,9 @@
 
 /* ---------- MOBILE LAYOUT FIXES ---------- */
 @media (max-width: 900px) {
+  /* Hide the decorative tags entirely on mobile so they don't cover content */
   .tags {
-    left: 16px;
-    font-size: 16px;
+    display: none;
   }
 
   .container.about-page,
