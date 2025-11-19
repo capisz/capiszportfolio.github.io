@@ -30,15 +30,32 @@
             "cover": "/portfolio/1/pokemonshuffle.mp4",
             "title": "Pokemon Prize Checker",
             "description": "Finally a tool to simulate and perfect your pokemon tcg prize-checking without using physical cards, meant to be used any time, any place and with no setup needed",
-            "url": "",
+            "url": "https://github.com/capisz/pokemon-tcg-prize-checker",
             "status": "in-progress"
         },
         {
             "cover": "/portfolio/1/room.mp4",
             "title": "Amazon Room Generator",
             "description": "Provide measurements, press generate a room layout, then buy what you like. Fit for your room, perfect your for you. No. more guessing games or search stress",
-            "url": "",
+            "url": "https://github.com/capisz/amazon-room-gen",
             "status": "in-progress"
+        },
+        {
+            "cover": "/portfolio/1/fleamarket.mp4",
+            "title": "Facebook Marketplace Chrome Extension",
+            "description": "Save money on shopping at big box retailers by checking Facebook marketplace near you first",
+            "app": "",
+            "status":"in-progress",
+            "url": "https://github.com/capisz/facebook-marketplace-checker"
+
+        },{
+            "cover": "/portfolio/1/chessattack.mp4",
+            "title": "Chess Opening Driller",
+            "description": "Repeatedly drill chess openings until you master every potential line, build your mastery of every opening",
+            "app": "",
+            "status":"in-progress",
+            "url": "https://github.com/capisz/chess-opening-driller"
+
         }
     ]
 }

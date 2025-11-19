@@ -68,7 +68,7 @@ const Portfolio = () => {
                   >
                     <FontAwesomeIcon
                       icon={faArrowUpRightFromSquare}
-                      className="app-icon" 
+                      className="app-icon"
                     />
                     <span> APP</span>
                   </button>
