@@ -4,7 +4,7 @@
             "cover": "/portfolio/1/dragapult-pokemon.mp4",
             "title": "Dragapultist for Pokemon TCG",
             "description": "Import your Pokemon tcg-live export files here to analyze your games and improve as a player! Sample file below to paste",
-            "app": "https://dragapultist.vercel.app",
+            "app": "https://dragapultist.vercel.app/",
             "status":"complete",
             "url": "https://github.com/capisz/dragapultist"
 
@@ -21,7 +21,7 @@
             "cover": "/portfolio/1/brunson-game-winner-250501.mp4",
             "title": "NBA Daily Fantasy Generator",
             "description": "For those short of time, or just needing an edge let this app generate you the most price efficient lineup for players that day without you needing to search for hours ",
-            "app": "https://draftkings-optimizer-kky86zyyc-hudsonchess-yahoocoms-projects.vercel.app/",
+            "app": "draftkings-optimizer.vercel.app/",
             "status":"complete",
             "url": "https://github.com/capisz/draftkings-optimizer"
 
@@ -32,7 +32,7 @@
             "description": "Finally a tool to simulate and perfect your pokemon tcg prize-checking without using physical cards, meant to be used any time, any place and with no setup needed",
             "url": "https://github.com/capisz/pokemon-tcg-prize-checker",
             "status": "in-progress",
-            "app": "https://pokemon-tcg-prize-checker-m4h6.vercel.app/"
+            "app": "pokemon-tcg-prize-check.vercel.app"
         },
         {
             "cover": "/portfolio/1/room.mp4",
@@ -40,7 +40,7 @@
             "description": "Provide measurements, press generate a room layout, then buy what you like. Fit for your room, perfect your for you. No. more guessing games or search stress",
             "url": "https://github.com/capisz/amazon-room-gen",
             "status": "in-progress",
-            "app": "https://v0-amazon-room-designer-cczkohghuec-avn509ng4.vercel.app/"
+            "app": "amazon-room-designr.vercel.app/"
         },
         {
             "cover": "/portfolio/1/fleamarket.mp4",
@@ -54,7 +54,7 @@
             "cover": "/portfolio/1/chessattack.mp4",
             "title": "Chess Opening Driller",
             "description": "Repeatedly drill chess openings until you master every potential line, build your mastery of every opening",
-            "app": "https://chess-driller-app-8r6m.vercel.app/",
+            "app": "chess-driller.vercel.app",
             "status":"in-progress",
             "url": "https://github.com/capisz/chess-opening-driller"
 
