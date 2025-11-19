@@ -54,7 +54,7 @@
             "cover": "/portfolio/1/chessattack.mp4",
             "title": "Chess Opening Driller",
             "description": "Repeatedly drill chess openings until you master every potential line, build your mastery of every opening",
-            "app": "https://pokemon-tcg-prize-checker-8r6m.vercel.app/",
+            "app": "https://chess-driller-app-8r6m.vercel.app/",
             "status":"in-progress",
             "url": "https://github.com/capisz/chess-opening-driller"
 
