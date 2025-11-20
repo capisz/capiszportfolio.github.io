@@ -157,8 +157,9 @@
     row-gap: 32px;
     padding-top: 30px;
     padding-bottom: 70px;
-    padding: left 16px;
+    padding-left: 16px;
     padding-right: 16px;
+
   }
 
   .hero-illustration {
@@ -166,3 +167,9 @@
     justify-self: center;
   }
 }
+@media (max-width: 900px) {
+  .container.home-page {
+    padding-top: 30px !important;
+  }
+}
+
