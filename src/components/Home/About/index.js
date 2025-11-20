@@ -9,6 +9,8 @@ const techPills = [
   { label: "MongoDB", icon: "/tech-icons/mongodb.svg" },
   { label: "CSS / SCSS", icon: "/tech-icons/css.svg" },
   { label: "REST APIs", icon: "/tech-icons/api.png" },
+  { label: "Tailwind CSS", icon: "/tech-icons/tailwind.png" },
+  {label: "HTML5", icon: "/tech-icons/html5.png" },
 ];
 
 const About = () => {
