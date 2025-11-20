@@ -104,7 +104,7 @@ const Sidebar = () => {
           <a
             target="_blank"
             rel="noreferrer"
-            href="https://www.linkedin.com" 
+            href="https://www.linkedin.com/in/chris-c-a7345a395/" 
             // TODO: replace with your real LinkedIn URL
           >
             <FontAwesomeIcon icon={faLinkedin} />

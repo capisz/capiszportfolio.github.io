@@ -27,8 +27,8 @@ const About = () => {
 <p>
   Most of my work centers around <span className="highlight">React</span>,{" "}
   <span className="highlight">Next.js</span>, <span className="highlight">JavaScript</span> and{" "}
-  <span className="highlight">TypeScript</span> building data-driven tools like fantasy sports
-  optimizers, smarter fitness tracking, and utilities for the Pokémon TCG. I care a lot about
+  <span className="highlight">TypeScript</span>. Tools i use to build data-driven apps like my draftkings sports
+  optimizing app, fitness tracking, and utilities for the Pokémon TCG. I prioritize smooth,
   clear UX, performance, and writing code that&apos;s easy for the next developer to understand.
 </p>
 
@@ -46,18 +46,17 @@ const About = () => {
       {/* BOTTOM ROW: PROBLEMS + TECH */}
       <div className="about-section__bottom">
         <div className="about-section__box">
-          <h2>Problems I'm Solving</h2>
+          <h2>What I'm working on:</h2>
         <ul>
-  <li>Scoping and shipping small, end-to-end features in real projects</li>
-  <li>Deepening my TypeScript and testing habits</li>
-  <li>Designing clean, predictable API contracts between front end and back end</li>
-  <li>Leveling up performance, accessibility, and overall developer experience</li>
+  <li>Building small, end-to-end features in real projects to streamline users to get where they need to be</li>
+  <li>Integrating APIs into my projects to increase app capabilities</li>
+  <li>Solving niche as well as every day problems like parking or commerce</li>
 </ul>
 
         </div>
 
         <div className="about-section__box">
-          <h2>Tech I Work With</h2>
+          <h2>Tech I Work With:</h2>
           <div className="about-section__tech-icons">
             {techPills.map((pill) => (
               <div className="about-section__tech-pill" key={pill.label}>
@@ -72,7 +71,7 @@ const About = () => {
       {/* HOBBIES */}
       <div className="about-section__hobbies">
   <p>
-   Outside of coding, I’m usually either playing card games like Pokémon or Magic, teaching chess to elementary school kids, or lifting at the gym. I like working on projects that mix strategy, consistency, steady growth, and long-term improvement — the same things I enjoy in my hobbies and in life.
+   When I'm not coding, I’m usually either playing card games like Pokémon or Magic, teaching chess to elementary school kids, or lifting at the gym. I like working on projects that mix strategy, consistency, steady growth, and long-term improvement — the same things I enjoy in my hobbies and in life.
   </p>
 </div>
 
