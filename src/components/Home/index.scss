@@ -155,8 +155,10 @@
   .home-page {
     grid-template-columns: 1fr;
     row-gap: 32px;
-    padding-top: 90px;
+    padding-top: 30px;
     padding-bottom: 70px;
+    padding: left 16px;
+    padding-right: 16px;
   }
 
   .hero-illustration {
