@@ -1,0 +1,14 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- dark card background -->
+  <rect width="64" height="64" rx="16" fill="#020617"/>
+
+  <!-- subtle inner glow -->
+  <rect x="10" y="10" width="44" height="44" rx="12" fill="#0B1220"/>
+  <rect x="10" y="10" width="44" height="44" rx="12" fill="#1D4ED8" opacity="0.18"/>
+
+  <!-- Facebook "f" -->
+  <path
+    d="M34.8 19.5c-3.5 0-5.8 1.8-5.8 6v3h-3.4v5.2h3.4V44h5.5V33.7h4.1v-5.2h-4.1v-2.6c0-1.5.7-2.3 2.3-2.3h1.8V19.7c-.9-.2-2.3-.2-3.8-.2z"
+    fill="#EFF6FF"
+  />
+</svg>

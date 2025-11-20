@@ -1,104 +1,133 @@
-/* About page specific styles (text layout handled in Layout/index.scss) */
+$accent-yellow: #ffd700;
+$bg-card: #021a2b;
+$text-main: #f4f8ff;
+$text-subtle: #e0f0ff;
 
-.about-page .text-zone {
-  /* Layout is handled in Layout/index.scss */
-}
-
-/* Cube container: own column, no clipping on desktop */
-.stage-cube-cont {
-  position: relative;
-  width: 280px;
-  height: 280px;
+.about-section {
+  width: 100%;
+  max-width: 1100px;
   margin: 0 auto;
-  overflow: visible; /* let faces rotate fully on large screens */
+  padding: 80px 40px 220px;
+  color: $text-main;
 }
 
-/* Spinner cube – keep original animation, just sized to the container */
-.cubespinner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transform-origin: center;
-  animation-name: spincube;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-duration: 12s;
+.about-section__title {
+  margin: 0 0 32px;
+  font-size: 36px;
+  color: $accent-yellow;
 }
 
-/* Faces */
-.cubespinner div {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.08);
+/* MAIN INTRO BLOCK – this should appear under the title */
+.about-section__intro {
+  max-width: 740px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: $text-subtle;
+  margin-bottom: 40px;
+
+  p {
+    margin: 0 0 16px;
+  }
+}
+
+.highlight {
+  color: $accent-yellow;
+  font-weight: 600;
+}
+
+/* BOTTOM ROW: TWO CARDS */
+.about-section__bottom {
   display: flex;
+  gap: 32px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.about-section__box {
+  flex: 1 1 0;
+  min-width: 260px;
+  background: $bg-card;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+
+  h2 {
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: $accent-yellow;
+    margin: 0 0 16px;
+  }
+
+  ul {
+    padding-left: 18px;
+    margin: 0;
+
+    li {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: $text-subtle;
+      line-height: 1.6;
+    }
+  }
+}
+
+/* TECH PILLS WITH ICONS */
+.about-section__tech-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.about-section__tech-pill {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  font-size: 48px;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
-}
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #031927;
+  font-size: 13px;
+  color: $text-main;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 
-/* Face positions (same as original template) */
-.face1 {
-  transform: translateZ(140px);
-}
-.face2 {
-  transform: rotateY(90deg) translateZ(140px);
-}
-.face3 {
-  transform: rotateY(180deg) translateZ(140px);
-}
-.face4 {
-  transform: rotateY(-90deg) translateZ(140px);
-}
-.face5 {
-  transform: rotateX(90deg) translateZ(140px);
-}
-.face6 {
-  transform: rotateX(-90deg) translateZ(140px);
-}
+  img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+  }
 
-/* Spin keyframes */
-@keyframes spincube {
-  from,
-  to {
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-  }
-  16% {
-    transform: rotateY(-90deg);
-  }
-  33% {
-    transform: rotateY(-90deg) rotateZ(90deg);
-  }
-  50% {
-    transform: rotateY(-180deg) rotateZ(90deg);
-  }
-  66% {
-    transform: rotateY(-270deg) rotateX(90deg);
-  }
-  83% {
-    transform: rotateX(90deg);
+  &:hover {
+    transform: translateY(-2px);
+    background: #062338;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
   }
 }
 
-/* Make sure fonts/icons stay visible on dark bg */
-.about-page .text-zone p {
-  color: #e0edf8;
+/* HOBBIES LINE UNDER CARDS */
+.about-section__hobbies {
+  margin-top: 28px;                 // a bit tighter to the cards
+  padding-top: 16px;                // space for the divider
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  max-width: 900px;                 // wider so it doesn’t look like a tiny block
+  font-size: 14px;
+  line-height: 1.7;
+  color: $text-subtle;
 }
 
-.about-page .text-zone h1 {
-  color: #f4f8ff;
-  margin-bottom: 24px;
-}
 
-/* ---------- MOBILE: smaller cube + no sideways overflow ---------- */
+/* MOBILE */
 @media (max-width: 900px) {
-  .stage-cube-cont {
-    width: 220px;
-    height: 220px;
-    overflow: hidden;   /* hide rotating corners so they don't cause horizontal scroll */
-    margin: 0 auto 8px;
+  .about-section {
+    padding: 60px 16px 60px;
+  }
+
+  .about-section__intro,
+  .about-section__hobbies {
+    max-width: 100%;
+  }
+
+  .about-section__bottom {
+    flex-direction: column;
   }
 }

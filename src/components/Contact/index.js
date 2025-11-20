@@ -14,6 +14,7 @@ const Contact = () => {
   const [letterClass, setLetterClass] = useState("text-animate");
   const [ref, inView] = useInView();
   const formRef = useRef(null);
+
   const [status, setStatus] = useState("");
   const [statusType, setStatusType] = useState(""); // 'success' | 'error'
   const [isSending, setIsSending] = useState(false);
@@ -32,7 +33,12 @@ const Contact = () => {
     setIsSending(true);
 
     const form = formRef.current;
-    if (!form) return;
+    if (!form) {
+      setIsSending(false);
+      setStatusType("error");
+      setStatus("Something went wrong with the form. Please try again.");
+      return;
+    }
 
     const emailValue = form.email?.value?.trim();
     const messageValue = form.message?.value?.trim();
@@ -42,37 +48,38 @@ const Contact = () => {
     if (!emailPattern.test(emailValue)) {
       setIsSending(false);
       setStatusType("error");
-      setStatus("Please enter a valid email address.");
+      setStatus("Please enter a valid email address so I can reply.");
       return;
     }
 
     if (!messageValue || messageValue.length < 5) {
       setIsSending(false);
       setStatusType("error");
-      setStatus("Please enter a slightly longer message.");
+      setStatus("Mind adding a bit more detail to your message?");
       return;
     }
 
     emailjs
       .sendForm(
-       "service_8aq782g",   // e.g. "service_c9f0b8x"
-        "template_6vewe53",  // e.g. "template_123abc"
+        "service_8aq782g",
+        "template_6vewe53",
         formRef.current,
-        "b-JPfs909vxmbPVO3" 
-    // ⬅️ put your real public key here
+        "b-JPfs909vxmbPVO3"
       )
       .then(
         () => {
           setIsSending(false);
           setStatusType("success");
-          setStatus("Message sent! I'll get back to you soon.");
+          setStatus("Message sent — thanks! I usually reply within 24 hours.");
           e.target.reset();
         },
         (error) => {
           console.error("EmailJS error:", error.status, error.text || error);
           setIsSending(false);
           setStatusType("error");
-          setStatus("Something went wrong. Please try again later.");
+          setStatus(
+            "Something went wrong sending that. Please try again, or email me directly at chriszcodes@gmail.com."
+          );
         }
       );
   };
@@ -97,8 +104,11 @@ const Contact = () => {
               index={15}
             />
           </h1>
+
           <p>
-            Please use the form below to contact me, or email me directly at{" "}
+            The form below is the easiest way to get in touch about roles,
+            projects, or anything you’ve seen here. You can also email me
+            directly at{" "}
             <a href="mailto:chriszcodes@gmail.com">
               <span>chriszcodes@gmail.com</span>
             </a>
@@ -148,15 +158,17 @@ const Contact = () => {
                     {isSending ? "SENDING..." : "SEND"}
                   </button>
                 </li>
+
+                {status && (
+                  <li className="status-row">
+                    <p className={`status-message ${statusType}`}>
+                      <FontAwesomeIcon icon={statusIcon} />
+                      <span>{status}</span>
+                    </p>
+                  </li>
+                )}
               </ul>
             </form>
-
-            {status && (
-              <p className={`status-message ${statusType}`}>
-                <FontAwesomeIcon icon={statusIcon} />
-                <span>{status}</span>
-              </p>
-            )}
           </div>
         </div>
       </div>

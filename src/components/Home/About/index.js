@@ -1,84 +1,80 @@
-import { useEffect, useState } from "react";
-import Loader from "react-loaders";
-import AnimatedLetters from "../../AnimatedLetters";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngular,
-  faCss3,
-  faGit,
-  faHtml5,
-  faJsSquare,
-  faReact,
-} from "@fortawesome/free-brands-svg-icons";
-import useInView from "../../../hooks/useInView";
 import "./index.scss";
 
+const techPills = [
+  { label: "React", icon: "/tech-icons/react.svg" },
+  { label: "Next.js", icon: "/tech-icons/nextjs.png" },
+  { label: "TypeScript", icon: "/tech-icons/typescript.png" },
+  { label: "JavaScript", icon: "/tech-icons/javascript.png" },
+  { label: "Node.js", icon: "/tech-icons/nodejs.png" },
+  { label: "MongoDB", icon: "/tech-icons/mongodb.svg" },
+  { label: "CSS / SCSS", icon: "/tech-icons/css.svg" },
+  { label: "REST APIs", icon: "/tech-icons/api.png" },
+];
+
 const About = () => {
-  const [letterClass, setLetterClass] = useState("text-animate");
-  const [ref, inView] = useInView();
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLetterClass("text-animate-hover");
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <>
-      <div
-        id="about"
-        ref={ref}
-        className={`container about-page fade-section ${
-          inView ? "in-view" : ""
-        }`}
-      >
-        <div className="text-zone">
-          <h1>
-            <AnimatedLetters
-              letterClass={letterClass}
-              strArray={"A little about me".split("")}
-              index={15}
-            />
-          </h1>
-          <p>
-           I’m a full-stack developer who loves turning ideas into fast, clean, and usable interfaces. I work primarily with React, Next.js, TypeScript, and modern CSS, and I enjoy building data-driven apps that actually solve real problems—whether that’s a DraftKings NBA lineup recommender, a smarter calorie-tracking app, or tools for the Pokémon TCG.
-          </p>
-          <p>
-            My background in digital marketing taught me how to think from the user’s perspective, test ideas quickly, and communicate clearly with teammates. I’m comfortable debugging weird edge cases, refactoring messy code, and iterating on designs until they feel right.
-          </p>
-          <p>
-           Outside of coding, I’m usually practicing fingerstyle guitar, doing portrait art in charcoal and graphite, shooting 35mm film, learning new languages, playing card games like Pokemon, RiftBound or Magic the Gathering, hiking or biking, or at the gym. I like challenging myself in and out of tech, and I bring that same curiosity and persistence to every project I work on.
-          </p>
+    <div id="about" className="container about-section">
+      <h1 className="about-section__title">About Me:</h1>
+
+      {/* MAIN INTRO TEXT (this should sit under the title, not on the side) */}
+    <div className="about-section__intro">
+ <p>
+  I&apos;m Chris, a full-stack web developer based in New York City who likes turning real problems into simple, thoughtful, and actually useful, web apps.
+</p>
+
+<p>
+  Most of my work centers around <span className="highlight">React</span>,{" "}
+  <span className="highlight">Next.js</span>, <span className="highlight">JavaScript</span> and{" "}
+  <span className="highlight">TypeScript</span> building data-driven tools like fantasy sports
+  optimizers, smarter fitness tracking, and utilities for the Pokémon TCG. I care a lot about
+  clear UX, performance, and writing code that&apos;s easy for the next developer to understand.
+</p>
+
+<p>
+  These days I&apos;m working and building on the back end with{" "}
+  <span className="highlight">Node</span>,{" "}
+  <span className="highlight">REST APIs</span>, and{" "}
+  <span className="highlight">MongoDB</span> collecting and using data to grow projects, handling edge cases, and
+  scaling my apps to reach the needs of others.
+</p>
+
+</div>
+
+
+      {/* BOTTOM ROW: PROBLEMS + TECH */}
+      <div className="about-section__bottom">
+        <div className="about-section__box">
+          <h2>Problems I'm Solving</h2>
+        <ul>
+  <li>Scoping and shipping small, end-to-end features in real projects</li>
+  <li>Deepening my TypeScript and testing habits</li>
+  <li>Designing clean, predictable API contracts between front end and back end</li>
+  <li>Leveling up performance, accessibility, and overall developer experience</li>
+</ul>
+
         </div>
 
-        <div className="stage-cube-cont">
-          <div className="cubespinner">
-            <div className="face1">
-              <FontAwesomeIcon icon={faAngular} color="#dd0031" />
-            </div>
-            <div className="face2">
-              <FontAwesomeIcon icon={faHtml5} color="#f06529" />
-            </div>
-            <div className="face3">
-              <FontAwesomeIcon icon={faCss3} color="#28a4d9" />
-            </div>
-            <div className="face4">
-              <FontAwesomeIcon icon={faReact} color="#5ed4f4" />
-            </div>
-            <div className="face5">
-              <FontAwesomeIcon icon={faJsSquare} color="#efd81d" />
-            </div>
-            <div className="face6">
-              <FontAwesomeIcon icon={faGit} color="#ec4d28" />
-            </div>
+        <div className="about-section__box">
+          <h2>Tech I Work With</h2>
+          <div className="about-section__tech-icons">
+            {techPills.map((pill) => (
+              <div className="about-section__tech-pill" key={pill.label}>
+                <img src={pill.icon} alt={pill.label} />
+                <span>{pill.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      <Loader type="pacman" />
-    </>
+      {/* HOBBIES */}
+      <div className="about-section__hobbies">
+  <p>
+   Outside of coding, I’m usually either playing card games like Pokémon or Magic, teaching chess to elementary school kids, or lifting at the gym. I like working on projects that mix strategy, consistency, steady growth, and long-term improvement — the same things I enjoy in my hobbies and in life.
+  </p>
+</div>
+
+    </div>
   );
 };
 

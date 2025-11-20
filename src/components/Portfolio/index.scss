@@ -9,7 +9,7 @@ $text-subtle: #e0f0ff;
 // ==========================================
 .portfolio-page {
   width: 100%;
-  max-width: 1100px;          // reasonable width on laptop/desktop
+  max-width: 1100px;
   margin: 0 auto;
   padding: 80px 40px 80px;
 
@@ -31,7 +31,7 @@ $text-subtle: #e0f0ff;
     gap: 20px;
     background: $bg-card;
     border-radius: 16px;
-    padding: 24px 40px 24px 24px; // extra right padding for buttons
+    padding: 24px 48px 32px 24px; // a bit more breathing room on the right
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 
     opacity: 0;
@@ -39,26 +39,25 @@ $text-subtle: #e0f0ff;
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   }
 
-  // Reveal cards when section is in view (staggered)
   &.in-view {
     .image-box {
       opacity: 1;
       transform: translateY(0);
     }
-
-    .image-box:nth-child(1) { transition-delay: 0.05s; }
-    .image-box:nth-child(2) { transition-delay: 0.15s; }
-    .image-box:nth-child(3) { transition-delay: 0.25s; }
-    .image-box:nth-child(4) { transition-delay: 0.35s; }
-    .image-box:nth-child(5) { transition-delay: 0.45s; }
-    .image-box:nth-child(6) { transition-delay: 0.55s; }
   }
 
-  // ---- Left side: media (img / video) ----
-  .media {
-    position: relative;
+  // ---- Left side: media + tech ----
+  .left-column {
     flex: 0 0 240px;
     width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .media {
+    position: relative;
+    width: 100%;
     height: 240px;
     border-radius: 12px;
     overflow: hidden;
@@ -97,23 +96,60 @@ $text-subtle: #e0f0ff;
     letter-spacing: 1px;
   }
 
+  // ---- Tech stack row under media ----
+  .tech-stack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 34px;     // keeps icons visually centered under the video
+    margin-bottom: 20px;  // slightly tighter before text
+    min-height: 42px;     // keeps layout stable even with few icons
+  }
+
+  .tech-stack img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    object-fit: contain;
+    opacity: 0.9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.55);
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .tech-stack img:hover {
+    opacity: 1;
+    transform: translateY(-3px) scale(1.08);
+    box-shadow:
+      0 0 0 3px rgba(255, 215, 0, 0.4),
+      0 8px 18px rgba(0, 0, 0, 0.8);
+  }
+
   // ---- Right side: text content ----
   .content {
     flex: 1;
+    padding-top: 6px; // pulls text up slightly to balance with icons
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    // no justify-content here; lets .description flex-grow push buttons down
   }
 
   .title {
-    margin: 0 0 8px;
+    margin: 0 0 10px;
     color: #ffffff;
     font-size: 24px;
     font-weight: 600;
+    line-height: 1.2;         // smoother wrapping (NBA title)
+    max-width: 280px;         // prevents super-wide titles
   }
 
   .description {
     margin: 0 0 8px;
+    flex-grow: 1;             // makes card bottoms line up
     font-size: 15px;
     line-height: 1.6;
     color: $text-subtle;
@@ -133,7 +169,7 @@ $text-subtle: #e0f0ff;
   .project-buttons {
     display: flex;
     gap: 10px;
-    margin-top: 24px;
+    margin-top: 16px;   // a bit more breathing room vs 8px
     flex-wrap: nowrap;
   }
 
@@ -160,10 +196,8 @@ $text-subtle: #e0f0ff;
   }
 
   // ---------- DESKTOP/LAPTOP TIGHT-WIDTH TWEAK ----------
-  // On narrower laptops where two columns still show, shrink media a bit
-  // so the buttons/text don’t feel cut off on the right.
   @media (max-width: 1300px) and (min-width: 901px) {
-    .media {
+    .left-column {
       flex: 0 0 220px;
       width: 220px;
     }
@@ -188,17 +222,30 @@ $text-subtle: #e0f0ff;
       padding: 20px;
     }
 
-    .media {
+    .left-column {
       flex: 0 0 auto;
+      width: 100%;
+      align-items: flex-start;
+    }
+
+    .media {
       width: 100%;
       height: 220px;
     }
 
+    .tech-stack {
+      justify-content: flex-start;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
     .title {
       font-size: 20px;
+      max-width: none;
     }
   }
 }
+
 /* --- Shared button style used by APP / CODE buttons --- */
 .btn {
   align-self: flex-start;
@@ -208,7 +255,7 @@ $text-subtle: #e0f0ff;
   line-height: 36px;
   border: 2px solid $accent-yellow;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 11px;
   color: #fff;
   background: transparent;
   text-transform: uppercase;
@@ -218,17 +265,10 @@ $text-subtle: #e0f0ff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-    gap: 3px;          // ⬅️ NEW: space between icon and text
+  gap: 6px;
   transition: all 0.3s ease;
   white-space: nowrap;
 }
-
-.btn-icon {
-  display: inline-flex;
-  align-items: center;
-  margin-right: 12px;  // space between icon and text
-}
-
 
 .btn:hover {
   background: $accent-yellow;
@@ -250,4 +290,3 @@ $text-subtle: #e0f0ff;
   background: transparent;
   color: #fff;
 }
-

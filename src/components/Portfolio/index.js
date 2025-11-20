@@ -9,6 +9,35 @@ import useInView from "../../hooks/useInView";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+// Map tech keys to SVGs
+const techIconMap = {
+  react: "/tech-icons/react.svg",
+  nextjs: "/tech-icons/nextjs.png",     
+  javascript: "/tech-icons/javascript.png",
+  typescript: "/tech-icons/typescript.png",
+  node: "/tech-icons/nodejs.png",
+  api: "/tech-icons/api.png",
+  mongodb: "/tech-icons/mongodb.svg",
+  css: "/tech-icons/css.svg",
+  google: "/tech-icons/google.png",     
+  tailwind: "/tech-icons/tailwind.png", 
+  facebook: "/tech-icons/facebook.png",
+  geolocation: "/tech-icons/geolocation.png",
+};
+
+// Global ordering for tech icons so they’re consistent across cards
+const TECH_ORDER = [
+  "nextjs",
+  "react",
+  "typescript",
+  "javascript",
+  "node",
+  "mongodb",
+  "api",
+  "google",
+  "tailwind",
+  "css",
+];
 
 const Portfolio = () => {
   const [letterClass, setLetterClass] = useState("text-animate");
@@ -22,6 +51,37 @@ const Portfolio = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const renderTechIcons = (techArray) => {
+    if (!techArray || techArray.length === 0) return null;
+
+    // Deduplicate + sort according to TECH_ORDER for consistent display
+    const ordered = [...new Set(techArray)].sort((a, b) => {
+      const ia = TECH_ORDER.indexOf(a);
+      const ib = TECH_ORDER.indexOf(b);
+      const safeA = ia === -1 ? 999 : ia;
+      const safeB = ib === -1 ? 999 : ib;
+      return safeA - safeB;
+    });
+
+    return (
+      <div className="tech-stack">
+        {ordered.map((tech, index) => {
+          const src = techIconMap[tech];
+          if (!src) return null;
+
+          return (
+            <img
+              key={`${tech}-${index}`}
+              src={src}
+              alt={tech}
+              title={tech.toUpperCase()}
+            />
+          );
+        })}
+      </div>
+    );
+  };
+
   const renderPortfolio = (portfolioArray) => {
     return (
       <div className="images-container">
@@ -32,33 +92,39 @@ const Portfolio = () => {
             }`}
             key={idx}
           >
-            <div className="media">
-              {item.cover.endsWith(".mp4") ? (
-                <video
-                  src={item.cover}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="portfolio-video"
-                />
-              ) : (
-                <img
-                  src={item.cover}
-                  alt={`${item.title} preview`}
-                  className="portfolio-image"
-                />
-              )}
+            {/* LEFT COLUMN: media + tech icons */}
+            <div className="left-column">
+              <div className="media">
+                {item.cover.endsWith(".mp4") ? (
+                  <video
+                    src={item.cover}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="portfolio-video"
+                  />
+                ) : (
+                  <img
+                    src={item.cover}
+                    alt={`${item.title} preview`}
+                    className="portfolio-image"
+                  />
+                )}
 
-              {item.status === "in-progress" && (
-                <div className="badge">In Progress</div>
-              )}
+                {item.status === "in-progress" && (
+                  <div className="badge">In Progress</div>
+                )}
+              </div>
+
+              {/* Tech icons directly under image */}
+              {renderTechIcons(item.tech)}
             </div>
 
+            {/* RIGHT COLUMN: text + buttons */}
             <div className="content">
               <p className="title">{item.title}</p>
               <h4 className="description">{item.description}</h4>
-              {item.tag && <h5 className="tag">{item.tag}</h5>}
 
               <div className="project-buttons">
                 {item.app && (
@@ -79,10 +145,7 @@ const Portfolio = () => {
                     className="btn btn-code btn-small"
                     onClick={() => window.open(item.url, "_blank")}
                   >
-                    <FontAwesomeIcon
-                      icon={faGithub}
-                      className="github-icon"
-                    />
+                    <FontAwesomeIcon icon={faGithub} className="github-icon" />
                     <span> CODE</span>
                   </button>
                 )}

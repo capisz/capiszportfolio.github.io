@@ -3,24 +3,20 @@
   max-width: 1100px;
   margin: 0 auto;
 
-  /* smaller top padding so it sits closer to the header */
+  /* spacing from the top nav */
   padding: 145px 24px 60px;
-
-  /* let the content decide the height instead of forcing near-full viewport */
-  min-height: auto;
+  min-height: calc(100vh - 80px);
 
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(260px, 1fr);
   column-gap: 40px;
-
-  /* TOP-align the columns instead of centering them vertically */
   align-items: flex-start;
 
   position: relative;
 }
 
 
-/* Text block (now left column) */
+/* Text block */
 .home-page .text-zone {
   width: 100%;
   max-width: 650px;
@@ -28,46 +24,42 @@
   animation: fadeInUp 0.9s ease 0.2s backwards;
 }
 
-/* Illustration card (right column) */
-.hero-illustration {
-  justify-self: center;
-  max-width: 340px;
-  width: 100%;
-
-  background: #022436;
-  border-radius: 18px;
-  padding: 16px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
-  overflow: hidden;
-
-  animation: fadeInUp 0.9s ease 0.3s backwards;
-}
-
-.hero-illustration img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
 /* Headings */
 .home-page h1 {
-  margin: 0 0 24px;
+  margin: 0 0 20px;
   font-size: 56px;
   line-height: 1.1;
   color: #f4f8ff;
 }
 
 .home-page h2 {
-  margin: 0 0 40px;
-  font-size: 16px;
-  line-height: 1.6;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #8fa5c9;
-  animation: fadeInUp 0.9s ease 0.4s backwards;
+  margin: 0 0 28px;        // was 40px
 }
 
-/* Highlight the C in "Chris" */
+.home-page .roles {
+  margin-top: 4px;
+}
+
+
+/* NEW: polished subheading */
+.subheading {
+  font-size: 20px;
+  line-height: 1.45;
+  margin: 0 0 16px;
+  color: #cdd8ea;
+}
+
+/* Roles line */
+.hero-text .roles,
+.roles {
+  font-size: 15px;
+  letter-spacing: 1.4px;
+ // text-transform: uppercase;
+  margin: 0 0 30px;
+  color: rgba(228, 239, 255, 0.8);
+}
+
+/* Highlight the C */
 .highlight-c {
   color: #ffd700;
   font-weight: 500;
@@ -79,55 +71,86 @@
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 6px;
   animation: fadeInUp 0.9s ease 0.8s backwards;
 }
 
-/* Primary yellow button */
+.button-row .btn-icon {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 14px;
+  line-height: 1;
+}
+
+
+/* Illustration card */
+.hero-illustration {
+  justify-self: center;
+  max-width: 340px;
+  width: 100%;
+  background: #022436;
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  animation: fadeInUp 0.9s ease 0.3s backwards;
+}
+
+.hero-illustration img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Buttons */
 .home-page .flat-button {
   color: #ffd700;
   font-size: 13px;
-  font-weight: 400;
   letter-spacing: 4px;
-  font-family: sans-serif;
-  text-decoration: none;
   padding: 10px 18px;
   border: 1px solid #ffd700;
-  display: inline-block;
-  white-space: nowrap;
-  background: transparent;
   transition: background 0.25s ease, color 0.25s ease;
 
   &:hover {
-    color: #333;
     background: #ffd700;
+    color: #001b2a;
   }
 }
 
-/* Secondary resume button */
 .home-page .flat-button.secondary {
-  color: #ffffff;
-  border-color: #ffffff;
+  color: #fff;
+  border-color: #fff;
 
   &:hover {
-    color: #333;
-    background: #ffffff;
+    background: #fff;
+    color: #001b2a;
   }
 }
-
-/* Fade + slide-up animation */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.flat-button .btn-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  filter: brightness(0) saturate(100%) invert(79%) sepia(81%)
+    saturate(1290%) hue-rotate(6deg) brightness(103%) contrast(101%);
+  /* the above makes the SVG match your yellow exactly */
+  transition: transform 0.2s ease;
 }
 
-/* Mobile: stack and shrink */
+.flat-button:hover .btn-icon {
+  transform: translateY(-1px);
+  filter: brightness(0);
+}
+
+/* Mail icon for Contact button */
+.btn-icon-left {
+  font-size: 14px;
+  margin-right: 6px;
+  transform: translateY(1px);
+}
+
+
+
+/* Mobile */
 @media (max-width: 900px) {
   .home-page {
     grid-template-columns: 1fr;

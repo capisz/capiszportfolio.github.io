@@ -52,7 +52,10 @@ const ScrollArrow = () => {
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (!el) return;
-    const offsetTop = el.offsetTop - 70; // small offset for nav
+
+    // Scroll directly to the section top; sections already have padding
+    const offsetTop = el.offsetTop;
+
     window.scrollTo({
       top: offsetTop < 0 ? 0 : offsetTop,
       behavior: "smooth",
