@@ -290,3 +290,22 @@ $text-subtle: #e0f0ff;
   background: transparent;
   color: #fff;
 }
+.sample-copy-btn {
+  margin-top: 12px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #ffd700;
+  background: transparent;
+  color: #ffd700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+
+  &:hover {
+    background: #ffd700;
+    color: #021a2b;
+    transform: translateY(-1px);
+  }
+}

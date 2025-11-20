@@ -3,7 +3,7 @@
     {
       "cover": "/portfolio/1/dragapult-pokemon.mp4",
       "title": "Dragapultist for Pokemon TCG",
-      "description": "Import your Pokemon tcg-live export files here to analyze your games and improve as a player! Sample file below to paste",
+      "description": "Getting better is all the fun! Import your Pokemon tcg-live export files here to analyze your games and improve as a player! Sample file below to paste",
       "app": "https://dragapultist.vercel.app/",
       "status": "complete",
       "url": "https://github.com/capisz/dragapultist",

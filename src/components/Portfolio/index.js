@@ -1,3 +1,8 @@
+import { copyToClipboard } from "../../utils/clipboard";
+import {
+  DRAGAPULTIST_SAMPLE_GAME,
+  PRIZE_CHECKER_SAMPLE_DECK,
+} from "../../data/sampleText";
 import React, { useState, useEffect } from "react";
 import "./index.scss";
 import Loader from "react-loaders";
@@ -9,6 +14,7 @@ import useInView from "../../hooks/useInView";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+
 // Map tech keys to SVGs
 const techIconMap = {
   react: "/tech-icons/react.svg",
@@ -40,6 +46,18 @@ const TECH_ORDER = [
 ];
 
 const Portfolio = () => {
+
+  const [copiedId, setCopiedId] = useState(null);
+
+  const handleCopySample = async (id, text) => {
+    try {
+      await copyToClipboard(text);
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 1800);
+    } catch (e) {
+      console.error("Copy failed", e);
+    }
+  };
   const [letterClass, setLetterClass] = useState("text-animate");
   const [ref, inView] = useInView();
 
@@ -123,34 +141,64 @@ const Portfolio = () => {
 
             {/* RIGHT COLUMN: text + buttons */}
             <div className="content">
-              <p className="title">{item.title}</p>
-              <h4 className="description">{item.description}</h4>
+  <p className="title">{item.title}</p>
+  <h4 className="description">{item.description}</h4>
 
-              <div className="project-buttons">
-                {item.app && (
-                  <button
-                    className="btn btn-app btn-small"
-                    onClick={() => window.open(item.app, "_blank")}
-                  >
-                    <FontAwesomeIcon
-                      icon={faArrowUpRightFromSquare}
-                      className="app-icon"
-                    />
-                    <span> APP</span>
-                  </button>
-                )}
+  <div className="project-buttons">
+    {item.app && (
+      <button
+        className="btn btn-app btn-small"
+        onClick={() => window.open(item.app, "_blank")}
+      >
+        <FontAwesomeIcon
+          icon={faArrowUpRightFromSquare}
+          className="app-icon"
+        />
+        <span> APP</span>
+      </button>
+    )}
 
-                {item.url && (
-                  <button
-                    className="btn btn-code btn-small"
-                    onClick={() => window.open(item.url, "_blank")}
-                  >
-                    <FontAwesomeIcon icon={faGithub} className="github-icon" />
-                    <span> CODE</span>
-                  </button>
-                )}
-              </div>
-            </div>
+    {item.url && (
+      <button
+        className="btn btn-code btn-small"
+        onClick={() => window.open(item.url, "_blank")}
+      >
+        <FontAwesomeIcon icon={faGithub} className="github-icon" />
+        <span> CODE</span>
+      </button>
+    )}
+  </div>
+
+  {/* Sample text buttons for interactive projects */}
+  {item.title.includes("Dragapultist") && (
+    <button
+      type="button"
+      className="sample-copy-btn"
+      onClick={() =>
+        handleCopySample("dragapultist-game", DRAGAPULTIST_SAMPLE_GAME)
+      }
+    >
+      {copiedId === "dragapultist-game"
+        ? "Copied sample game log!"
+        : "Copy sample game log"}
+    </button>
+  )}
+
+  {item.title.includes("Prize Checker") && (
+    <button
+      type="button"
+      className="sample-copy-btn"
+      onClick={() =>
+        handleCopySample("prize-checker-deck", PRIZE_CHECKER_SAMPLE_DECK)
+      }
+    >
+      {copiedId === "prize-checker-deck"
+        ? "Copied sample deck list!"
+        : "Copy sample deck list"}
+    </button>
+  )}
+</div>
+
           </div>
         ))}
       </div>
