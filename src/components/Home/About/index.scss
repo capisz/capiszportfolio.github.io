@@ -3,6 +3,19 @@ $bg-card: #021a2b;
 $text-main: #f4f8ff;
 $text-subtle: #e0f0ff;
 
+/* Generic fade-on-scroll helper (used across sections) */
+.fade-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 .about-section {
   width: 100%;
   max-width: 1100px;
@@ -12,15 +25,15 @@ $text-subtle: #e0f0ff;
 }
 
 .about-section__title {
-  margin: 0 0 32px;
+  margin: 2px 0 20px;
   font-size: 36px;
   color: $accent-yellow;
 }
 
 /* MAIN INTRO BLOCK – this should appear under the title */
 .about-section__intro {
-  max-width: 740px;
-  font-size: 15px;
+  max-width: 880px;
+  font-size: 16px;
   line-height: 1.7;
   color: $text-subtle;
   margin-bottom: 40px;
@@ -65,7 +78,7 @@ $text-subtle: #e0f0ff;
 
     li {
       margin-bottom: 10px;
-      font-size: 14px;
+      font-size: 13.8px;
       color: $text-subtle;
       line-height: 1.6;
     }
@@ -106,13 +119,13 @@ $text-subtle: #e0f0ff;
 
 /* HOBBIES LINE UNDER CARDS */
 .about-section__hobbies {
-  margin-top: 28px;                 // a bit tighter to the cards
-  padding-top: 16px;                // space for the divider
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  max-width: 900px;                 // wider so it doesn’t look like a tiny block
-  font-size: 14px;
-  line-height: 1.7;
-  color: $text-subtle;
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(240, 248, 255, 0.08);
+  max-width: 880px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: $text-main; // a bit more contrast so it feels like real copy
 }
 
 

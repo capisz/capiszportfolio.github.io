@@ -10,7 +10,7 @@ const Home = () => {
           <br />
           I'm <span className="highlight-c">Chris</span>,
           <br />
-          Full-Stack Developer
+          Software Engineer & Full-stack Developer
         </h1>
 
         <p className="subheading">

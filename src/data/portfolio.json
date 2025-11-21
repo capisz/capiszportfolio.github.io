@@ -7,16 +7,7 @@
       "app": "https://dragapultist.vercel.app/",
       "status": "complete",
       "url": "https://github.com/capisz/dragapultist",
-      "tech": ["nextjs","react", "typescript", "tailwind", "api"]
-    },
-    {
-      "cover": "/portfolio/1/elephit.mp4",
-      "title": "Elephit Fitness App",
-      "description": "Your body changes every day, so should your fitness logging. Your calorie needs change week-to-week or even day-to-day, so allow Elephit to figure that out for you.",
-      "app": "https://elephit-fitness-app.vercel.app/user-profile",
-      "status": "complete",
-      "url": "https://github.com/capisz/elephit-fitness-app",
-      "tech": ["nextjs","react", "typescript", "node", "tailwind"]
+      "tech": ["nextjs","react", "typescript", "tailwind", "node"]
     },
     {
       "cover": "/portfolio/1/brunson-game-winner-250501.mp4",
@@ -26,6 +17,15 @@
       "status": "complete",
       "url": "https://github.com/capisz/draftkings-optimizer",
       "tech": ["react", "javascript", "node", "api"]
+    },
+    {
+      "cover": "/portfolio/1/elephit.mp4",
+      "title": "Elephit Fitness App",
+      "description": "Your body changes every day, so should your fitness logging. Your calorie needs change week-to-week or even day-to-day, so allow Elephit to figure that out for you.",
+      "app": "https://elephit-fitness-app.vercel.app/user-profile",
+      "status": "complete",
+      "url": "https://github.com/capisz/elephit-fitness-app",
+      "tech": ["nextjs","react", "typescript", "tailwind", "api"]
     },
     {
       "cover": "/portfolio/1/pokemonshuffle.mp4",

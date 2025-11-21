@@ -14,10 +14,44 @@ $text-subtle: #e0f0ff;
   padding: 80px 40px 80px;
 
   h1.page-title {
-    margin: 0 0 40px;
+    margin: 0 0 12px;
     color: $text-main;
     font-size: 36px;
   }
+
+   .portfolio-subtitle {
+    margin: 0 0 40px;
+    color: #dbd059;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 620px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    
+    // start hidden / slightly left
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+
+  .portfolio-subtitle.subtitle-animate {
+    animation: portfolio-subtitle-fade-slide 0.9s ease-out forwards;
+  }
+
+  @keyframes portfolio-subtitle-fade-slide {
+    0% {
+      opacity: 0;
+      transform: translateX(-16px);
+    }
+    60% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
 
   .images-container {
     display: grid;
@@ -31,7 +65,7 @@ $text-subtle: #e0f0ff;
     gap: 20px;
     background: $bg-card;
     border-radius: 16px;
-    padding: 24px 48px 32px 24px; // a bit more breathing room on the right
+    padding: 24px 48px 32px 24px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 
     opacity: 0;
@@ -45,6 +79,30 @@ $text-subtle: #e0f0ff;
       transform: translateY(0);
     }
   }
+
+    @keyframes portfolio-card-glow-once {
+    0% {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    30% {
+      box-shadow:
+        0 0 40px #dbd059,
+        0 12px 36px rgba(0, 0, 0, 0.7);
+    }
+    70% {
+      box-shadow:
+        0 0 40px #dbd059,
+        0 12px 36px rgba(0, 0, 0, 0.7);
+    }
+    100% {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  .image-box.glow-once {
+      animation: portfolio-card-glow-once 2s ease-out 0.2s 1;
+  }
+
 
   // ---- Left side: media + tech ----
   .left-column {
@@ -77,7 +135,6 @@ $text-subtle: #e0f0ff;
     transform: scale(1.05);
   }
 
-  // In-progress badge + desaturation
   .image-box.in-progress .media img,
   .image-box.in-progress .media video {
     filter: grayscale(80%) brightness(0.7);
@@ -96,16 +153,15 @@ $text-subtle: #e0f0ff;
     letter-spacing: 1px;
   }
 
-  // ---- Tech stack row under media ----
   .tech-stack {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 34px;     // keeps icons visually centered under the video
-    margin-bottom: 20px;  // slightly tighter before text
-    min-height: 42px;     // keeps layout stable even with few icons
+    margin-top: 34px;
+    margin-bottom: 20px;
+    min-height: 42px;
   }
 
   .tech-stack img {
@@ -115,10 +171,7 @@ $text-subtle: #e0f0ff;
     object-fit: contain;
     opacity: 0.9;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.55);
-    transition:
-      opacity 0.25s ease,
-      transform 0.25s ease,
-      box-shadow 0.25s ease;
+    transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   }
 
   .tech-stack img:hover {
@@ -132,10 +185,10 @@ $text-subtle: #e0f0ff;
   // ---- Right side: text content ----
   .content {
     flex: 1;
-    padding-top: 6px; // pulls text up slightly to balance with icons
+    padding-top: 6px;
     display: flex;
     flex-direction: column;
-    // no justify-content here; lets .description flex-grow push buttons down
+    position: relative; // so tooltips are positioned relative to this
   }
 
   .title {
@@ -143,13 +196,13 @@ $text-subtle: #e0f0ff;
     color: #ffffff;
     font-size: 24px;
     font-weight: 600;
-    line-height: 1.2;         // smoother wrapping (NBA title)
-    max-width: 280px;         // prevents super-wide titles
+    line-height: 1.2;
+    max-width: 280px;
   }
 
   .description {
     margin: 0 0 8px;
-    flex-grow: 1;             // makes card bottoms line up
+    flex-grow: 1;
     font-size: 15px;
     line-height: 1.6;
     color: $text-subtle;
@@ -165,15 +218,13 @@ $text-subtle: #e0f0ff;
     font-weight: 500;
   }
 
-  // Row of buttons under each project card
   .project-buttons {
     display: flex;
     gap: 10px;
-    margin-top: 16px;   // a bit more breathing room vs 8px
+    margin-top: 16px;
     flex-wrap: nowrap;
   }
 
-  // APP button (yellow outline, yellow text)
   .btn-app {
     border-color: $accent-yellow;
     color: $accent-yellow;
@@ -184,7 +235,6 @@ $text-subtle: #e0f0ff;
     color: #001b2a;
   }
 
-  // CODE button (white outline, white text)
   .btn-code {
     border-color: #ffffff;
     color: #ffffff;
@@ -211,6 +261,15 @@ $text-subtle: #e0f0ff;
   @media (max-width: 900px) {
     max-width: 100%;
     padding: 60px 16px 60px;
+
+    h1.page-title {
+      font-size: 30px;
+    }
+
+    .portfolio-subtitle {
+      font-size: 13px;
+      margin-bottom: 30px;
+    }
 
     .images-container {
       grid-template-columns: 1fr;
@@ -275,7 +334,6 @@ $text-subtle: #e0f0ff;
   color: #000;
 }
 
-/* focus + disabled states if needed */
 .btn:focus-visible {
   outline: 2px solid $accent-yellow;
   outline-offset: 3px;
@@ -290,8 +348,10 @@ $text-subtle: #e0f0ff;
   background: transparent;
   color: #fff;
 }
+
+// -------- Sample-copy button ----------
 .sample-copy-btn {
-  margin-top: 12px;
+  margin-top: 11px;
   padding: 6px 14px;
   border-radius: 999px;
   border: 1px solid #ffd700;
@@ -307,5 +367,11 @@ $text-subtle: #e0f0ff;
     background: #ffd700;
     color: #021a2b;
     transform: translateY(-1px);
+  }
+}
+
+@media (max-width: 900px) {
+  .quick-demo-tooltip {
+    max-width: 220px;
   }
 }

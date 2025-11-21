@@ -106,13 +106,15 @@ const Contact = () => {
           </h1>
 
           <p>
-            The form below is the easiest way to get in touch about roles,
+            While you're here, the form below is an easy way to get in touch about roles,
             projects, or anything you’ve seen here. You can also email me
             directly at{" "}
             <a href="mailto:chriszcodes@gmail.com">
               <span>chriszcodes@gmail.com</span>
-            </a>
-            .
+            </a> or follow my github for future projects updates:  
+              <a href="https://github.com/capisz" target="_blank" rel="noopener noreferrer">
+                <span> github.com/capisz</span>
+              </a>
           </p>
 
           <div className="contact-form">

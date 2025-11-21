@@ -119,7 +119,7 @@ const Sidebar = () => {
             <FontAwesomeIcon icon={faGithub} />
           </a>
         </li>
-        <li>
+        {/* <li>
           <a
             target="_blank"
             rel="noreferrer"
@@ -127,7 +127,7 @@ const Sidebar = () => {
           >
             <FontAwesomeIcon icon={faDiscord} />
           </a>
-        </li>
+        </li> */}
       </ul>
     </header>
   );

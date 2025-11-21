@@ -18,15 +18,15 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 // Map tech keys to SVGs
 const techIconMap = {
   react: "/tech-icons/react.svg",
-  nextjs: "/tech-icons/nextjs.png",     
+  nextjs: "/tech-icons/nextjs.png",
   javascript: "/tech-icons/javascript.png",
   typescript: "/tech-icons/typescript.png",
   node: "/tech-icons/nodejs.png",
   api: "/tech-icons/api.png",
   mongodb: "/tech-icons/mongodb.svg",
   css: "/tech-icons/css.svg",
-  google: "/tech-icons/google.png",     
-  tailwind: "/tech-icons/tailwind.png", 
+  google: "/tech-icons/google.png",
+  tailwind: "/tech-icons/tailwind.png",
   facebook: "/tech-icons/facebook.png",
   geolocation: "/tech-icons/geolocation.png",
 };
@@ -46,18 +46,7 @@ const TECH_ORDER = [
 ];
 
 const Portfolio = () => {
-
   const [copiedId, setCopiedId] = useState(null);
-
-  const handleCopySample = async (id, text) => {
-    try {
-      await copyToClipboard(text);
-      setCopiedId(id);
-      setTimeout(() => setCopiedId(null), 1800);
-    } catch (e) {
-      console.error("Copy failed", e);
-    }
-  };
   const [letterClass, setLetterClass] = useState("text-animate");
   const [ref, inView] = useInView();
 
@@ -68,6 +57,16 @@ const Portfolio = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  const handleCopySample = async (id, text) => {
+    try {
+      await copyToClipboard(text);
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 1800);
+    } catch (e) {
+      console.error("Copy failed", e);
+    }
+  };
 
   const renderTechIcons = (techArray) => {
     if (!techArray || techArray.length === 0) return null;
@@ -100,107 +99,138 @@ const Portfolio = () => {
     );
   };
 
+  // Renders the portfolio items
   const renderPortfolio = (portfolioArray) => {
     return (
       <div className="images-container">
-        {portfolioArray.map((item, idx) => (
-          <div
-            className={`image-box ${
-              item.status === "in-progress" ? "in-progress" : ""
-            }`}
-            key={idx}
-          >
-            {/* LEFT COLUMN: media + tech icons */}
-            <div className="left-column">
-              <div className="media">
-                {item.cover.endsWith(".mp4") ? (
-                  <video
-                    src={item.cover}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="portfolio-video"
-                  />
-                ) : (
-                  <img
-                    src={item.cover}
-                    alt={`${item.title} preview`}
-                    className="portfolio-image"
-                  />
-                )}
+        {portfolioArray.map((item, idx) => {
+         const title = item.title || "";
+const lowerTitle = title.toLowerCase();
 
-                {item.status === "in-progress" && (
-                  <div className="badge">In Progress</div>
-                )}
+const isDragapultist = lowerTitle.includes("dragapultist");
+const isPrizeChecker = lowerTitle.includes("prize checker");
+const isElephit = lowerTitle.includes("elephit");
+
+// Broader match for your NBA fantasy / DraftKings app
+const isDraftKings =
+  lowerTitle.includes("draftkings") ||
+  lowerTitle.includes("draft kings") ||
+  lowerTitle.includes("nba fantasy") ||
+  lowerTitle.includes("daily fantasy") ||
+  lowerTitle.includes("dfs") ||
+  lowerTitle.includes("lineup");
+
+const shouldGlow =
+  inView && (isElephit || isDraftKings || isDragapultist);
+
+
+          return (
+            <div
+              className={`image-box ${
+                item.status === "in-progress" ? "in-progress" : ""
+              } ${shouldGlow ? "glow-once" : ""}`}
+              key={idx}
+            >
+              {/* LEFT COLUMN: media + tech icons */}
+              <div className="left-column">
+                <div className="media">
+                  {item.cover.endsWith(".mp4") ? (
+                    <video
+                      src={item.cover}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="portfolio-video"
+                    />
+                  ) : (
+                    <img
+                      src={item.cover}
+                      alt={`${item.title} preview`}
+                      className="portfolio-image"
+                    />
+                  )}
+
+                  {item.status === "in-progress" && (
+                    <div className="badge">In Progress</div>
+                  )}
+                </div>
+
+                {/* Tech icons directly under image */}
+                {renderTechIcons(item.tech)}
               </div>
 
-              {/* Tech icons directly under image */}
-              {renderTechIcons(item.tech)}
+              {/* RIGHT COLUMN: text + buttons */}
+              <div className="content">
+                <p className="title">{item.title}</p>
+                <h4 className="description">{item.description}</h4>
+
+                <div className="project-buttons">
+                  {item.app && (
+                    <button
+                      className="btn btn-app btn-small"
+                      onClick={() => window.open(item.app, "_blank")}
+                    >
+                      <FontAwesomeIcon
+                        icon={faArrowUpRightFromSquare}
+                        className="app-icon"
+                      />
+                      <span> APP</span>
+                    </button>
+                  )}
+
+                  {item.url && (
+                    <button
+                      className="btn btn-code btn-small"
+                      onClick={() => window.open(item.url, "_blank")}
+                    >
+                      <FontAwesomeIcon
+                        icon={faGithub}
+                        className="github-icon"
+                      />
+                      <span> CODE</span>
+                    </button>
+                  )}
+                </div>
+
+                {/* Sample text buttons for interactive projects */}
+                {isDragapultist && (
+                  <button
+                    type="button"
+                    className="sample-copy-btn"
+                    onClick={() =>
+                      handleCopySample(
+                        "dragapultist-game",
+                        DRAGAPULTIST_SAMPLE_GAME
+                      )
+                    }
+                  >
+                    {copiedId === "dragapultist-game"
+                      ? "Copied sample game log!"
+                      : "Copy sample game log"}
+                  </button>
+                )}
+
+                {isPrizeChecker && (
+                  <button
+                    type="button"
+                    className="sample-copy-btn"
+                    onClick={() =>
+                      handleCopySample(
+                        "prize-checker-deck",
+                        PRIZE_CHECKER_SAMPLE_DECK
+                      )
+                    }
+                  >
+                    {copiedId === "prize-checker-deck"
+                      ? "Copied sample deck list!"
+                      : "Copy sample deck list"}
+                  </button>
+                )}
+              </div>
             </div>
-
-            {/* RIGHT COLUMN: text + buttons */}
-            <div className="content">
-  <p className="title">{item.title}</p>
-  <h4 className="description">{item.description}</h4>
-
-  <div className="project-buttons">
-    {item.app && (
-      <button
-        className="btn btn-app btn-small"
-        onClick={() => window.open(item.app, "_blank")}
-      >
-        <FontAwesomeIcon
-          icon={faArrowUpRightFromSquare}
-          className="app-icon"
-        />
-        <span> APP</span>
-      </button>
-    )}
-
-    {item.url && (
-      <button
-        className="btn btn-code btn-small"
-        onClick={() => window.open(item.url, "_blank")}
-      >
-        <FontAwesomeIcon icon={faGithub} className="github-icon" />
-        <span> CODE</span>
-      </button>
-    )}
-  </div>
-
-  {/* Sample text buttons for interactive projects */}
-  {item.title.includes("Dragapultist") && (
-    <button
-      type="button"
-      className="sample-copy-btn"
-      onClick={() =>
-        handleCopySample("dragapultist-game", DRAGAPULTIST_SAMPLE_GAME)
-      }
-    >
-      {copiedId === "dragapultist-game"
-        ? "Copied sample game log!"
-        : "Copy sample game log"}
-    </button>
-  )}
-
-  {item.title.includes("Prize Checker") && (
-    <button
-      type="button"
-      className="sample-copy-btn"
-      onClick={() =>
-        handleCopySample("prize-checker-deck", PRIZE_CHECKER_SAMPLE_DECK)
-      }
-    >
-      {copiedId === "prize-checker-deck"
-        ? "Copied sample deck list!"
-        : "Copy sample deck list"}
-    </button>
-  )}
-</div>
-
-          </div>
-        ))}
+          );
+        })}
       </div>
     );
   };
@@ -221,6 +251,13 @@ const Portfolio = () => {
             index={15}
           />
         </h1>
+
+       <p
+  className={`portfolio-subtitle ${inView ? "subtitle-animate" : ""}`}
+>
+  {`↪`} Take 90 seconds to scan my finished work and decide if I’m a fit for your team.
+</p>
+
 
         {renderPortfolio(portfolioData.portfolio)}
       </div>
