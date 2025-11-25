@@ -26,7 +26,7 @@ Focused on thoughtful UI, creative solutions to complex problems, and building t
 </a>
 
           <a
-            href="/chris_capizzuto_resume.pdf"
+            href="/christopher-capizzuto-resume.pdf"
             className="flat-button secondary"
             download="christopher-capizzuto-resume.pdf"
             aria-label="Download my resume as a PDF"
