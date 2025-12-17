@@ -5,7 +5,7 @@
       "title": "Pokemon Prize Checker",
       "description": "Finally a tool to simulate and perfect your pokemon tcg prize-checking without using physical cards, meant to be used any time, any place and with no setup needed",
       "url": "https://github.com/capisz/pokemon-tcg-prize-checker",
-      "status": "in-progress",
+      "status": "complete",
       "app": "https://pokemon-tcg-prize-checker.vercel.app/",
       "tech": ["nextjs","react", "typescript", "mongodb","api"]
     },{
