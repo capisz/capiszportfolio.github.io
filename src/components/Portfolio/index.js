@@ -121,7 +121,7 @@ const isDraftKings =
   lowerTitle.includes("lineup");
 
 const shouldGlow =
-  inView && (isElephit || isDraftKings || isDragapultist);
+  inView && (isElephit || isDraftKings || isDragapultist || isPrizeChecker);
 
 
           return (

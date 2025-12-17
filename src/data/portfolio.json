@@ -1,5 +1,22 @@
 {
   "portfolio": [
+     {
+      "cover": "/portfolio/1/pokemonshuffle.mp4",
+      "title": "Pokemon Prize Checker",
+      "description": "Finally a tool to simulate and perfect your pokemon tcg prize-checking without using physical cards, meant to be used any time, any place and with no setup needed",
+      "url": "https://github.com/capisz/pokemon-tcg-prize-checker",
+      "status": "in-progress",
+      "app": "https://pokemon-tcg-prize-checker.vercel.app/",
+      "tech": ["nextjs","react", "typescript", "mongodb","api"]
+    },{
+      "cover": "/portfolio/1/brunson-game-winner-250501.mp4",
+      "title": "NBA Daily Fantasy Generator",
+      "description": "For those short of time, or just needing an edge let this app generate you the most price efficient lineup for players that day without you needing to search for hours",
+      "app": "https://draftkings-optimizer.vercel.app/",
+      "status": "complete",
+      "url": "https://github.com/capisz/draftkings-optimizer",
+      "tech": ["react", "javascript", "node", "api"]
+    },
     {
       "cover": "/portfolio/1/dragapult-pokemon.mp4",
       "title": "Dragapultist for Pokemon TCG",
@@ -10,15 +27,6 @@
       "tech": ["nextjs","react", "typescript", "tailwind", "node"]
     },
     {
-      "cover": "/portfolio/1/brunson-game-winner-250501.mp4",
-      "title": "NBA Daily Fantasy Generator",
-      "description": "For those short of time, or just needing an edge let this app generate you the most price efficient lineup for players that day without you needing to search for hours",
-      "app": "https://draftkings-optimizer.vercel.app/",
-      "status": "complete",
-      "url": "https://github.com/capisz/draftkings-optimizer",
-      "tech": ["react", "javascript", "node", "api"]
-    },
-    {
       "cover": "/portfolio/1/elephit.mp4",
       "title": "Elephit Fitness App",
       "description": "Your body changes every day, so should your fitness logging. Your calorie needs change week-to-week or even day-to-day, so allow Elephit to figure that out for you.",
@@ -26,15 +34,6 @@
       "status": "complete",
       "url": "https://github.com/capisz/elephit-fitness-app",
       "tech": ["nextjs","react", "typescript", "tailwind", "api"]
-    },
-    {
-      "cover": "/portfolio/1/pokemonshuffle.mp4",
-      "title": "Pokemon Prize Checker",
-      "description": "Finally a tool to simulate and perfect your pokemon tcg prize-checking without using physical cards, meant to be used any time, any place and with no setup needed",
-      "url": "https://github.com/capisz/pokemon-tcg-prize-checker",
-      "status": "in-progress",
-      "app": "https://pokemon-tcg-prize-check.vercel.app",
-      "tech": ["nextjs","react", "typescript", "mongodb","api"]
     },
     {
       "cover": "/portfolio/1/room.mp4",
