@@ -14,10 +14,9 @@ const Home = () => {
         </h1>
 
         <p className="subheading">
-I build fast, modern web applications with React, Next.js, TypeScript, and scalable APIs.        </p>
+Building fast, modern-looking apps with React, Next.js, and TypeScript, that feel alive and solve real world problems.        </p>
 
-        <p className="roles">
-Focused on thoughtful UI, creative solutions to complex problems, and building tools that make people's lives easier.      </p>
+      
 
         <div className="button-row">
          <a href="#contact" className="flat-button">

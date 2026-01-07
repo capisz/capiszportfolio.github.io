@@ -9,7 +9,7 @@ const techPills = [
   { label: "JavaScript", icon: "/tech-icons/javascript.png" },
   { label: "Node.js", icon: "/tech-icons/nodejs.png" },
   { label: "MongoDB", icon: "/tech-icons/mongodb.svg" },
-  { label: "REST APIs", icon: "/tech-icons/api.png" },
+  { label: "API", icon: "/tech-icons/api.png" },
   { label: "Tailwind CSS", icon: "/tech-icons/tailwind.png" },
   { label: "Electron", icon: "/tech-icons/electron.png" },
   { label: "Python", icon: "/tech-icons/python.png" },
@@ -33,7 +33,7 @@ const About = () => {
       {/* MAIN INTRO TEXT (this should sit under the title, not on the side) */}
       <div className="about-section__intro">
         <p>
-          I&apos;m Chris, a full-stack web developer based in New York City who
+          I&apos;m Chris, a full-stack web developer based in New York who
           likes turning real problems into simple, thoughtful, and actually
           useful, web apps.
         </p>
