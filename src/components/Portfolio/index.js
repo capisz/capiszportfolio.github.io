@@ -29,6 +29,11 @@ const techIconMap = {
   tailwind: "/tech-icons/tailwind.png",
   facebook: "/tech-icons/facebook.png",
   geolocation: "/tech-icons/geolocation.png",
+  electron: "/tech-icons/electron.png",
+  python: "/tech-icons/python.png",
+  amazon: "/tech-icons/aws.svg",
+  swift: "/tech-icons/swift.png",
+  git: "/tech-icons/git.png",
 };
 
 // Global ordering for tech icons so they’re consistent across cards
@@ -39,10 +44,12 @@ const TECH_ORDER = [
   "javascript",
   "node",
   "mongodb",
+  "python",
   "api",
   "google",
   "tailwind",
   "css",
+  "electron",
 ];
 
 const Portfolio = () => {

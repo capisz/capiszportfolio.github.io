@@ -9,10 +9,12 @@ const techPills = [
   { label: "JavaScript", icon: "/tech-icons/javascript.png" },
   { label: "Node.js", icon: "/tech-icons/nodejs.png" },
   { label: "MongoDB", icon: "/tech-icons/mongodb.svg" },
-  { label: "CSS / SCSS", icon: "/tech-icons/css.svg" },
   { label: "REST APIs", icon: "/tech-icons/api.png" },
   { label: "Tailwind CSS", icon: "/tech-icons/tailwind.png" },
-  { label: "HTML5", icon: "/tech-icons/html5.png" },
+  { label: "Electron", icon: "/tech-icons/electron.png" },
+  { label: "Python", icon: "/tech-icons/python.png" },
+  { label: "Git", icon: "/tech-icons/git.png" },
+  { label: "Swift", icon: "/tech-icons/swift.png"}
 ];
 
 const About = () => {

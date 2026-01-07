@@ -2,762 +2,162 @@
 
 export const DRAGAPULTIST_SAMPLE_GAME = `
 Setup
-
-capisz chose tails for the opening coin flip.
-
-KarlosG won the coin toss.
-
-KarlosG decided to go first.
-
+Riku1218602 chose tails for the opening coin flip.
+capisz won the coin toss.
+capisz decided to go second.
+Riku1218602 drew 7 cards for the opening hand.
+- 7 drawn cards.
 capisz drew 7 cards for the opening hand.
-
 - 7 drawn cards.
+   • Earthen Vessel, Lillie's Determination, Rare Candy, Ralts, Basic Psychic Energy, Munkidori, Kirlia
+Riku1218602 played Ditto to the Active Spot.
+capisz played Munkidori to the Active Spot.
 
-   • Canceling Cologne, Bloodmoon Ursaluna ex, Iono, Hoothoot, Thorton, Basic Water Energy, Area Zero Underdepths
-
-KarlosG drew 7 cards for the opening hand.
-
-- 7 drawn cards.
-
-capisz played Hoothoot to the Active Spot.
-
-KarlosG played Chien-Pao ex to the Active Spot.
-
-KarlosG played Radiant Greninja to the Bench.
-
-
-
-Turn # 1 - KarlosG's Turn
-
-KarlosG drew a card.
-
-KarlosG attached Basic Water Energy to Chien-Pao ex in the Active Spot.
-
-KarlosG's Chien-Pao ex used Shivery Chill.
-
-- KarlosG drew 2 cards.
-
-   • Basic Water Energy, Basic Water Energy
-
-- KarlosG shuffled their deck.
-
-KarlosG's Radiant Greninja used Concealed Cards.
-
-- KarlosG discarded Basic Water Energy.
-
-- KarlosG drew 2 cards.
-
-KarlosG played Origin Forme Palkia V to the Bench.
-
-KarlosG played Buddy-Buddy Poffin.
-
-- KarlosG drew Frigibax and played it to the Bench.
-
-- KarlosG shuffled their deck.
-
-KarlosG ended their turn.
-
-
+Turn # 1 - Riku1218602's Turn
+Riku1218602 drew a card.
+Riku1218602 played Teal Mask Ogerpon ex to the Bench.
+Riku1218602's Teal Mask Ogerpon ex used Teal Dance.
+- Riku1218602 attached Basic Grass Energy to Teal Mask Ogerpon ex on the Bench.
+- Riku1218602 drew a card.
+Riku1218602's Ditto used Transformative Start.
+- Riku1218602 discarded Ditto.
+- Riku1218602 drew Fan Rotom and played it to the Active Spot.
+- Riku1218602 shuffled their deck.
+Riku1218602's Fan Rotom used Fan Call.
+- Riku1218602 drew 3 cards.
+   • Hoothoot, Hoothoot, Noctowl
+- Riku1218602 shuffled their deck.
+Riku1218602 played Hoothoot to the Bench.
+Riku1218602 played Hoothoot to the Bench.
+Riku1218602 attached Basic Fighting Energy to Fan Rotom in the Active Spot.
+Riku1218602 ended their turn.
 
 Turn # 2 - capisz's Turn
-
-capisz drew Boss's Orders.
-
-capisz played Area Zero Underdepths to the Stadium spot.
-
-capisz played Iono.
-
-- capisz shuffled their hand.
-
-- capisz put 5 cards on the bottom of their deck.
-
-   • Basic Water Energy, Canceling Cologne, Thorton, Boss's Orders, Bloodmoon Ursaluna ex
-
-- KarlosG shuffled their hand.
-
-- capisz moved capisz's 6 cards to their deck.
-
-- capisz drew 6 cards.
-
-   • Lost Vacuum, Nest Ball, Cyllene, Origin Forme Palkia VSTAR, Night Stretcher, Terapagos ex
-
-- capisz drew 6 cards.
-
-capisz played Terapagos ex to the Bench.
-
-capisz played Nest Ball.
-
-- capisz drew Fan Rotom and played it to the Bench.
-
+capisz drew Ultra Ball.
+capisz played Earthen Vessel.
+- capisz discarded Basic Psychic Energy.
+- capisz drew 2 cards.
+   • Basic Psychic Energy, Basic Psychic Energy
 - capisz shuffled their deck.
-
-capisz's Fan Rotom used Fan Call.
-
-- capisz drew 3 cards.
-
-   • Noctowl, Bouffalant, Bouffalant
-
+capisz played Ultra Ball.
+- capisz discarded 2 cards.
+   • Basic Psychic Energy, Basic Psychic Energy
+- capisz drew Ralts.
 - capisz shuffled their deck.
-
-capisz played Bouffalant to the Bench.
-
-capisz played Bouffalant to the Bench.
-
+capisz played Ralts to the Bench.
+capisz played Ralts to the Bench.
+capisz played Lillie's Determination.
+- capisz shuffled 2 cards into their deck.
+   • Rare Candy, Kirlia
+- capisz drew 8 cards.
+   • Nest Ball, Basic Psychic Energy, Munkidori, Iono, Professor Turo's Scenario, Counter Catcher, Rare Candy, Mystery Garden
+capisz played Munkidori to the Bench.
+capisz attached Basic Psychic Energy to Munkidori in the Active Spot.
 capisz ended their turn.
 
-
-
-Turn # 3 - KarlosG's Turn
-
-KarlosG drew a card.
-
-KarlosG attached Basic Water Energy to Chien-Pao ex in the Active Spot.
-
-KarlosG evolved Origin Forme Palkia V to Origin Forme Palkia VSTAR on the Bench.
-
-KarlosG played Nest Ball.
-
-- KarlosG drew Chansey and played it to the Bench.
-
-- KarlosG shuffled their deck.
-
-KarlosG's Chien-Pao ex used Shivery Chill.
-
-- KarlosG drew 2 cards.
-
-   • Basic Water Energy, Basic Water Energy
-
-- KarlosG shuffled their deck.
-
-KarlosG's Radiant Greninja used Concealed Cards.
-
-- KarlosG discarded Basic Water Energy.
-
-- KarlosG drew 2 cards.
-
-KarlosG played Arven.
-
-- KarlosG drew 2 cards.
-
-   • Rare Candy, Bravery Charm
-
-- KarlosG shuffled their deck.
-
-KarlosG attached Bravery Charm to Origin Forme Palkia VSTAR on the Bench.
-
-KarlosG's Chien-Pao ex used Hail Blade on capisz’s Hoothoot for 60 damage.
-
-- Damage breakdown:
-
-   • (Ability) Curly Wall: -60 damage
-
-   • 2 selected Energy: 120 damage
-
-
-
-- 2 cards were discarded from KarlosG's Chien-Pao ex.
-
-   • Basic Water Energy, Basic Water Energy
-
-
+Turn # 3 - Riku1218602's Turn
+Riku1218602 drew a card.
+Riku1218602 evolved Hoothoot to Noctowl on the Bench.
+Riku1218602's Noctowl used Jewel Seeker.
+- Riku1218602 drew 2 cards.
+   • Nest Ball, Crispin
+- Riku1218602 shuffled their deck.
+Riku1218602 played Nest Ball.
+- Riku1218602 drew Raging Bolt and played it to the Bench.
+- Riku1218602 shuffled their deck.
+Riku1218602's Teal Mask Ogerpon ex used Teal Dance.
+- Riku1218602 attached Basic Grass Energy to Teal Mask Ogerpon ex on the Bench.
+- Riku1218602 drew a card.
+Riku1218602 played Crispin.
+- Riku1218602 drew Basic Grass Energy.
+- Riku1218602 attached Basic Fighting Energy to Raging Bolt on the Bench.
+- Riku1218602 shuffled their deck.
+Riku1218602 attached Basic Lightning Energy to Raging Bolt on the Bench.
+Riku1218602 retreated Fan Rotom to the Bench.
+- Basic Fighting Energy was discarded from Riku1218602's Fan Rotom.
+Riku1218602's Raging Bolt is now in the Active Spot.
+Riku1218602 evolved Hoothoot to Noctowl on the Bench.
+Riku1218602's Noctowl used Jewel Seeker.
+- Riku1218602 drew 2 cards.
+   • Nest Ball, Professor Sada's Vitality
+- Riku1218602 shuffled their deck.
+Riku1218602 played Iron Leaves ex to the Bench.
+Riku1218602's Iron Leaves ex used Rapid Vernier.
+- Riku1218602's Iron Leaves ex was switched with Riku1218602's Raging Bolt to become the Active Pokémon.
+- Riku1218602 attached Basic Grass Energy to Iron Leaves ex in the Active Spot.
+- Riku1218602 attached Basic Grass Energy to Iron Leaves ex in the Active Spot.
+- Riku1218602 attached Basic Lightning Energy to Iron Leaves ex in the Active Spot.
+Riku1218602's Iron Leaves ex is now in the Active Spot.
+Riku1218602's Iron Leaves ex used Prism Edge on capisz’s Munkidori for 180 damage.
+capisz's Munkidori was Knocked Out!
+Basic Psychic Energy was discarded from capisz's Munkidori.
+Riku1218602 took a Prize card.
+A card was added to Riku1218602's hand.
+capisz's Munkidori is now in the Active Spot.
 
 Turn # 4 - capisz's Turn
-
-capisz drew Ultra Ball.
-
-capisz evolved Hoothoot to Noctowl in the Active Spot.
-
-capisz's Noctowl used Jewel Seeker.
-
-- capisz drew Irida.
-
-- capisz shuffled their deck.
-
-capisz played Irida.
-
-- capisz drew 2 cards.
-
-   • Origin Forme Palkia V, Nest Ball
-
-- capisz shuffled their deck.
-
-capisz played Origin Forme Palkia V to the Bench.
-
+capisz drew Basic Darkness Energy.
+capisz attached Basic Darkness Energy to Munkidori in the Active Spot.
 capisz played Nest Ball.
-
-- capisz drew Radiant Greninja and played it to the Bench.
-
+- capisz drew Fezandipiti ex and played it to the Bench.
 - capisz shuffled their deck.
-
-capisz played Ultra Ball.
-
-- capisz discarded 2 cards.
-
-   • Night Stretcher, Lost Vacuum
-
-- capisz drew Origin Forme Palkia V.
-
-- capisz shuffled their deck.
-
-capisz played Origin Forme Palkia V to the Bench.
-
-capisz ended their turn.
-
-
-
-Turn # 5 - KarlosG's Turn
-
-KarlosG drew a card.
-
-KarlosG attached Basic Water Energy to Chien-Pao ex in the Active Spot.
-
-KarlosG's Radiant Greninja used Concealed Cards.
-
-- KarlosG discarded Basic Water Energy.
-
-- KarlosG drew 2 cards.
-
-KarlosG played Rare Candy.
-
-- KarlosG evolved Frigibax to Baxcalibur on the Bench.
-
-KarlosG's Chien-Pao ex used Shivery Chill.
-
-- KarlosG drew 2 cards.
-
-   • Basic Water Energy, Basic Water Energy
-
-- KarlosG shuffled their deck.
-
-KarlosG played Superior Energy Retrieval.
-
-- KarlosG discarded 2 cards.
-
-   • Boss's Orders, Chien-Pao ex
-
-- KarlosG moved KarlosG's 4 cards to their hand.
-
-   • Basic Water Energy, Basic Water Energy, Basic Water Energy, Basic Water Energy
-
-KarlosG's Baxcalibur used Super Cold.
-
-- KarlosG attached Basic Water Energy to Chien-Pao ex in the Active Spot.
-
-- KarlosG attached Basic Water Energy to Chien-Pao ex in the Active Spot.
-
-- KarlosG attached Basic Water Energy to Chien-Pao ex in the Active Spot.
-
-- KarlosG attached Basic Water Energy to Chien-Pao ex in the Active Spot.
-
-- KarlosG attached Basic Water Energy to Chien-Pao ex in the Active Spot.
-
-- KarlosG attached Basic Water Energy to Chien-Pao ex in the Active Spot.
-
-KarlosG played Boss's Orders.
-
-- capisz's Bouffalant was switched with capisz's Noctowl to become the Active Pokémon.
-
-capisz's Bouffalant is now in the Active Spot.
-
-KarlosG's Chien-Pao ex used Hail Blade on capisz’s Bouffalant for 120 damage.
-
-- Damage breakdown:
-
-   • (Ability) Curly Wall: -60 damage
-
-   • 3 selected Energy: 180 damage
-
-
-
-- 3 cards were discarded from KarlosG's Chien-Pao ex.
-
-   • Basic Water Energy, Basic Water Energy, Basic Water Energy
-
-capisz's Bouffalant was Knocked Out!
-
-KarlosG took a Prize card.
-
-A card was added to KarlosG's hand.
-
-capisz's Noctowl is now in the Active Spot.
-
-
-
-Turn # 6 - capisz's Turn
-
-capisz drew Prime Catcher.
-
-capisz evolved Origin Forme Palkia V to Origin Forme Palkia VSTAR on the Bench.
-
-capisz played Cyllene.
-
-- capisz flipped 2 coins, and 0 landed on heads.
-
-capisz ended their turn.
-
-
-
-Turn # 7 - KarlosG's Turn
-
-KarlosG drew a card.
-
-KarlosG played PokéStop to the Stadium spot.
-
-- capisz discarded Area Zero Underdepths.
-
-KarlosG played a card.
-
-- capisz discarded Fan Rotom.
-
-KarlosG played PokéStop.
-
-- KarlosG moved KarlosG's 3 cards to the discard pile.
-
-   • PokéStop, Origin Forme Palkia V, Rare Candy
-
-- KarlosG moved KarlosG's Rare Candy to their hand.
-
-KarlosG played Ultra Ball.
-
-- KarlosG discarded 2 cards.
-
-   • Rare Candy, Switch
-
-- KarlosG drew Blissey ex.
-
-- KarlosG shuffled their deck.
-
-KarlosG evolved Chansey to Blissey ex on the Bench.
-
-KarlosG's Origin Forme Palkia VSTAR used Star Portal.
-
-- KarlosG attached Basic Water Energy to Chien-Pao ex in the Active Spot.
-
-- KarlosG attached Basic Water Energy to Origin Forme Palkia VSTAR on the Bench.
-
-- KarlosG attached Basic Water Energy to Origin Forme Palkia VSTAR on the Bench.
-
-KarlosG can no longer use VSTAR Powers.
-
-KarlosG played Arven.
-
-- KarlosG drew 2 cards.
-
-   • Superior Energy Retrieval, Bravery Charm
-
-- KarlosG shuffled their deck.
-
-KarlosG attached Bravery Charm to Blissey ex on the Bench.
-
-KarlosG's Chien-Pao ex used Shivery Chill.
-
-- KarlosG drew 2 cards.
-
-   • Basic Water Energy, Basic Water Energy
-
-- KarlosG shuffled their deck.
-
-KarlosG attached Basic Water Energy to Blissey ex on the Bench.
-
-KarlosG's Baxcalibur used Super Cold.
-
-- KarlosG attached Basic Water Energy to Blissey ex on the Bench.
-
-KarlosG's Blissey ex used Happy Switch.
-
-- KarlosG attached Basic Water Energy to Blissey ex on the Bench.
-
-KarlosG retreated Chien-Pao ex to the Bench.
-
-- 2 cards were discarded from KarlosG's Chien-Pao ex.
-
-   • Basic Water Energy, Basic Water Energy
-
-KarlosG's Blissey ex is now in the Active Spot.
-
-KarlosG's Blissey ex used Return on capisz’s Noctowl for 180 damage.
-
-- KarlosG drew 5 cards.
-
-capisz's Noctowl was Knocked Out!
-
-Hoothoot was discarded from capisz's Noctowl.
-
-KarlosG took a Prize card.
-
-A card was added to KarlosG's hand.
-
-capisz's Bouffalant is now in the Active Spot.
-
-
-
-Turn # 8 - capisz's Turn
-
-capisz drew Terapagos ex.
-
-capisz played PokéStop.
-
-- KarlosG moved KarlosG's 3 cards to the discard pile.
-
-   • Night Stretcher, Ultra Ball, Boss's Orders
-
-- KarlosG moved KarlosG's 2 cards to their hand.
-
-   • Night Stretcher, Ultra Ball
-
-capisz didn't take an action in time.
-
-
-
-Turn # 9 - KarlosG's Turn
-
-KarlosG drew a card.
-
-KarlosG played Superior Energy Retrieval.
-
-- KarlosG discarded 2 cards.
-
-   • Super Rod, Super Rod
-
-- KarlosG moved KarlosG's 3 cards to their hand.
-
-   • Basic Water Energy, Basic Water Energy, Basic Water Energy
-
-KarlosG attached Basic Water Energy to Chien-Pao ex on the Bench.
-
-KarlosG's Radiant Greninja used Concealed Cards.
-
-- KarlosG discarded Basic Water Energy.
-
-- KarlosG drew 2 cards.
-
-KarlosG played Buddy-Buddy Poffin.
-
-- KarlosG drew Frigibax and played it to the Bench.
-
-- KarlosG shuffled their deck.
-
-KarlosG played Iono.
-
-- KarlosG shuffled their hand.
-
-- KarlosG put 6 cards on the bottom of their deck.
-
-- capisz shuffled their hand.
-
-- KarlosG put 4 cards on the bottom of their deck.
-
-   • Prime Catcher, Terapagos ex, Ultra Ball, Night Stretcher
-
-- KarlosG drew 4 cards.
-
-- KarlosG drew 6 cards.
-
-   • Nest Ball, Basic Water Energy, Basic Water Energy, Basic Water Energy, Glass Trumpet, Boss's Orders
-
-KarlosG played PokéStop.
-
-- KarlosG moved KarlosG's 3 cards to the discard pile.
-
-   • Ultra Ball, Iono, Fezandipiti ex
-
-- KarlosG moved KarlosG's Ultra Ball to their hand.
-
-KarlosG's Blissey ex used Return on capisz’s Bouffalant for 180 damage.
-
-- KarlosG drew a card.
-
-capisz's Bouffalant was Knocked Out!
-
-KarlosG took a Prize card.
-
-A card was added to KarlosG's hand.
-
-capisz's Origin Forme Palkia VSTAR is now in the Active Spot.
-
-
-
-Turn # 10 - capisz's Turn
-
-capisz drew Earthen Vessel.
-
-capisz's Radiant Greninja used Concealed Cards.
-
-- capisz discarded Basic Water Energy.
-
-- capisz drew 2 cards.
-
-   • Bibarel, Ultra Ball
-
-capisz played Nest Ball.
-
-- capisz drew Terapagos ex and played it to the Bench.
-
-- capisz shuffled their deck.
-
-capisz played Earthen Vessel.
-
-- capisz discarded Basic Water Energy.
-
-- capisz drew 2 cards.
-
-   • Basic Water Energy, Basic Water Energy
-
-- capisz shuffled their deck.
-
-capisz played Ultra Ball.
-
-- capisz discarded 2 cards.
-
-   • Basic Water Energy, Basic Water Energy
-
-- capisz drew Bloodmoon Ursaluna ex.
-
-- capisz shuffled their deck.
-
-capisz played Glass Trumpet.
-
-- capisz attached Basic Water Energy to Terapagos ex on the Bench.
-
-capisz's Origin Forme Palkia VSTAR used Star Portal.
-
-- capisz attached Basic Water Energy to Origin Forme Palkia VSTAR in the Active Spot.
-
-- capisz attached Basic Water Energy to Origin Forme Palkia VSTAR in the Active Spot.
-
-- capisz attached Basic Water Energy to Origin Forme Palkia V on the Bench.
-
-capisz can no longer use VSTAR Powers.
-
-capisz played Boss's Orders.
-
-- KarlosG's Chien-Pao ex was switched with KarlosG's Blissey ex to become the Active Pokémon.
-
-KarlosG's Chien-Pao ex is now in the Active Spot.
-
-capisz's Origin Forme Palkia VSTAR used Subspace Swell on KarlosG’s Chien-Pao ex for 240 damage.
-
-- Damage breakdown:
-
-   • Base damage: 60 damage
-
-   • 9 Benched Pokémon: 180 damage
-
-   • Total damage: 240 damage
-
-
-
-KarlosG's Chien-Pao ex was Knocked Out!
-
-- 3 cards were discarded from KarlosG's Chien-Pao ex.
-
-   • Basic Water Energy, Basic Water Energy, Basic Water Energy
-
-capisz took 2 Prize cards.
-
-Bidoof was added to capisz's hand.
-
-Origin Forme Palkia VSTAR was added to capisz's hand.
-
-KarlosG's Blissey ex is now in the Active Spot.
-
-
-
-Turn # 11 - KarlosG's Turn
-
-KarlosG drew a card.
-
-KarlosG evolved Frigibax to Arctibax on the Bench.
-
-KarlosG played Superior Energy Retrieval.
-
-- KarlosG discarded 2 cards.
-
-   • Irida, Baxcalibur
-
-- KarlosG moved KarlosG's 4 cards to their hand.
-
-   • Basic Water Energy, Basic Water Energy, Basic Water Energy, Basic Water Energy
-
-KarlosG played Regigigas to the Bench.
-
-KarlosG attached Basic Water Energy to Regigigas on the Bench.
-
-KarlosG's Baxcalibur used Super Cold.
-
-- KarlosG attached Basic Water Energy to Regigigas on the Bench.
-
-- KarlosG attached Basic Water Energy to Regigigas on the Bench.
-
-- KarlosG attached Basic Water Energy to Regigigas on the Bench.
-
-KarlosG played Irida.
-
-- KarlosG drew 2 cards.
-
-   • Origin Forme Palkia VSTAR, Switch
-
-- KarlosG shuffled their deck.
-
-KarlosG played PokéStop.
-
-- KarlosG moved KarlosG's 3 cards to the discard pile.
-
-   • Nest Ball, Rare Candy, Rotom V
-
-- KarlosG moved KarlosG's 2 cards to their hand.
-
-   • Nest Ball, Rare Candy
-
-KarlosG's Blissey ex used Return on capisz’s Origin Forme Palkia VSTAR for 180 damage.
-
-
-
-Turn # 12 - capisz's Turn
-
-capisz drew Pal Pad.
-
-capisz played Pal Pad.
-
-- capisz shuffled 2 cards into their deck.
-
-   • Boss's Orders, Boss's Orders
-
-capisz played Bidoof to the Bench.
-
-capisz evolved Origin Forme Palkia V to Origin Forme Palkia VSTAR on the Bench.
-
-capisz's Radiant Greninja used Concealed Cards.
-
-- capisz discarded Basic Water Energy.
-
-- capisz drew 2 cards.
-
-   • Area Zero Underdepths, Boss's Orders
-
-capisz played Area Zero Underdepths to the Stadium spot.
-
-- KarlosG discarded PokéStop.
-
-capisz played Bloodmoon Ursaluna ex to the Bench.
-
-capisz played Boss's Orders.
-
-- KarlosG's Origin Forme Palkia VSTAR was switched with KarlosG's Blissey ex to become the Active Pokémon.
-
-KarlosG's Origin Forme Palkia VSTAR is now in the Active Spot.
-
-capisz's Origin Forme Palkia VSTAR used Subspace Swell on KarlosG’s Origin Forme Palkia VSTAR for 280 damage.
-
-- Damage breakdown:
-
-   • Base damage: 60 damage
-
-   • 11 Benched Pokémon: 220 damage
-
-   • Total damage: 280 damage
-
-
-
-KarlosG's Origin Forme Palkia VSTAR was Knocked Out!
-
-- 4 cards were discarded from KarlosG's Origin Forme Palkia VSTAR.
-
-   • Basic Water Energy, Basic Water Energy, Origin Forme Palkia V, Bravery Charm
-
-capisz took 2 Prize cards.
-
-Iono was added to capisz's hand.
-
-Hoothoot was added to capisz's hand.
-
-KarlosG's Blissey ex is now in the Active Spot.
-
-
-
-Turn # 13 - KarlosG's Turn
-
-KarlosG drew a card.
-
-KarlosG attached Basic Water Energy to Blissey ex in the Active Spot.
-
-KarlosG's Blissey ex used Return on capisz’s Origin Forme Palkia VSTAR for 180 damage.
-
-capisz's Origin Forme Palkia VSTAR was Knocked Out!
-
-- 3 cards were discarded from capisz's Origin Forme Palkia VSTAR.
-
-   • Basic Water Energy, Basic Water Energy, Origin Forme Palkia V
-
-KarlosG took 2 Prize cards.
-
-A card was added to KarlosG's hand.
-
-A card was added to KarlosG's hand.
-
-capisz's Origin Forme Palkia VSTAR is now in the Active Spot.
-
-
-
-Turn # 14 - capisz's Turn
-
-capisz drew Kieran.
-
-capisz played Hoothoot to the Bench.
-
-capisz evolved Bidoof to Bibarel on the Bench.
-
-capisz's Bibarel used Industrious Incisors.
-
+capisz's Fezandipiti ex used Flip the Script.
 - capisz drew 3 cards.
-
-   • Basic Water Energy, Ultra Ball, Bravery Charm
-
-capisz attached Basic Water Energy to Origin Forme Palkia VSTAR in the Active Spot.
-
+   • Technical Machine: Evolution, Ultra Ball, Technical Machine: Evolution
 capisz played Ultra Ball.
-
 - capisz discarded 2 cards.
-
-   • Bravery Charm, Iono
-
-- capisz drew Fan Rotom.
-
+   • Technical Machine: Evolution, Technical Machine: Evolution
+- capisz drew Gardevoir ex.
 - capisz shuffled their deck.
-
-capisz played Fan Rotom to the Bench.
-
-capisz played Kieran.
-
-- capisz chose During this turn, attacks used by your Pokémon do 30 more damage to your opponent's Active Pokémon <sprite name="ex_lower_atk" tint=1> and Active Pokémon <sprite name="v_atk" tint=1>.
-
-capisz's Origin Forme Palkia VSTAR used Subspace Swell on KarlosG’s Blissey ex for 310 damage.
-
-- Damage breakdown:
-
-   • Base damage: 60 damage
-
-   • (Supporter) Kieran: 30 damage
-
-   • 11 Benched Pokémon: 220 damage
-
-   • Total damage: 310 damage
-
-
-
-KarlosG's Blissey ex was Knocked Out!
-
-- 6 cards were discarded from KarlosG's Blissey ex.
-
-   • Basic Water Energy, Basic Water Energy, Basic Water Energy, Basic Water Energy, Chansey, Bravery Charm
-
+capisz played Rare Candy.
+- capisz evolved Ralts to Gardevoir ex on the Bench.
+capisz played Mystery Garden to the Stadium spot.
+capisz played Iono.
+- capisz shuffled their hand.
+- capisz put 2 cards on the bottom of their deck.
+   • Counter Catcher, Professor Turo's Scenario
+- Riku1218602 shuffled their hand.
+- capisz put 7 cards on the bottom of their deck.
+- capisz drew 6 cards.
+   • Arven, Secret Box, Kirlia, Munkidori, Basic Darkness Energy, Iono
+- capisz drew 5 cards.
+capisz evolved Ralts to Kirlia on the Bench.
+capisz's Gardevoir ex used Psychic Embrace.
+- capisz attached Basic Psychic Energy to Munkidori in the Active Spot.
+- capisz put 2 damage counters on capisz's Munkidori.
+capisz retreated Munkidori to the Bench.
+- Basic Psychic Energy was discarded from capisz's Munkidori.
+capisz's Gardevoir ex is now in the Active Spot.
+capisz's Gardevoir ex used Psychic Embrace.
+- capisz attached Basic Psychic Energy to Gardevoir ex in the Active Spot.
+- capisz put 2 damage counters on capisz's Gardevoir ex.
+- capisz attached Basic Psychic Energy to Gardevoir ex in the Active Spot.
+- capisz put 2 damage counters on capisz's Gardevoir ex.
+- capisz attached Basic Psychic Energy to Gardevoir ex in the Active Spot.
+- capisz put 2 damage counters on capisz's Gardevoir ex.
+capisz's Munkidori used Adrena-Brain.
+- capisz moved 3 damage counters from capisz's Gardevoir ex to capisz's Iron Leaves ex.
+capisz's Gardevoir ex used Miracle Force on Riku1218602’s Iron Leaves ex for 190 damage.
+Riku1218602's Iron Leaves ex was Knocked Out!
+- 3 cards were discarded from Riku1218602's Iron Leaves ex.
+   • Basic Grass Energy, Basic Grass Energy, Basic Lightning Energy
 capisz took 2 Prize cards.
+Bravery Charm was added to capisz's hand.
+Ultra Ball was added to capisz's hand.
+Riku1218602's Fan Rotom is now in the Active Spot.
 
-Energy Switch was added to capisz's hand.
+Turn # 5 - Riku1218602's Turn
+Riku1218602 drew a card.
+Riku1218602 played Earthen Vessel.
+- Riku1218602 discarded Squawkabilly ex.
+- Riku1218602 drew 2 cards.
+   • Basic Grass Energy, Basic Grass Energy
+- Riku1218602 shuffled their deck.
+Riku1218602's Teal Mask Ogerpon ex used Teal Dance.
+- Riku1218602 attached Basic Grass Energy to Teal Mask Ogerpon ex on the Bench.
+- Riku1218602 drew a card.
+Opponent conceded. capisz wins.
 
-Fezandipiti ex was added to capisz's hand.
-
-All Prize cards taken. capisz wins.
 
 
 `;

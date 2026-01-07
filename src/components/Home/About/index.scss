@@ -1,7 +1,7 @@
 $accent-yellow: #ffd700;
 $bg-card: #021a2b;
-$text-main: #f4f8ff;
-$text-subtle: #e0f0ff;
+$text-main: #e8effc;
+$text-subtle: #d5e8fa;
 
 /* Generic fade-on-scroll helper (used across sections) */
 .fade-section {
@@ -98,10 +98,10 @@ $text-subtle: #e0f0ff;
   gap: 8px;
   padding: 6px 12px;
   border-radius: 999px;
-  background: #031927;
-  font-size: 13px;
+  background: #011019;
+  font-size: 12px;
   color: $text-main;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 12px #012942;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 
   img {
