@@ -17,7 +17,7 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 // Map tech keys to SVGs
 const techIconMap = {
-  react: "/tech-icons/react.svg",
+  react: "/tech-icons/react.png",
   nextjs: "/tech-icons/nextjs.png",
   javascript: "/tech-icons/javascript.png",
   typescript: "/tech-icons/typescript.png",

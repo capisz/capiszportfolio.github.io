@@ -3,7 +3,7 @@ import "./index.scss";
 import useInView from "../../../hooks/useInView";
 
 const techPills = [
-  { label: "React", icon: "/tech-icons/react.svg" },
+  { label: "React", icon: "/tech-icons/react.png" },
   { label: "Next.js", icon: "/tech-icons/nextjs.png" },
   { label: "TypeScript", icon: "/tech-icons/typescript.png" },
   { label: "JavaScript", icon: "/tech-icons/javascript.png" },

@@ -15,7 +15,7 @@
       "app": "https://draftkings-optimizer.vercel.app/",
       "status": "complete",
       "url": "https://github.com/capisz/draftkings-optimizer",
-      "tech": ["react", "javascript", "node", "api", "tailwind", "python"]
+      "tech": ["nextjs","react", "typescript", "node", "api", "tailwind", "python"]
     },
     {
       "cover": "/portfolio/1/dragapult-pokemon.mp4",
@@ -24,7 +24,7 @@
       "app": "https://dragapultist.vercel.app/",
       "status": "complete",
       "url": "https://github.com/capisz/dragapultist",
-      "tech": ["nextjs","react","mongodb", "typescript", "tailwind", "node", "electron"]
+      "tech": ["nextjs","react","mongodb", "typescript", "tailwind", "node", "electron", "api"]
     },
     {
       "cover": "/portfolio/1/elephit.mp4",
@@ -61,6 +61,13 @@
       "status": "in-progress",
       "url": "https://github.com/capisz/chess-opening-driller",
       "tech": ["react", "javascript", "css"]
+    },{
+      "cover": "/portfolio/1/parking.mp4",
+      "title": "Iphone Parking App",
+      "description": "See where and when it's safe to park, wherever you are, find out meter times and so much more with apple map interface",
+      "status": "in-progress",
+      "url": "https://github.com/capisz/ParkNYCPrototype",
+      "tech": ["swift", "api"]
     }
   ]
 }
