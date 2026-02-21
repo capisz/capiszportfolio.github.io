@@ -111,24 +111,32 @@ const Portfolio = () => {
     return (
       <div className="images-container">
         {portfolioArray.map((item, idx) => {
-         const title = item.title || "";
-const lowerTitle = title.toLowerCase();
+          const title = item.title || "";
+          const lowerTitle = title.toLowerCase();
 
-const isDragapultist = lowerTitle.includes("dragapultist");
-const isPrizeChecker = lowerTitle.includes("prize checker");
-const isElephit = lowerTitle.includes("elephit");
+          const isDragapultist = lowerTitle.includes("dragapultist");
+          const isPrizeChecker = lowerTitle.includes("prize checker");
+          const isElephit = lowerTitle.includes("elephit");
+          const isCarecation = lowerTitle.includes("carecation");
+          const hasDemo = Boolean(item.demo);
+          const hasBottomBanner = isCarecation || isPrizeChecker || isDragapultist;
 
-// Broader match for your NBA fantasy / DraftKings app
-const isDraftKings =
-  lowerTitle.includes("draftkings") ||
-  lowerTitle.includes("draft kings") ||
-  lowerTitle.includes("nba fantasy") ||
-  lowerTitle.includes("daily fantasy") ||
-  lowerTitle.includes("dfs") ||
-  lowerTitle.includes("lineup");
+          // Broader match for your NBA fantasy / DraftKings app
+          const isDraftKings =
+            lowerTitle.includes("draftkings") ||
+            lowerTitle.includes("draft kings") ||
+            lowerTitle.includes("nba fantasy") ||
+            lowerTitle.includes("daily fantasy") ||
+            lowerTitle.includes("dfs") ||
+            lowerTitle.includes("lineup");
 
-const shouldGlow =
-  inView && (isElephit || isDraftKings || isDragapultist || isPrizeChecker);
+          const shouldGlow =
+            inView &&
+            (isElephit ||
+              isDraftKings ||
+              isDragapultist ||
+              isPrizeChecker ||
+              isCarecation);
 
 
           return (
@@ -139,27 +147,41 @@ const shouldGlow =
               key={idx}
             >
               {/* LEFT COLUMN: media + tech icons */}
-              <div className="left-column">
-                <div className="media">
-                  {item.cover.endsWith(".mp4") ? (
-                    <video
-                      src={item.cover}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="portfolio-video"
-                    />
-                  ) : (
-                    <img
-                      src={item.cover}
-                      alt={`${item.title} preview`}
-                      className="portfolio-image"
-                    />
+              <div className={`left-column ${hasBottomBanner ? "has-bottom-banner" : ""}`}>
+                <div className="media-wrap">
+                  <div className="media">
+                    {item.cover.endsWith(".mp4") ? (
+                      <video
+                        src={item.cover}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="portfolio-video"
+                      />
+                    ) : (
+                      <img
+                        src={item.cover}
+                        alt={`${item.title} preview`}
+                        className="portfolio-image"
+                      />
+                    )}
+
+                    {item.status === "in-progress" && (
+                      <div className="badge">In Progress</div>
+                    )}
+                  </div>
+
+                  {isCarecation && (
+                    <div className="newest-banner">Newest Project</div>
                   )}
 
-                  {item.status === "in-progress" && (
-                    <div className="badge">In Progress</div>
+                  {isPrizeChecker && (
+                    <div className="favorite-banner">Favorite Project</div>
+                  )}
+
+                  {isDragapultist && (
+                    <div className="fullstack-banner">Full Stack</div>
                   )}
                 </div>
 
@@ -171,6 +193,23 @@ const shouldGlow =
               <div className="content">
                 <p className="title">{item.title}</p>
                 <h4 className="description">{item.description}</h4>
+
+                {isCarecation && (
+                  <div className="project-demo-row">
+                    <button
+                      className="btn btn-demo btn-small"
+                      onClick={() => hasDemo && window.open(item.demo, "_blank")}
+                      disabled={!hasDemo}
+                      type="button"
+                    >
+                      <FontAwesomeIcon
+                        icon={faArrowUpRightFromSquare}
+                        className="app-icon"
+                      />
+                      <span> VIEW DEMO</span>
+                    </button>
+                  </div>
+                )}
 
                 <div className="project-buttons">
                   {item.app && (

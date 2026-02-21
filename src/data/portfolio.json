@@ -1,5 +1,15 @@
 {
   "portfolio": [
+    {
+      "cover": "/portfolio/1/carecation.mp4",
+      "title": "CareCation",
+      "description": "Reimagines medical tourism by centralizing clinic selection and travel planning into one intuitive platform—bridging healthcare and vacation planning",
+      "url": "https://github.com/capisz/carecation-app",
+      "status": "complete",
+      "app": "https://carecation.vercel.app/",
+      "demo": "",
+      "tech": ["nextjs","react", "typescript","api", "tailwind", "node"]
+    },
      {
       "cover": "/portfolio/1/pokemonshuffle.mp4",
       "title": "Pokemon Prize Checker",
