@@ -9,7 +9,7 @@
       "app": "https://carecation.vercel.app/",
       "demo": "",
       "tech": ["nextjs","react", "typescript","api", "tailwind", "node"]
-    },
+    }, 
      {
       "cover": "/portfolio/1/pokemonshuffle.mp4",
       "title": "Pokemon Prize Checker",
@@ -35,6 +35,21 @@
       "status": "complete",
       "url": "https://github.com/capisz/dragapultist",
       "tech": ["nextjs","react","mongodb", "typescript", "tailwind", "node", "electron", "api"]
+    }, {
+      "cover": "/portfolio/1/pidge.png",
+      "title": "Iphone Parking App",
+      "description": "See where and when it's safe to park, wherever you are, find out meter times and so much more with apple map interface",
+      "status": "complete",
+      "url": "https://github.com/capisz/ParkNYCPrototype",
+      "tech": ["swift", "api", "typescript"]
+    },{
+      "cover": "/portfolio/1/baseball-app.mp4",
+      "title": "Catcher AI Analytics",
+      "description": "Baseball has a great way to analyze pitchers, but now utilize a tool designed to analyze catchers using algorithms, AI and python scripts to calculate mathematical evaluations.",
+      "app": "https://ai-catcher-grade-app-web.vercel.app/",
+      "status": "complete",
+      "url": "https://github.com/capisz/ai-catcher-grade-app",
+      "tech": ["nextjs","react", "typescript", "tailwind", "api", "python"]
     },
     {
       "cover": "/portfolio/1/elephit.mp4",
@@ -71,13 +86,6 @@
       "status": "in-progress",
       "url": "https://github.com/capisz/chess-opening-driller",
       "tech": ["react", "javascript", "css"]
-    },{
-      "cover": "/portfolio/1/parking.mp4",
-      "title": "Iphone Parking App",
-      "description": "See where and when it's safe to park, wherever you are, find out meter times and so much more with apple map interface",
-      "status": "in-progress",
-      "url": "https://github.com/capisz/ParkNYCPrototype",
-      "tech": ["swift", "api"]
     }
   ]
 }
