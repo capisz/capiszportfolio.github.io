@@ -1,8 +1,8 @@
 import './App.scss';
-import Layout from './components/Layout';
+import PortfolioSite from './components/PortfolioSite';
 
 function App() {
-  return <Layout />;
+  return <PortfolioSite />;
 }
 
 export default App;

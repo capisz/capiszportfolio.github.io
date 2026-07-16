@@ -1,5 +1,0 @@
-<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <rect width="64" height="64" rx="16" fill="#1F2937"></rect>
-  <rect x="8" y="8" width="48" height="48" rx="10" fill="#F7DF1E"></rect>
-  <text x="32" y="36" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, sans-serif" font-size="18" fill="#111827" font-weight="700">JS</text>
-</svg>
