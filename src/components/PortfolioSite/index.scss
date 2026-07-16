@@ -53,6 +53,7 @@ $maxw: 1180px;
 .pf-codecol {
   margin: -100vh 0 0; flex: 1 1 0; font-family: $mono; font-size: 12.5px;
   line-height: 1.9; white-space: pre; color: #3fd6c2; overflow: hidden;
+  will-change: transform; /* isolate parallax onto its own compositor layer */
 }
 
 /* ---- glow patches ---- */
@@ -105,8 +106,7 @@ $maxw: 1180px;
 /* ---- NAV ---- */
 .pf-nav {
   position: sticky; top: 0; z-index: 50;
-  backdrop-filter: saturate(160%) blur(12px);
-  background: rgba(2, 26, 43, 0.78);
+  background: rgba(2, 26, 43, 0.92);
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   transition: box-shadow 0.25s, border-color 0.25s;
 }
@@ -125,15 +125,15 @@ $maxw: 1180px;
 .pf-hero-left { position: relative; z-index: 1; }
 .pf-hero-backdrop {
   position: absolute; inset: -2px -10px -4px -14px; z-index: -1;
-  backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+  /* static dim instead of live backdrop-filter blur — avoids scroll repaint flicker */
+  background: rgba(2, 26, 43, 0.5);
   -webkit-mask-image: radial-gradient(56% 60% at 27% 47%, #000 14%, transparent 56%);
   mask-image: radial-gradient(56% 60% at 27% 47%, #000 14%, transparent 56%);
   pointer-events: none;
 }
 .pf-pill {
   display: inline-flex; align-items: center; gap: 9px;
-  border: 1px solid rgba(255, 215, 0, 0.28); background: rgba(6, 28, 45, 0.72);
-  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 215, 0, 0.28); background: rgba(6, 28, 45, 0.9);
   color: #ffd700; border-radius: 999px; padding: 6px 13px; font-family: $mono; font-size: 12px; margin-bottom: 26px;
 }
 .pf-pill-dot { width: 7px; height: 7px; border-radius: 50%; background: #ffd700; animation: pf-pulse 2.4s infinite; }
@@ -143,7 +143,8 @@ $maxw: 1180px;
 .pf-stats { position: relative; display: flex; gap: 34px; margin-top: 46px; width: max-content; }
 .pf-stats-backdrop {
   position: absolute; inset: -6px -14px; z-index: -1;
-  backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+  /* static dim instead of live backdrop-filter blur — avoids scroll repaint flicker */
+  background: rgba(2, 26, 43, 0.5);
   -webkit-mask-image: radial-gradient(76% 100% at 42% 50%, #000 38%, transparent 80%);
   mask-image: radial-gradient(76% 100% at 42% 50%, #000 38%, transparent 80%);
   pointer-events: none;
@@ -158,7 +159,8 @@ $maxw: 1180px;
 /* code card */
 .pf-card-backdrop {
   position: absolute; top: -4px; bottom: -4px; right: -10px; left: 8%; z-index: 0;
-  backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+  /* static dim instead of live backdrop-filter blur — avoids scroll repaint flicker */
+  background: rgba(2, 26, 43, 0.5);
   -webkit-mask-image: radial-gradient(70% 74% at 58% 50%, #000 30%, transparent 74%);
   mask-image: radial-gradient(70% 74% at 58% 50%, #000 30%, transparent 74%);
   pointer-events: none;
@@ -202,7 +204,7 @@ $maxw: 1180px;
 /* ---- WORK ---- */
 .pf-work-head { position: relative; display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: 34px; border-bottom: 1px solid rgba(255, 255, 255, 0.09); padding-bottom: 20px; }
 .pf-work-head-backdrop {
-  position: absolute; inset: -6px -14px; z-index: -1; backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+  position: absolute; inset: -6px -14px; z-index: -1; background: rgba(2, 26, 43, 0.5);
   -webkit-mask-image: radial-gradient(46% 90% at 14% 50%, #000 36%, transparent 78%);
   mask-image: radial-gradient(46% 90% at 14% 50%, #000 36%, transparent 78%); pointer-events: none;
 }
@@ -265,7 +267,7 @@ $maxw: 1180px;
 .pf-about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
 .pf-about-left { position: relative; }
 .pf-about-backdrop {
-  position: absolute; inset: -4px -14px; z-index: -1; backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+  position: absolute; inset: -4px -14px; z-index: -1; background: rgba(2, 26, 43, 0.5);
   -webkit-mask-image: radial-gradient(70% 82% at 30% 50%, #000 36%, transparent 78%);
   mask-image: radial-gradient(70% 82% at 30% 50%, #000 36%, transparent 78%); pointer-events: none;
 }
@@ -274,7 +276,7 @@ $maxw: 1180px;
 .pf-about-p-last { margin-bottom: 0; }
 .pf-about-right { display: flex; flex-direction: column; gap: 18px; }
 .pf-about-card { background: #052233; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 24px 26px; }
-.pf-about-card-yellow { background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.03)); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); border: 1px solid rgba(255, 215, 0, 0.22); }
+.pf-about-card-yellow { background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.03)), #052233; border: 1px solid rgba(255, 215, 0, 0.22); }
 .pf-about-card-title { font-family: $mono; font-weight: 500; font-size: 12.5px; color: #ffd700; text-transform: uppercase; letter-spacing: 0.6px; margin: 0 0 16px; }
 .pf-about-card-yellow .pf-about-card-title { margin-bottom: 14px; }
 .pf-about-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 13px;
@@ -286,7 +288,7 @@ $maxw: 1180px;
 .pf-stack-head { position: relative; margin-bottom: 30px;
   .pf-h2 { margin-bottom: 0; } }
 .pf-stack-backdrop {
-  position: absolute; inset: -6px -14px 4px -14px; z-index: -1; backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+  position: absolute; inset: -6px -14px 4px -14px; z-index: -1; background: rgba(2, 26, 43, 0.5);
   -webkit-mask-image: radial-gradient(38% 88% at 13% 48%, #000 34%, transparent 78%);
   mask-image: radial-gradient(38% 88% at 13% 48%, #000 34%, transparent 78%); pointer-events: none;
 }
