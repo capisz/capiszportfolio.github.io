@@ -165,7 +165,7 @@ export default function usePortfolioEffects(rootRef) {
           card.style.transform = "";
           // restore the resting accent tint (set inline in JSX) — clearing to ''
           // would wipe that inline style along with the hover color
-          card.style.borderColor = accent + "3d";
+          card.style.borderColor = accent + "2e";
           card.style.boxShadow = "";
           if (media) media.style.transform = "";
           if (overlay) overlay.style.opacity = "0";
@@ -178,6 +178,27 @@ export default function usePortfolioEffects(rootRef) {
         });
       });
     }
+
+    // ---- glass/ice readability: hovering a bare-background text block frosts
+    // its legibility patch (pf-glass) and dims the cursor torch so the
+    // brightened code never fights the text ----
+    const torchLayer = root.querySelector("[data-codebg]");
+    q("[data-textguard]").forEach((block) => {
+      const enter = () => {
+        block.classList.add("pf-glass");
+        if (torchLayer) torchLayer.classList.add("pf-torch-dimmed");
+      };
+      const leave = () => {
+        block.classList.remove("pf-glass");
+        if (torchLayer) torchLayer.classList.remove("pf-torch-dimmed");
+      };
+      block.addEventListener("pointerenter", enter);
+      block.addEventListener("pointerleave", leave);
+      cleanups.push(() => {
+        block.removeEventListener("pointerenter", enter);
+        block.removeEventListener("pointerleave", leave);
+      });
+    });
 
     // ---- code waterfall: cursor torch mask ----
     const codebg = root.querySelector("[data-codebg]");
@@ -209,6 +230,10 @@ export default function usePortfolioEffects(rootRef) {
     }));
     const nav = root.querySelector("[data-nav]");
     const bar = root.querySelector("[data-progress]");
+    const navSections = ["work", "about", "stack", "contact"]
+      .map((id) => ({ id, el: document.getElementById(id) }))
+      .filter((s) => s.el);
+    const navLinks = q(".pf-navlink");
     const onScroll = () => {
       const y = window.scrollY || window.pageYOffset || 0;
       if (!reduce)
@@ -239,6 +264,15 @@ export default function usePortfolioEffects(rootRef) {
           const r = el.getBoundingClientRect();
           if (r.top < h * 0.75 && r.bottom > 0) forceShow(el);
         }
+      });
+      // active nav link: highlight the section containing the upper-third line
+      const probe = y + h * 0.35;
+      let activeId = "";
+      navSections.forEach((s) => {
+        if (probe >= s.el.offsetTop) activeId = s.id;
+      });
+      navLinks.forEach((l) => {
+        l.classList.toggle("is-active", l.getAttribute("href") === "#" + activeId);
       });
     };
     window.addEventListener("scroll", onScroll, { passive: true });

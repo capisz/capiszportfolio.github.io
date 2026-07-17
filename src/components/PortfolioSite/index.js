@@ -16,12 +16,12 @@ function ProjectMedia({ project }) {
       <video
         data-media
         data-pv
-        data-static
         src={project.media}
+        aria-label={project.title}
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         className="pf-media-el pf-media-video"
       />
     );
@@ -131,7 +131,7 @@ export default function PortfolioSite() {
 
         {/* HERO */}
         <section id="top" data-hero className="pf-hero">
-          <div className="pf-hero-left">
+          <div className="pf-hero-left" data-textguard>
             <div aria-hidden="true" className="pf-hero-backdrop" />
             <div data-reveal className="pf-pill">
               <span className="pf-pill-dot" />
@@ -230,7 +230,7 @@ export default function PortfolioSite() {
 
         {/* WORK */}
         <section id="work" className="pf-section pf-work">
-          <div data-reveal className="pf-work-head">
+          <div data-reveal data-textguard className="pf-work-head">
             <div aria-hidden="true" className="pf-work-head-backdrop" />
             <div>
               <div className="pf-eyebrow">
@@ -258,11 +258,24 @@ export default function PortfolioSite() {
             target="_blank"
             rel="noreferrer"
             className="pf-featured"
-            style={{ borderColor: "#ffd7003d" }}
+            style={{ borderColor: "#ffd7002e" }}
           >
             <div className="pf-featured-media">
               <div data-media className="pf-featured-media-inner">
-                <img src={featured.media} alt={featured.title} />
+                {featured.media.endsWith(".mp4") ? (
+                  <video
+                    data-pv
+                    src={featured.media}
+                    aria-label={featured.title}
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className="pf-featured-video"
+                  />
+                ) : (
+                  <img src={featured.media} alt={featured.title} />
+                )}
               </div>
               <pre data-codeoverlay className="pf-codeoverlay pf-codeoverlay-lg">
                 {featured.codeText}
@@ -305,7 +318,7 @@ export default function PortfolioSite() {
                 target="_blank"
                 rel="noreferrer"
                 className="pf-card"
-                style={{ borderColor: `${project.accent}3d` }}
+                style={{ borderColor: `${project.accent}2e` }}
               >
                 <div className="pf-card-media">
                   <ProjectMedia project={project} />
@@ -354,7 +367,7 @@ export default function PortfolioSite() {
         {/* ABOUT */}
         <section id="about" className="pf-section pf-about">
           <div className="pf-about-grid">
-            <div data-reveal className="pf-about-left">
+            <div data-reveal data-textguard className="pf-about-left">
               <div aria-hidden="true" className="pf-about-backdrop" />
               <div className="pf-eyebrow">
                 <span className="pf-eyebrow-bar pf-bar-teal" />
@@ -417,7 +430,7 @@ export default function PortfolioSite() {
 
         {/* STACK */}
         <section id="stack" className="pf-section pf-stack">
-          <div data-reveal className="pf-stack-head">
+          <div data-reveal data-textguard className="pf-stack-head">
             <div aria-hidden="true" className="pf-stack-backdrop" />
             <div className="pf-eyebrow">
               <span className="pf-eyebrow-bar pf-bar-purple" />

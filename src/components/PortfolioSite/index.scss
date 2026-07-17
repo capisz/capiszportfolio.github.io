@@ -7,12 +7,13 @@ $mono: 'JetBrains Mono', monospace;
 $sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $maxw: 1180px;
 
-// Surface palette — bold-contrast step up from the #021a2b page background so
-// panels separate clearly from the code-waterfall backdrop.
-$surface: #0e415f;        // raised panels: cards, tiles, featured, about, contact, marquee
-$surface-deep: #072e47;   // inset panels: chris.ts code card, contact rows
-$border: rgba(158, 203, 235, 0.24);       // main panel borders
-$border-soft: rgba(158, 203, 235, 0.16);  // inner separators
+// Surface palette — a moderate step up from the #021a2b page background so
+// panels separate clearly from the code-waterfall backdrop without washing
+// out the dark theme.
+$surface: #0a3550;        // raised panels: cards, tiles, featured, about, contact, marquee
+$surface-deep: #062840;   // inset panels: chris.ts code card, contact rows
+$border: rgba(158, 203, 235, 0.17);       // main panel borders
+$border-soft: rgba(158, 203, 235, 0.12);  // inner separators
 
 @keyframes pf-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes pf-reveal { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
@@ -56,7 +57,11 @@ $border-soft: rgba(158, 203, 235, 0.16);  // inner separators
   -webkit-mask-image: radial-gradient(circle 210px at -400px -400px, #000 0%, rgba(0, 0, 0, 0.5) 48%, transparent 74%);
   mask-image: radial-gradient(circle 210px at -400px -400px, #000 0%, rgba(0, 0, 0, 0.5) 48%, transparent 74%);
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  transition: opacity 0.25s ease;
 }
+// while the pointer is over a bare-background text block, the torch recedes so
+// the brightened code never fights the text
+.pf-codebg-torch.pf-torch-dimmed { opacity: 0.18; }
 .pf-codecol {
   margin: -100vh 0 0; flex: 1 1 0; font-family: $mono; font-size: 12.5px;
   line-height: 1.9; white-space: pre; color: #3fd6c2; overflow: hidden;
@@ -75,6 +80,25 @@ $border-soft: rgba(158, 203, 235, 0.16);  // inner separators
 .pf-glow-7 { top: 42%; left: 30%; width: 260px; height: 260px; background: radial-gradient(circle, rgba(63, 214, 194, 0.34), transparent 68%); filter: blur(34px); animation: pf-glow 10.5s ease-in-out infinite; animation-delay: 1.3s; }
 
 .pf-content { position: relative; z-index: 1; }
+
+// glass/ice hover state: the legibility patches behind bare-background text
+// blocks frost over while that block is hovered (one at a time — bounded cost,
+// unlike the always-on backdrop-filter that caused scroll flicker)
+.pf-hero-backdrop, .pf-stats-backdrop, .pf-work-head-backdrop, .pf-about-backdrop, .pf-stack-backdrop {
+  transition: background 0.25s ease, backdrop-filter 0.25s ease;
+}
+.pf-glass .pf-hero-backdrop, .pf-glass .pf-stats-backdrop, .pf-glass .pf-work-head-backdrop,
+.pf-glass .pf-about-backdrop, .pf-glass .pf-stack-backdrop {
+  backdrop-filter: blur(7px) saturate(120%);
+  -webkit-backdrop-filter: blur(7px) saturate(120%);
+  background: rgba(2, 26, 43, 0.66);
+}
+
+// keyboard navigation: visible focus ring on every interactive element
+.pf-root a:focus-visible, .pf-root button:focus-visible {
+  outline: 2px solid #ffd700;
+  outline-offset: 3px;
+}
 
 /* ---- shared bits ---- */
 .pf-strong { color: #eef4fc; font-weight: 500; }
@@ -122,8 +146,9 @@ $border-soft: rgba(158, 203, 235, 0.16);  // inner separators
 .pf-monogram { width: 30px; height: 30px; border-radius: 7px; background: #ffd700; color: #021a2b; display: flex; align-items: center; justify-content: center; font-family: $mono; font-weight: 500; font-size: 13px; letter-spacing: -0.5px; }
 .pf-brand-name { font-weight: 700; font-size: 15.5px; letter-spacing: -0.2px; }
 .pf-nav-links { display: flex; align-items: center; gap: 30px; }
-.pf-navlink { font-family: $mono; font-size: 12.5px; color: #9fb4cb; text-decoration: none; letter-spacing: 0.2px;
-  &:hover { color: #ffd700; } }
+.pf-navlink { font-family: $mono; font-size: 12.5px; color: #9fb4cb; text-decoration: none; letter-spacing: 0.2px; transition: color 0.2s;
+  &:hover { color: #ffd700; }
+  &.is-active { color: #ffd700; } }
 .pf-resume-btn { display: inline-flex; align-items: center; gap: 7px; background: #ffd700; color: #021a2b; font-size: 12.5px; font-weight: 700; text-decoration: none; padding: 9px 16px; border-radius: 8px; letter-spacing: 0.2px; transition: background 0.2s;
   &:hover { background: #fff; } }
 
@@ -201,8 +226,8 @@ $border-soft: rgba(158, 203, 235, 0.16);  // inner separators
     content: ''; position: absolute; top: 0; bottom: 0; width: 8%;
     z-index: 1; pointer-events: none;
   }
-  &::before { left: 0; background: linear-gradient(90deg, $surface, rgba(14, 65, 95, 0)); }
-  &::after { right: 0; background: linear-gradient(270deg, $surface, rgba(14, 65, 95, 0)); }
+  &::before { left: 0; background: linear-gradient(90deg, $surface, rgba(10, 53, 80, 0)); }
+  &::after { right: 0; background: linear-gradient(270deg, $surface, rgba(10, 53, 80, 0)); }
 }
 .pf-marquee { display: flex; gap: 54px; width: max-content; animation: pf-marquee 32s linear infinite; will-change: transform; }
 .pf-marquee-item { display: flex; align-items: center; gap: 11px; flex: none; }
@@ -236,6 +261,7 @@ $border-soft: rgba(158, 203, 235, 0.16);  // inner separators
 .pf-featured-media { position: relative; background: #02101b; aspect-ratio: 16 / 11; overflow: hidden; }
 .pf-featured-media-inner { position: absolute; inset: 0; overflow: hidden; transition: transform 0.3s ease;
   img { position: absolute; left: -3%; top: -19%; width: 140%; height: auto; max-width: none; display: block; } }
+.pf-featured-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .pf-featured-body { padding: 38px; display: flex; flex-direction: column; justify-content: center; }
 .pf-badges { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
 .pf-badge-live { display: inline-flex; align-items: center; gap: 6px; font-family: $mono; font-size: 11.5px; color: #5fd07a; background: rgba(95, 208, 122, 0.1); border: 1px solid rgba(95, 208, 122, 0.28); border-radius: 999px; padding: 4px 10px; }
