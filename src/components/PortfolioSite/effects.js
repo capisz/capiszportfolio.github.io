@@ -31,24 +31,25 @@ export default function usePortfolioEffects(rootRef) {
       const revealIO = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
-            if (e.isIntersecting) {
-              const el = e.target;
-              const d = parseInt(el.getAttribute("data-delay") || "0", 10);
-              el.style.opacity = "0";
-              el.style.animation =
-                "pf-reveal .7s cubic-bezier(.2,.7,.2,1) " + d + "ms both";
-              el.addEventListener(
-                "animationend",
-                () => {
-                  el.style.animation = "none";
-                  el.style.opacity = "1";
-                  el.style.transform = "none";
-                },
-                { once: true }
-              );
-              el.__shown = true;
-              revealIO.unobserve(el);
-            }
+            if (!e.isIntersecting) return;
+            const el = e.target;
+            revealIO.unobserve(el);
+            // never re-hide/re-animate something already visible — doing so
+            // flashed content to opacity 0 as it scrolled into view
+            if (el.__shown) return;
+            el.__shown = true;
+            const d = parseInt(el.getAttribute("data-delay") || "0", 10);
+            el.style.animation =
+              "pf-reveal .7s cubic-bezier(.2,.7,.2,1) " + d + "ms both";
+            el.addEventListener(
+              "animationend",
+              () => {
+                el.style.animation = "none";
+                el.style.opacity = "1";
+                el.style.transform = "none";
+              },
+              { once: true }
+            );
           });
         },
         { threshold: 0.05, rootMargin: "0px 0px -4% 0px" }
@@ -63,8 +64,17 @@ export default function usePortfolioEffects(rootRef) {
         }
       });
       cleanups.push(() => revealIO.disconnect());
-      // hard safety: never leave anything hidden
-      const safety = setTimeout(() => revealEls.forEach(forceShow), 1400);
+      // safety: rescue only elements already inside the viewport that never
+      // revealed. Below-fold elements must stay hidden until the observer
+      // animates them in — blanket-showing them here made the observer later
+      // re-animate visible content (the scroll flicker).
+      const safety = setTimeout(() => {
+        const h = window.innerHeight || 800;
+        revealEls.forEach((el) => {
+          const r = el.getBoundingClientRect();
+          if (!el.__shown && r.top < h && r.bottom > 0) forceShow(el);
+        });
+      }, 1600);
       cleanups.push(() => clearTimeout(safety));
     }
 
