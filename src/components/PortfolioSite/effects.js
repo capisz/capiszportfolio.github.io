@@ -163,7 +163,9 @@ export default function usePortfolioEffects(rootRef) {
         };
         const onLeave = () => {
           card.style.transform = "";
-          card.style.borderColor = "";
+          // restore the resting accent tint (set inline in JSX) — clearing to ''
+          // would wipe that inline style along with the hover color
+          card.style.borderColor = accent + "3d";
           card.style.boxShadow = "";
           if (media) media.style.transform = "";
           if (overlay) overlay.style.opacity = "0";
@@ -216,16 +218,28 @@ export default function usePortfolioEffects(rootRef) {
       if (nav) {
         if (y > 8) {
           nav.style.boxShadow = "0 10px 30px -16px rgba(0,0,0,0.7)";
-          nav.style.borderBottomColor = "rgba(255,255,255,0.12)";
+          nav.style.borderBottomColor = "rgba(255,255,255,0.16)";
         } else {
           nav.style.boxShadow = "none";
-          nav.style.borderBottomColor = "rgba(255,255,255,0.07)";
+          nav.style.borderBottomColor = "rgba(255,255,255,0.10)";
         }
       }
       if (bar) {
         const max = document.documentElement.scrollHeight - window.innerHeight || 1;
         bar.style.width = Math.min(100, (y / max) * 100) + "%";
       }
+      // reveal fallback: show anything already well inside the viewport that
+      // the observer hasn't animated yet. The observer triggers at the ~96%
+      // line, so at normal scroll speed it wins and the animation plays; this
+      // only catches very fast scrolls and environments where
+      // IntersectionObserver misbehaves — content must never stay hidden.
+      const h = window.innerHeight || 800;
+      revealEls.forEach((el) => {
+        if (!el.__shown) {
+          const r = el.getBoundingClientRect();
+          if (r.top < h * 0.75 && r.bottom > 0) forceShow(el);
+        }
+      });
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();

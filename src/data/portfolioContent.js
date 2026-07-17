@@ -138,7 +138,7 @@ export const projects = raw.map((p, i) => {
     statusLabel: inProgress ? "In progress" : "Live",
     statusColor: inProgress ? "#e0a93b" : "#5fd07a",
     liveLabel: hasLive ? "visit live ↗" : "view repo ↗",
-    liveColor: hasLive ? "#ffd700" : "#8499b0",
+    liveColor: hasLive ? "#ffd700" : "#a9bfd6",
     revealDelay: (i % 3) * 80,
   };
 });

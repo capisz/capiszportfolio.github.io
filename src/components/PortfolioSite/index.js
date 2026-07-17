@@ -258,6 +258,7 @@ export default function PortfolioSite() {
             target="_blank"
             rel="noreferrer"
             className="pf-featured"
+            style={{ borderColor: "#ffd7003d" }}
           >
             <div className="pf-featured-media">
               <div data-media className="pf-featured-media-inner">
@@ -304,6 +305,7 @@ export default function PortfolioSite() {
                 target="_blank"
                 rel="noreferrer"
                 className="pf-card"
+                style={{ borderColor: `${project.accent}3d` }}
               >
                 <div className="pf-card-media">
                   <ProjectMedia project={project} />

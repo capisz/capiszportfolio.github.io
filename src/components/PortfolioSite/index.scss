@@ -7,6 +7,13 @@ $mono: 'JetBrains Mono', monospace;
 $sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $maxw: 1180px;
 
+// Surface palette — bold-contrast step up from the #021a2b page background so
+// panels separate clearly from the code-waterfall backdrop.
+$surface: #0e415f;        // raised panels: cards, tiles, featured, about, contact, marquee
+$surface-deep: #072e47;   // inset panels: chris.ts code card, contact rows
+$border: rgba(158, 203, 235, 0.24);       // main panel borders
+$border-soft: rgba(158, 203, 235, 0.16);  // inner separators
+
 @keyframes pf-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes pf-reveal { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
 @keyframes pf-blink { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0; } }
@@ -100,14 +107,14 @@ $maxw: 1180px;
   &:hover { border-color: #ffd700; color: #ffd700; } }
 
 .pf-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-.pf-chip { font-family: $mono; font-size: 10.5px; color: #8499b0; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 5px; padding: 3px 7px; }
-.pf-chip-lg { font-size: 11px; color: #9fb4cb; border-color: rgba(255, 255, 255, 0.12); border-radius: 6px; padding: 4px 9px; }
+.pf-chip { font-family: $mono; font-size: 10.5px; color: #a9bfd6; border: 1px solid $border; border-radius: 5px; padding: 3px 7px; }
+.pf-chip-lg { font-size: 11px; color: #aec3d9; border-color: $border; border-radius: 6px; padding: 4px 9px; }
 
 /* ---- NAV ---- */
 .pf-nav {
   position: sticky; top: 0; z-index: 50;
   background: rgba(2, 26, 43, 0.92);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
   transition: box-shadow 0.25s, border-color 0.25s;
 }
 .pf-nav-inner { max-width: $maxw; margin: 0 auto; padding: 0 32px; height: 66px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
@@ -154,7 +161,7 @@ $maxw: 1180px;
 .pf-stat-teal { color: #3fd6c2; }
 .pf-stat-orange { color: #ff8a5c; }
 .pf-stat-label { font-family: $mono; font-size: 11.5px; color: #7d92a8; margin-top: 3px; }
-.pf-stat-div { width: 1px; background: rgba(255, 255, 255, 0.1); }
+.pf-stat-div { width: 1px; background: $border-soft; }
 
 /* code card */
 .pf-card-backdrop {
@@ -166,10 +173,10 @@ $maxw: 1180px;
   pointer-events: none;
 }
 .pf-codecard {
-  position: relative; z-index: 1; background: #03192a; border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative; z-index: 1; background: $surface-deep; border: 1px solid $border;
   border-radius: 16px; box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.6); overflow: hidden; will-change: transform;
 }
-.pf-codecard-bar { display: flex; align-items: center; gap: 7px; padding: 14px 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+.pf-codecard-bar { display: flex; align-items: center; gap: 7px; padding: 14px 16px; border-bottom: 1px solid $border-soft; }
 .pf-dot { width: 11px; height: 11px; border-radius: 50%; }
 .pf-dot-r { background: #ff5f57; }
 .pf-dot-y { background: #febc2e; }
@@ -184,15 +191,23 @@ $maxw: 1180px;
 
 /* ---- MARQUEE ---- */
 .pf-marquee-wrap {
-  border-top: 1px solid rgba(255, 255, 255, 0.06); border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(255, 255, 255, 0.015); overflow: hidden; padding: 18px 0;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  position: relative;
+  border-top: 1px solid $border; border-bottom: 1px solid $border;
+  background: $surface; overflow: hidden; padding: 18px 0;
+
+  // edge fades: solid-color gradients over the bar (a mask would also fade the
+  // solid background; on the scroller it would track content width, not the bar)
+  &::before, &::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 8%;
+    z-index: 1; pointer-events: none;
+  }
+  &::before { left: 0; background: linear-gradient(90deg, $surface, rgba(14, 65, 95, 0)); }
+  &::after { right: 0; background: linear-gradient(270deg, $surface, rgba(14, 65, 95, 0)); }
 }
 .pf-marquee { display: flex; gap: 54px; width: max-content; animation: pf-marquee 32s linear infinite; will-change: transform; }
 .pf-marquee-item { display: flex; align-items: center; gap: 11px; flex: none; }
 .pf-marquee-icon { width: 21px; height: 21px; flex: none; background-size: contain; background-repeat: no-repeat; background-position: center; opacity: 0.85; }
-.pf-marquee-label { font-family: $mono; font-size: 13px; color: #8aa0b6; letter-spacing: 0.3px; }
+.pf-marquee-label { font-family: $mono; font-size: 13px; color: #a9bfd6; letter-spacing: 0.3px; }
 
 /* ---- sections ---- */
 .pf-section { max-width: $maxw; margin: 0 auto; }
@@ -202,7 +217,7 @@ $maxw: 1180px;
 .pf-contact { padding: 84px 32px 0; scroll-margin-top: 80px; }
 
 /* ---- WORK ---- */
-.pf-work-head { position: relative; display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: 34px; border-bottom: 1px solid rgba(255, 255, 255, 0.09); padding-bottom: 20px; }
+.pf-work-head { position: relative; display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: 34px; border-bottom: 1px solid $border-soft; padding-bottom: 20px; }
 .pf-work-head-backdrop {
   position: absolute; inset: -6px -14px; z-index: -1; background: rgba(2, 26, 43, 0.5);
   -webkit-mask-image: radial-gradient(46% 90% at 14% 50%, #000 36%, transparent 78%);
@@ -213,8 +228,8 @@ $maxw: 1180px;
 
 /* featured card */
 .pf-featured {
-  display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 0; background: #052233;
-  border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 18px; overflow: hidden;
+  display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 0; background: $surface;
+  border: 1px solid $border; border-radius: 18px; overflow: hidden;
   text-decoration: none; color: inherit; margin-bottom: 26px;
   transition: border-color 0.2s, box-shadow 0.2s; transform-style: preserve-3d;
 }
@@ -235,7 +250,7 @@ $maxw: 1180px;
 /* grid */
 .pf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
 .pf-card {
-  display: flex; flex-direction: column; background: #052233; border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex; flex-direction: column; background: $surface; border: 1px solid $border;
   border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit;
   transition: border-color 0.15s, box-shadow 0.2s; transform-style: preserve-3d;
 }
@@ -256,10 +271,10 @@ $maxw: 1180px;
 .pf-accentbar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; }
 .pf-card-body { padding: 20px 20px 22px; display: flex; flex-direction: column; flex: 1; }
 .pf-card-title { font-weight: 700; font-size: 18.5px; letter-spacing: -0.4px; margin: 0 0 9px; color: #f4f8ff; }
-.pf-card-blurb { font-size: 13.8px; line-height: 1.55; color: #90a5bc; margin: 0 0 16px; flex: 1; }
-.pf-card-foot { display: flex; gap: 14px; font-family: $mono; font-size: 11.5px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.pf-card-blurb { font-size: 13.8px; line-height: 1.55; color: #a4bad1; margin: 0 0 16px; flex: 1; }
+.pf-card-foot { display: flex; gap: 14px; font-family: $mono; font-size: 11.5px; padding-top: 14px; border-top: 1px solid $border-soft; }
 .pf-card-foot-live { font-weight: 500; }
-.pf-card-foot-code { color: #5d7088; margin-left: auto; }
+.pf-card-foot-code { color: #7b93ad; margin-left: auto; }
 
 /* non-hover fallback (touch): reveal code overlay is only on hover devices */
 
@@ -275,8 +290,8 @@ $maxw: 1180px;
 .pf-about-p { font-size: 16.5px; line-height: 1.68; color: #9fb4cb; margin: 0 0 18px; }
 .pf-about-p-last { margin-bottom: 0; }
 .pf-about-right { display: flex; flex-direction: column; gap: 18px; }
-.pf-about-card { background: #052233; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 24px 26px; }
-.pf-about-card-yellow { background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.03)), #052233; border: 1px solid rgba(255, 215, 0, 0.22); }
+.pf-about-card { background: $surface; border: 1px solid $border; border-radius: 14px; padding: 24px 26px; }
+.pf-about-card-yellow { background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.03)), $surface; border: 1px solid rgba(255, 215, 0, 0.22); }
 .pf-about-card-title { font-family: $mono; font-weight: 500; font-size: 12.5px; color: #ffd700; text-transform: uppercase; letter-spacing: 0.6px; margin: 0 0 16px; }
 .pf-about-card-yellow .pf-about-card-title { margin-bottom: 14px; }
 .pf-about-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 13px;
@@ -294,7 +309,7 @@ $maxw: 1180px;
 }
 .pf-stack-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
 .pf-stack-tile {
-  display: flex; align-items: center; gap: 12px; background: #052233; border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex; align-items: center; gap: 12px; background: $surface; border: 1px solid $border;
   border-radius: 12px; padding: 15px 16px; transition: border-color 0.15s, transform 0.15s;
   &:hover { border-color: #ffd700; transform: translateY(-2px); }
 }
@@ -302,13 +317,13 @@ $maxw: 1180px;
 .pf-stack-name { font-size: 14px; font-weight: 500; color: #eef4fc; }
 
 /* ---- CONTACT ---- */
-.pf-contact-card { background: #052233; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 22px; padding: 64px 56px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+.pf-contact-card { background: $surface; border: 1px solid $border; border-radius: 22px; padding: 64px 56px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
 .pf-contact-title { font-weight: 700; font-size: 46px; line-height: 1.04; letter-spacing: -1.6px; color: #f4f8ff; margin: 0 0 18px; }
 .pf-contact-blurb { font-size: 16.5px; line-height: 1.6; color: #9fb4cb; margin: 0 0 30px; max-width: 420px; }
 .pf-contact-ctas { display: flex; flex-wrap: wrap; gap: 12px;
   .pf-btn { border-radius: 11px; padding: 14px 24px; } }
 .pf-contact-right { display: flex; flex-direction: column; gap: 12px; }
-.pf-contact-row { display: flex; align-items: center; justify-content: space-between; background: #03192a; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 13px; padding: 18px 22px; text-decoration: none; transition: border-color 0.15s;
+.pf-contact-row { display: flex; align-items: center; justify-content: space-between; background: $surface-deep; border: 1px solid $border; border-radius: 13px; padding: 18px 22px; text-decoration: none; transition: border-color 0.15s;
   &:hover { border-color: #ffd700; } }
 .pf-contact-row-text { display: flex; flex-direction: column; gap: 3px; }
 .pf-contact-row-label { font-family: $mono; font-size: 11px; color: #7d92a8; }
