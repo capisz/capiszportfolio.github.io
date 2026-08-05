@@ -7,11 +7,11 @@ test('keeps refreshed portfolio projects ordered and live', () => {
     'FunkFit',
     'Pokémon Prize Checker',
     'backstop.ai',
+    'ParkNYC',
     'Contessa Shop',
     'Concrete Jungle Sports',
     'Hudson Chess',
     'Dragapultist',
-    'ParkNYC',
     'Marketplace Chrome Extension',
     'Chess Opening Driller',
   ]);
