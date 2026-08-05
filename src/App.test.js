@@ -28,6 +28,8 @@ test('keeps refreshed portfolio projects ordered and live', () => {
   expect(funkFit).toMatchObject({
     media: '/assets/projects/elephit.mp4',
     isVideoPortrait: true,
+    openUrl: 'https://github.com/capisz/funkfit',
+    liveLabel: 'view repo ↗',
     statusLabel: 'Live',
   });
   expect(parkNYC).toMatchObject({
