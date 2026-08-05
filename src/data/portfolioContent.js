@@ -82,15 +82,15 @@ export const featured = {
 
 const raw = [
   { title: "DraftKings NBA Optimizer", blurb: "Pulls the live DraftKings slate and ranks players by a transparent points-per-dollar metric. A built-in AI analyst proposes the best cap-legal, position-legal swap for any slot — with reasoning. Classic & Showdown support.", media: "assets/shots/draftkings.gif", tech: ["nextjs", "typescript", "tailwind", "python", "ai"], live: "https://draftkings-optimizer.vercel.app/", code: "https://github.com/capisz/draftkings-optimizer", status: "complete", ai: true },
+  { title: "Amazon Room Generator", blurb: "Enter your measurements, generate a room layout, then shop pieces that actually fit your space — no more guessing.", media: "assets/projects/amazon-room.mp4", tech: ["react", "javascript", "api"], live: "https://amazon-room-designr.vercel.app/", code: "https://github.com/capisz/amazon-room-gen", status: "complete" },
+  { title: "FunkFit", blurb: "Your body changes daily, so should your logging. FunkFit recalculates your calorie needs week-to-week, even day-to-day.", media: "assets/projects/elephit.mp4", portrait: true, tech: ["nextjs", "react", "typescript", "tailwind", "api", "mongodb"], live: "https://elephit-fitness-app.vercel.app/user-profile", code: "https://github.com/capisz/elephit-fitness-app", status: "complete" },
+  { title: "Pokémon Prize Checker", blurb: "A tool to simulate and perfect your Pokémon TCG prize-checking without physical cards — any time, any place, zero setup.", media: "assets/shots/pokemon.gif", tech: ["nextjs", "react", "typescript", "api", "tailwind", "mongodb"], live: "https://prizecheck.us/", code: "https://github.com/capisz/pokemon-tcg-prize-checker", status: "complete" },
   { title: "backstop.ai", blurb: "A public-data baseball product that grades catcher pitch-calling in real time from the MLB Stats API. One click streams a Claude analyst's grounded read of each catcher's live zone report.", media: "assets/shots/backstop.gif", tech: ["nextjs", "typescript", "fastapi", "python", "postgres", "claude"], live: "https://ai-catcher-grade-app-web.vercel.app/", code: "https://github.com/capisz/ai-catcher-grade-app", status: "complete", ai: true },
   { title: "Contessa Shop", blurb: "A Next.js storefront concept for a three-piece essentials drop — a Skims-inspired product grid with per-item size/color selection, an auto-rotating product-angle carousel, and a PCRF impact section.", media: "assets/shots/contessa.gif", tech: ["nextjs", "react", "typescript", "tailwind"], live: "https://contessa-shop.vercel.app/", code: "https://github.com/capisz/contessa-shop", status: "complete" },
   { title: "Concrete Jungle Sports", blurb: "A standalone New York Knicks blog and podcast site — long-form posts and episodes with externally-hosted audio, built on the Next.js App Router.", media: "assets/shots/nba-blog.gif", tech: ["nextjs", "react", "typescript", "tailwind"], live: "https://concrete-jungle-sports.vercel.app/", code: "https://github.com/capisz/nba-blog", status: "complete" },
   { title: "Hudson Chess", blurb: "A chess academy site and blog — a Vite + React single-page app with hash routing, a cookie-consent system, and privacy-first analytics.", media: "assets/shots/hudson-chess.gif", tech: ["react", "javascript", "css"], live: "https://hudsonchess.com/", code: "https://github.com/capisz/hudson-chess-academy", status: "complete" },
-  { title: "Pokémon Prize Checker", blurb: "A tool to simulate and perfect your Pokémon TCG prize-checking without physical cards — any time, any place, zero setup.", media: "assets/shots/pokemon.gif", tech: ["nextjs", "react", "typescript", "api", "tailwind", "mongodb"], live: "https://prizecheck.us/", code: "https://github.com/capisz/pokemon-tcg-prize-checker", status: "complete" },
   { title: "Dragapultist", blurb: "Import your Pokémon TCG Live export files to analyze your games, spot mistakes, and improve as a competitive player.", media: "assets/shots/dragapultist.gif", tech: ["nextjs", "react", "mongodb", "typescript", "tailwind", "node"], live: "https://dragapultist.vercel.app/", code: "https://github.com/capisz/dragapultist", status: "complete" },
-  { title: "Elephit Fitness App", blurb: "Your body changes daily, so should your logging. Elephit recalculates your calorie needs week-to-week, even day-to-day.", media: "assets/shots/elephit.png", tech: ["nextjs", "react", "typescript", "tailwind", "api", "mongodb"], live: "https://elephit-fitness-app.vercel.app/user-profile", code: "https://github.com/capisz/elephit-fitness-app", status: "complete" },
-  { title: "iPhone Parking App", blurb: "See where and when it's safe to park wherever you are — meter times and more, on a native Apple Maps interface.", media: "assets/shots/pidge.gif", portrait: true, tech: ["swift", "api", "typescript"], live: "", code: "https://github.com/capisz/ParkNYCPrototype", status: "complete" },
-  { title: "Amazon Room Generator", blurb: "Enter your measurements, generate a room layout, then shop pieces that actually fit your space — no more guessing.", media: "assets/shots/amazon.gif", tech: ["react", "javascript", "api"], live: "https://amazon-room-designr.vercel.app/", code: "https://github.com/capisz/amazon-room-gen", status: "in-progress" },
+  { title: "ParkNYC", blurb: "Plan a destination and compare conservative curb guidance on an interactive NYC map, with meter rules and route-aware parking options.", media: "assets/projects/parknyc.mp4", tech: ["swift", "api", "typescript"], live: "", code: "https://github.com/capisz/ParkNYCPrototype", status: "complete" },
   { title: "Marketplace Chrome Extension", blurb: "Save money on big-box shopping by checking Facebook Marketplace near you first — right from the product page.", media: "assets/shots/fleamarket.png", tech: ["javascript", "facebook", "google", "geolocation"], live: "", code: "https://github.com/capisz/facebook-marketplace-checker", status: "in-progress" },
   { title: "Chess Opening Driller", blurb: "Drill chess openings until you master every line — build deep, reliable repertoire knowledge through repetition.", media: "assets/shots/chess-driller.png", tech: ["react", "javascript", "css"], live: "https://chess-driller.vercel.app/", code: "https://github.com/capisz/chess-opening-driller", status: "in-progress" },
 ];
@@ -104,6 +104,7 @@ export const projects = raw.map((p, i) => {
   const isGifLandscape = isGif && !p.portrait;
   const isImage = hasMedia && !isGif && /\.(png|jpg|jpeg|webp)$/i.test(p.media);
   const isVideo = hasMedia && !isImage && !isGif;
+  const isVideoPortrait = isVideo && !!p.portrait;
   const isCode = !hasMedia;
   const inProgress = p.status === "in-progress";
   const hasLive = !!p.live;
@@ -126,6 +127,7 @@ export const projects = raw.map((p, i) => {
     blurb: p.blurb,
     media: hasMedia ? asset(p.media) : "",
     isVideo,
+    isVideoPortrait,
     isImage,
     isGif: isGifLandscape,
     isGifPortrait,

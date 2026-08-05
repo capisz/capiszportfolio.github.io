@@ -11,6 +11,32 @@ import {
 } from "../../data/portfolioContent";
 
 function ProjectMedia({ project }) {
+  if (project.isVideoPortrait) {
+    return (
+      <div data-media className="pf-media-el pf-media-video-portrait">
+        <video
+          data-pv
+          src={project.media}
+          aria-hidden="true"
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="pf-media-video-portrait-bg"
+        />
+        <video
+          data-pv
+          src={project.media}
+          aria-label={project.title}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="pf-media-video-portrait-main"
+        />
+      </div>
+    );
+  }
   if (project.isVideo) {
     return (
       <video
