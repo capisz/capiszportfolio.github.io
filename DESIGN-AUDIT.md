@@ -1,3 +1,12 @@
+## Mobile navigation and opt-in discovery — September 11, 2026
+
+- Reviewed sampled frames of the supplied iPhone recording. Mobile navigation uses two stable rows, with résumé above the motion control. Header blur was replaced by a translucent tint to avoid smearing bright page elements into navigation.
+- Removed scroll-driven background transforms/speed changes and live blur on content cards; stopped dimming already visible cards when they first intersect. Decorative background animation is now static to reduce compositing churn during scrolling.
+- Successful submitted matches scroll to the demo on mobile after a 450ms layout delay. Touch/wheel cancels a pending scroll; reduced motion uses immediate scrolling. File extraction still requires the explicit Find action before matching.
+- The scroll-revealed question offers related projects or the entire portfolio. Related cards and all gallery media remain unmounted until requested. Navigation and the browse link can open the entire gallery directly. Editing a brief clears the previous choice.
+- Requested toolkit technologies receive a teal glow and gentle pulse; reduced/paused motion keeps a static highlight. Azure maps to the existing Azure SQL Database toolkit entry, without changing project evidence.
+- 91 tests across nine suites pass, including opt-in discovery, clearing highlights, and mobile scroll cancellation. Production build succeeds. Browser checks verified the 390px header/demo offset, four opted-in recommendations, 13 full-gallery projects, and requested toolkit classes. Physical iPhone verification remains for the user; no production deployment was performed.
+
 ## Related preview framing — September 11, 2026
 
 Replaced shallow letterboxed previews with full-width 16:10 image frames and top-aligned cover fitting. Browser review confirmed the backstop.ai and chess previews fill their frames consistently. Production build passes.

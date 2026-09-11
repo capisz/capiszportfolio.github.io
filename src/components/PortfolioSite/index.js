@@ -28,7 +28,7 @@ const groups = {
   Backend: ['Node.js','Python','MongoDB','Firebase','Azure SQL Database'],
   'Tools & infrastructure': ['GitHub Actions','Xcode','Figma','Vite.js','Ubuntu','Linux','Kubernetes','Docker','kind'],
 };
-function RelatedProjects({result,motion}) {
+function RelatedProjects({result,motion,choice,onChoice}) {
   const ref=useRef(null);
   const [visible,setVisible]=useState(false);
   useEffect(()=>{
@@ -40,24 +40,31 @@ function RelatedProjects({result,motion}) {
     if(ref.current)observer.observe(ref.current);
     return()=>observer.disconnect();
   },[result,motion]);
-  if(!result?.alternatives.length)return null;
+  if(!result?.best)return null;
   return <section ref={ref} className={`pf-related pf-section ${visible?'is-visible':''}`} aria-labelledby="related-title">
     <span className="pf-eyebrow">Keep exploring</span>
-    <h2 id="related-title">There’s more that fits your stack.</h2>
-    <p>I’ve got a few more projects you may be interested in, built with the technologies you’re looking for.</p>
-    <div className="pf-related-grid">{result.alternatives.map((project,i)=>{
+    <h2 id="related-title">Want to see more projects that align with your tech stack?</h2>
+    <div className="pf-discovery-actions">
+      {result.alternatives.length>0&&<button type="button" aria-pressed={choice==='related'} onClick={()=>onChoice('related')}>Yes, show related projects</button>}
+      <button type="button" onClick={()=>onChoice('all')}>Show me your entire portfolio</button>
+    </div>
+    {choice==='related'&&<div className="pf-related-grid">{result.alternatives.map((project,i)=>{
       const display=presentation.find(p=>p.title===project.title);
       return <a key={project.title} className="pf-related-card" style={{'--related-delay':`${i*120}ms`}} href={project.openUrl} target="_blank" rel="noreferrer">
         <img className="pf-related-preview" src={display.poster} alt="" loading="lazy" />
         <h3>{project.title} <Arrow /></h3><p>{display.shortDescription}</p>
         <span className="pf-related-tech">{project.matched.join(' · ')}</span><span className="pf-related-action">Explore project ↗</span>
       </a>;
-    })}</div>
+    })}</div>}
   </section>;
 }
 export default function PortfolioSite() {
   const rootRef=useRef(null);
   const [match,setMatch]=useState(null);
+  const [choice,setChoice]=useState(null);
+  useEffect(()=>setChoice(null),[match]);
+  const showAll=()=>setChoice('all');
+  const choose=value=>{setChoice(value);if(value==='all')requestAnimationFrame(()=>document.getElementById('work')?.scrollIntoView({behavior:motion.enabled?'smooth':'auto',block:'start'}));};
   const highlighted=match?.best?[match.best,...match.alternatives].map(p=>p.title):[];
   const ordered=[...presentation].sort((a,b)=>{
     const rank=p=>highlighted.includes(p.title)?highlighted.indexOf(p.title):presentation.length;
@@ -76,20 +83,22 @@ export default function PortfolioSite() {
     </div>
     <header className="pf-nav"><div className="pf-nav-inner">
       <a className="pf-brand" href="#top"><PixelKnight /><span>Chris Capizzuto</span></a>
-      <nav aria-label="Main navigation"><a className="pf-navlink" href="#work">Work</a><a className="pf-navlink" href="#about">About</a><a className="pf-navlink" href="#stack">Stack</a><a className="pf-navlink" href="#contact">Contact</a></nav>
+      <nav aria-label="Main navigation"><a className="pf-navlink" href="#work" onClick={showAll}>Work</a><a className="pf-navlink" href="#about">About</a><a className="pf-navlink" href="#stack">Stack</a><a className="pf-navlink" href="#contact">Contact</a></nav>
       <div className="pf-nav-actions"><button className="pf-motion-toggle" type="button" onClick={motion.toggle} aria-pressed={motion.paused} disabled={motion.reduced} title={motion.reduced ? 'System reduced motion is enabled' : 'Pause or resume decorative motion'}>{motion.reduced ? 'Motion reduced' : motion.paused ? '▶ Resume motion' : 'Ⅱ Pause motion'}</button><a href={links.resume} download className="pf-resume" aria-label="Download résumé">Résumé <span aria-hidden="true">↓</span></a></div>
     </div></header>
     <main>
-      <ProjectMatcher motion={motion.enabled} onResult={setMatch} />
-      <RelatedProjects result={match} motion={motion.enabled} />
+      <ProjectMatcher motion={motion.enabled} onResult={setMatch} onBrowse={showAll} />
+      <RelatedProjects result={match} motion={motion.enabled} choice={choice} onChoice={choose} />
       <div className="pf-ticker" tabIndex="0" aria-label="Technology ticker. Focus or hover to pause."><div className="pf-ticker-track">{[0,1].map(copy=><div className="pf-ticker-set" key={copy} aria-hidden={copy===1}>{stack.slice(0,10).map(s=><span key={s.name}><img src={s.icon} alt="" />{s.name}</span>)}</div>)}</div></div>
       <section id="work" className="pf-section">
+        {choice!=='all'&&<button className="pf-show-all" type="button" onClick={showAll}>Show me your entire portfolio <Arrow /></button>}
+        {choice==='all'&&<>
         <SectionHeading label="Selected work" title="Built to solve something."><a className="pf-text-link" href={links.github} target="_blank" rel="noreferrer">All repositories <Arrow /></a></SectionHeading>
         {highlighted.length>0&&<p className="pf-match-prompt">You may also be interested in these</p>}
         <div className="pf-grid">{ordered.map((p,i)=><article className={`pf-card ${highlighted.includes(p.title)?'is-match':''}`} key={p.title} data-reveal data-delay={(i%2)*90}>
           <div className="pf-card-visual"><ProjectMedia mediaId={`gallery:${p.title}`} project={p} motion={motion.enabled} compact /></div>
           <div className="pf-card-body"><div className="pf-card-title-row"><h3>{p.title}</h3><span className={`pf-project-status ${p.liveUrl ? 'pf-live' : ''}`}>{p.statusLabel === 'In progress' ? 'In progress' : p.liveUrl ? 'Live' : 'Source available'}</span></div><p>{p.shortDescription}</p><div className="pf-tags">{p.tech.slice(0,4).map(t=><span key={t}>{t}</span>)}</div><ProjectLinks project={p} />{p.title==='PrizeCheck'&&<UnderTheHood project={p} motion={motion.enabled} />}</div>
-        </article>)}</div>
+        </article>)}</div></>}
       </section>
       <section id="about" className="pf-section pf-about">
         <div className="pf-about-surface"><SectionHeading label="About me" title="Good questions. Useful software." />
@@ -99,7 +108,7 @@ export default function PortfolioSite() {
           <p data-reveal>Outside of code, I teach chess to elementary-school kids, play Pokémon and Magic, and lift. Teaching keeps me focused on clear explanations; games keep me curious about how systems work.</p>
         </div><aside className="pf-about-aside"><h3>Currently exploring</h3><ul>{['AI features grounded in real data','Public APIs with practical applications','Local infrastructure, recovery, and rollback'].map((text,i)=><li data-reveal data-delay={i*80} key={text}><span aria-hidden="true">↗</span>{text}</li>)}</ul><span className="pf-aside-note">Learning by building, testing, and revisiting.</span></aside></div></div>
       </section>
-      <section id="stack" className="pf-section pf-stack"><SectionHeading label="The toolkit" title="What I build with." /><div className="pf-stack-groups">{Object.entries(groups).map(([name,names])=><div className="pf-stack-group" key={name}><h3>{name}</h3><div className="pf-stack-pills">{names.map((name,i)=>{const s=stack.find(t=>t.name===name);return <div className="pf-stack-pill" data-reveal data-delay={(i%4)*60} key={name}><img className="pf-stack-icon" src={s.icon} alt="" /><span>{name}</span></div>;})}</div></div>)}</div></section>
+      <section id="stack" className="pf-section pf-stack"><SectionHeading label="The toolkit" title="What I build with." /><div className="pf-stack-groups">{Object.entries(groups).map(([name,names])=><div className="pf-stack-group" key={name}><h3>{name}</h3><div className="pf-stack-pills">{names.map((name,i)=>{const s=stack.find(t=>t.name===name);return <div className={`pf-stack-pill ${match?.requested.includes(name==='Vite.js'?'Vite':name==='Azure SQL Database'?'Azure':name)?'is-requested':''}`} data-reveal data-delay={(i%4)*60} key={name}><img className="pf-stack-icon" src={s.icon} alt="" /><span>{name}</span></div>;})}</div></div>)}</div></section>
       <section id="contact" className="pf-section pf-contact"><div className="pf-contact-surface" data-reveal data-contact-reveal><span className="pf-eyebrow">Get in touch</span><div className="pf-contact-grid"><div><h2 aria-label="Have something in mind?">{['Have','something','in','mind?'].map(word=><span aria-hidden="true" className={`pf-contact-word ${word==='mind?'?'is-accent':''}`} key={word}>{word} </span>)}</h2><p>I’m open to software engineering roles and thoughtful collaborations. Send me the problem you’re working on and what you need from your next engineer.</p><a className="pf-magnetic" data-magnetic href={links.email}><span>Email Chris <Arrow /></span></a><a className="pf-contact-resume" href={links.resume} download>Download résumé ↓</a></div><div className="pf-contact-links">{[['Email',links.email,links.emailLabel],['GitHub',links.github,links.githubLabel],['LinkedIn',links.linkedin,links.linkedinLabel]].map(([label,url,detail])=><a className="pf-contact-row" key={label} href={url} {...(label!=='Email'?{target:'_blank',rel:'noreferrer'}:{})}><span><small>{label}</small><span>{detail}</span></span><Arrow /></a>)}</div></div></div></section>
     </main>
     <footer className="pf-footer"><a className="pf-brand" href="#top" aria-label="Chris Capizzuto — back to top"><PixelKnight /><span>Chris Capizzuto</span></a><span>© {new Date().getFullYear()} Chris Capizzuto · New York</span></footer>

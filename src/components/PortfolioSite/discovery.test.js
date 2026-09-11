@@ -1,0 +1,24 @@
+import {fireEvent,render,screen} from '@testing-library/react';
+import PortfolioSite from './index';
+jest.mock('./effects',()=>({__esModule:true,default:()=>{},useResultMotion:()=>{}}));
+jest.mock('./motion',()=>({useMotionPreferences:()=>({enabled:false}),useTypewriter:()=>''}));
+jest.mock('./PixelKnight',()=>()=>null);
+jest.mock('./ProjectMedia',()=>({__esModule:true,default:()=>null,PlaybackProvider:({children})=>children}));
+beforeEach(()=>{global.IntersectionObserver=class{observe(){}disconnect(){}};});
+test('recommendations and full gallery require a choice and requested toolkit items highlight',()=>{
+ const {container}=render(<PortfolioSite/>);
+ fireEvent.change(screen.getByRole('textbox'),{target:{value:'React Firebase Azure'}});
+ fireEvent.click(screen.getByRole('button',{name:'Find a relevant project'}));
+ expect(container.querySelectorAll('.pf-related-card')).toHaveLength(0);
+ expect(container.querySelectorAll('#work article')).toHaveLength(0);
+ expect([...container.querySelectorAll('.pf-stack-pill.is-requested')].map(e=>e.textContent)).toEqual(['React','Firebase','Azure SQL Database']);
+ fireEvent.click(screen.getByRole('button',{name:'Yes, show related projects'}));
+ expect(container.querySelectorAll('.pf-related-card')).toHaveLength(4);
+ expect(container.querySelectorAll('#work article')).toHaveLength(0);
+ fireEvent.click(screen.getAllByRole('button',{name:/Show me your entire portfolio/})[0]);
+ expect(container.querySelectorAll('#work article')).toHaveLength(13);
+ expect(container.querySelectorAll('.pf-related-card')).toHaveLength(0);
+ fireEvent.change(screen.getByRole('textbox'),{target:{value:'Python'}});
+ expect(container.querySelectorAll('.is-requested')).toHaveLength(0);
+ expect(container.querySelectorAll('#work article')).toHaveLength(0);
+});

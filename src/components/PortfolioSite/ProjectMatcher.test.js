@@ -63,3 +63,14 @@ test('the introductory tip disappears but the input stays labelled',()=>{
  fireEvent.change(screen.getByRole('textbox'),{target:{value:'Python'}});
  expect(onResult).toHaveBeenLastCalledWith(null);
 });
+
+test('mobile submissions scroll to the demo after layout settles and touch cancels pending scroll',()=>{
+ jest.useFakeTimers();const width=window.innerWidth;window.innerWidth=390;
+ const scroll=jest.fn();Element.prototype.scrollIntoView=scroll;
+ const {act}=require('@testing-library/react');
+ render(<ProjectMatcher motion={false}/>);submit('React Firebase');
+ act(()=>jest.advanceTimersByTime(450));expect(scroll).toHaveBeenCalledWith({behavior:'auto',block:'start'});
+ scroll.mockClear();submit('Python');fireEvent.touchStart(window);
+ act(()=>jest.advanceTimersByTime(450));expect(scroll).not.toHaveBeenCalled();
+ window.innerWidth=width;delete Element.prototype.scrollIntoView;jest.useRealTimers();
+});

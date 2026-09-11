@@ -6,7 +6,7 @@ import useWelcome from './useWelcome';
 import ProjectMedia from './ProjectMedia';
 import './matcher.scss';
 
-export default function ProjectMatcher({motion,onResult}) {
+export default function ProjectMatcher({motion,onResult,onBrowse}) {
   const welcome=useWelcome(motion);
   const [text,setText]=useState('');
   const [result,setResult]=useState(null);
@@ -34,6 +34,15 @@ export default function ProjectMatcher({motion,onResult}) {
     invitationTimer.current=setTimeout(()=>setInviting(false),4000);
     return()=>clearTimeout(invitationTimer.current);
   },[welcome.phase]);
+  useEffect(()=>{
+    if(!result?.best||window.innerWidth>=900)return;
+    document.activeElement?.blur?.();
+    const timer=setTimeout(()=>resultRef.current?.previousElementSibling?.scrollIntoView?.({behavior:motion?'smooth':'auto',block:'start'}),450);
+    const cancel=()=>clearTimeout(timer);
+    window.addEventListener('touchstart',cancel,{passive:true});
+    window.addEventListener('wheel',cancel,{passive:true});
+    return()=>{cancel();window.removeEventListener('touchstart',cancel);window.removeEventListener('wheel',cancel);};
+  },[result,motion]);
   const project=result?.best;
   const display=project ? findPresentation(project.title) : null;
   useResultMotion(resultRef,scoreRef,result,motion);
@@ -105,6 +114,6 @@ export default function ProjectMatcher({motion,onResult}) {
         </div>
       </div>}
     </div>
-    <a className="pm-browse" tabIndex={welcome.phase!=='ready'?-1:undefined} aria-hidden={welcome.phase!=='ready'?true:undefined} href="#work">Explore all projects <span aria-hidden="true">↓</span></a>
+    <a className="pm-browse" tabIndex={welcome.phase!=='ready'?-1:undefined} aria-hidden={welcome.phase!=='ready'?true:undefined} href="#work" onClick={onBrowse}>Explore all projects <span aria-hidden="true">↓</span></a>
   </section>;
 }
