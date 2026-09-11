@@ -201,3 +201,8 @@ html{overflow-anchor:none;}
 .motion-on .pf-related.is-visible .pf-related-card{transition-delay:var(--related-delay);}
 @media(max-width:699px){.pf-related-grid{grid-template-columns:1fr;}.pf-related-card{padding:22px;}}
 @media(prefers-reduced-motion:reduce){.pf-related>*,.pf-related-card{opacity:1!important;transform:none!important;transition:none!important;}}
+
+.pf-match-prompt{color:#c3f0e5;font-size:16px;line-height:1.6;margin:0 0 24px;display:flex;align-items:center;gap:12px;}
+.pf-match-prompt::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px #67e7cb55;flex-shrink:0;}
+.pf-related-preview{display:block;width:100%;height:150px;object-fit:contain;background:#03131c40;border:1px solid #c8e9ef16;border-radius:9px;margin-bottom:22px;}
+@media(max-width:699px){.pf-related-preview{height:130px;margin-bottom:18px;}}

@@ -48,6 +48,7 @@ function RelatedProjects({result,motion}) {
     <div className="pf-related-grid">{result.alternatives.map((project,i)=>{
       const display=presentation.find(p=>p.title===project.title);
       return <a key={project.title} className="pf-related-card" style={{'--related-delay':`${i*120}ms`}} href={project.openUrl} target="_blank" rel="noreferrer">
+        <img className="pf-related-preview" src={display.poster} alt="" loading="lazy" />
         <h3>{project.title} <Arrow /></h3><p>{display.shortDescription}</p>
         <span className="pf-related-tech">{project.matched.join(' · ')}</span><span className="pf-related-action">Explore project ↗</span>
       </a>;
@@ -84,6 +85,7 @@ export default function PortfolioSite() {
       <div className="pf-ticker" tabIndex="0" aria-label="Technology ticker. Focus or hover to pause."><div className="pf-ticker-track">{[0,1].map(copy=><div className="pf-ticker-set" key={copy} aria-hidden={copy===1}>{stack.slice(0,10).map(s=><span key={s.name}><img src={s.icon} alt="" />{s.name}</span>)}</div>)}</div></div>
       <section id="work" className="pf-section">
         <SectionHeading label="Selected work" title="Built to solve something."><a className="pf-text-link" href={links.github} target="_blank" rel="noreferrer">All repositories <Arrow /></a></SectionHeading>
+        {highlighted.length>0&&<p className="pf-match-prompt">You may also be interested in these</p>}
         <div className="pf-grid">{ordered.map((p,i)=><article className={`pf-card ${highlighted.includes(p.title)?'is-match':''}`} key={p.title} data-reveal data-delay={(i%2)*90}>
           <div className="pf-card-visual"><ProjectMedia mediaId={`gallery:${p.title}`} project={p} motion={motion.enabled} compact /></div>
           <div className="pf-card-body"><div className="pf-card-title-row"><h3>{p.title}</h3><span className={`pf-project-status ${p.liveUrl ? 'pf-live' : ''}`}>{p.statusLabel === 'In progress' ? 'In progress' : p.liveUrl ? 'Live' : 'Source available'}</span></div><p>{p.shortDescription}</p><div className="pf-tags">{p.tech.slice(0,4).map(t=><span key={t}>{t}</span>)}</div><ProjectLinks project={p} />{p.title==='PrizeCheck'&&<UnderTheHood project={p} motion={motion.enabled} />}</div>

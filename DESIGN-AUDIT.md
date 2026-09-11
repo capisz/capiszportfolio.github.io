@@ -1,3 +1,9 @@
+## Recommendation labels and still previews — September 11, 2026
+
+- Highlighted Selected Work projects now have the introduction “You may also be interested in these”. It appears only when a brief has matched projects.
+- Related-project cards use compact, lazy-loaded still previews from existing project assets. Images remain uncropped and decorative within clearly named project links.
+- Production build passes. Desktop browser review confirmed all four example images load and the new prompt appears; the 360px layout has no horizontal overflow.
+
 ## Scroll discovery and lighter glass — September 11, 2026
 
 - Up to four evidenced alternatives fade in below the submitted result as the section enters the viewport; each card links directly to its project. Reduced motion shows them immediately, and keyboard focus reveals the group.
