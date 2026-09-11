@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './index.scss';
 import usePortfolioEffects from './effects';
 import { useMotionPreferences, useTypewriter } from './motion';
@@ -28,8 +28,40 @@ const groups = {
   Backend: ['Node.js','Python','MongoDB','Firebase','Azure SQL Database'],
   'Tools & infrastructure': ['GitHub Actions','Xcode','Figma','Vite.js','Ubuntu','Linux','Kubernetes','Docker','kind'],
 };
+function RelatedProjects({result,motion}) {
+  const ref=useRef(null);
+  const [visible,setVisible]=useState(false);
+  useEffect(()=>{
+    setVisible(false);
+    if(!motion){setVisible(true);return;}
+    const observer=new IntersectionObserver(entries=>{
+      if(entries.some(entry=>entry.isIntersecting)){setVisible(true);observer.disconnect();}
+    },{threshold:.15});
+    if(ref.current)observer.observe(ref.current);
+    return()=>observer.disconnect();
+  },[result,motion]);
+  if(!result?.alternatives.length)return null;
+  return <section ref={ref} className={`pf-related pf-section ${visible?'is-visible':''}`} aria-labelledby="related-title">
+    <span className="pf-eyebrow">Keep exploring</span>
+    <h2 id="related-title">There’s more that fits your stack.</h2>
+    <p>I’ve got a few more projects you may be interested in, built with the technologies you’re looking for.</p>
+    <div className="pf-related-grid">{result.alternatives.map((project,i)=>{
+      const display=presentation.find(p=>p.title===project.title);
+      return <a key={project.title} className="pf-related-card" style={{'--related-delay':`${i*120}ms`}} href={project.openUrl} target="_blank" rel="noreferrer">
+        <h3>{project.title} <Arrow /></h3><p>{display.shortDescription}</p>
+        <span className="pf-related-tech">{project.matched.join(' · ')}</span><span className="pf-related-action">Explore project ↗</span>
+      </a>;
+    })}</div>
+  </section>;
+}
 export default function PortfolioSite() {
   const rootRef=useRef(null);
+  const [match,setMatch]=useState(null);
+  const highlighted=match?.best?[match.best,...match.alternatives].map(p=>p.title):[];
+  const ordered=[...presentation].sort((a,b)=>{
+    const rank=p=>highlighted.includes(p.title)?highlighted.indexOf(p.title):presentation.length;
+    return rank(a)-rank(b);
+  });
   const motion=useMotionPreferences();
   usePortfolioEffects(rootRef,motion.enabled);
   return <PlaybackProvider motion={motion.enabled}><div ref={rootRef} className={`pf-root ${motion.enabled ? 'motion-on' : 'motion-off'}`}>
@@ -47,11 +79,12 @@ export default function PortfolioSite() {
       <div className="pf-nav-actions"><button className="pf-motion-toggle" type="button" onClick={motion.toggle} aria-pressed={motion.paused} disabled={motion.reduced} title={motion.reduced ? 'System reduced motion is enabled' : 'Pause or resume decorative motion'}>{motion.reduced ? 'Motion reduced' : motion.paused ? '▶ Resume motion' : 'Ⅱ Pause motion'}</button><a href={links.resume} download className="pf-resume" aria-label="Download résumé">Résumé <span aria-hidden="true">↓</span></a></div>
     </div></header>
     <main>
-      <ProjectMatcher motion={motion.enabled} />
+      <ProjectMatcher motion={motion.enabled} onResult={setMatch} />
+      <RelatedProjects result={match} motion={motion.enabled} />
       <div className="pf-ticker" tabIndex="0" aria-label="Technology ticker. Focus or hover to pause."><div className="pf-ticker-track">{[0,1].map(copy=><div className="pf-ticker-set" key={copy} aria-hidden={copy===1}>{stack.slice(0,10).map(s=><span key={s.name}><img src={s.icon} alt="" />{s.name}</span>)}</div>)}</div></div>
       <section id="work" className="pf-section">
         <SectionHeading label="Selected work" title="Built to solve something."><a className="pf-text-link" href={links.github} target="_blank" rel="noreferrer">All repositories <Arrow /></a></SectionHeading>
-        <div className="pf-grid">{presentation.map((p,i)=><article className="pf-card" key={p.title} data-reveal data-delay={(i%2)*90}>
+        <div className="pf-grid">{ordered.map((p,i)=><article className={`pf-card ${highlighted.includes(p.title)?'is-match':''}`} key={p.title} data-reveal data-delay={(i%2)*90}>
           <div className="pf-card-visual"><ProjectMedia mediaId={`gallery:${p.title}`} project={p} motion={motion.enabled} compact /></div>
           <div className="pf-card-body"><div className="pf-card-title-row"><h3>{p.title}</h3><span className={`pf-project-status ${p.liveUrl ? 'pf-live' : ''}`}>{p.statusLabel === 'In progress' ? 'In progress' : p.liveUrl ? 'Live' : 'Source available'}</span></div><p>{p.shortDescription}</p><div className="pf-tags">{p.tech.slice(0,4).map(t=><span key={t}>{t}</span>)}</div><ProjectLinks project={p} />{p.title==='PrizeCheck'&&<UnderTheHood project={p} motion={motion.enabled} />}</div>
         </article>)}</div>

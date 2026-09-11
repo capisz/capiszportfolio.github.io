@@ -9,7 +9,7 @@ test('native phrase consumes React but separate React remains recognized',()=>{
 });
 test('generic React uses exact matches then deterministic alphabetical tie breaking',()=>{
  const r=matchProjects('React');expect(r.best.title).toBe('Amazon Room Generator');expect(r.best.score).toBe(100);
- expect(r.alternatives.map(p=>p.title)).toEqual(['backstop.ai','Chess Opening Driller']);
+ expect(r.alternatives.map(p=>p.title)).toEqual(['backstop.ai','Chess Opening Driller','Concrete Jungle Sports','Contessa Shop']);
  expect(matchProjects('React mobile iOS fitness').best.title).toBe('ParkNYC');
  expect(matchProjects('React Native Expo mobile iOS HealthKit').best.title).toBe('FunkFit');
  expect(matchProjects('mobile iOS fitness').suggestion.title).toBe('FunkFit');

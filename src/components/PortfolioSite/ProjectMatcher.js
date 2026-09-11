@@ -6,10 +6,11 @@ import useWelcome from './useWelcome';
 import ProjectMedia from './ProjectMedia';
 import './matcher.scss';
 
-export default function ProjectMatcher({motion}) {
+export default function ProjectMatcher({motion,onResult}) {
   const welcome=useWelcome(motion);
   const [text,setText]=useState('');
   const [result,setResult]=useState(null);
+  useEffect(()=>{onResult?.(result);},[result,onResult]);
   const [busy,setBusy]=useState(false);
   const [error,setError]=useState('');
   const [fileName,setFileName]=useState('');

@@ -100,3 +100,5 @@
 .pm-example-disclosure{margin:12px 0;color:#9bb9c5;font-size:14px;}.pm-example-disclosure summary{cursor:pointer;min-height:44px;display:list-item;padding-block:10px;}.pm-example-disclosure .pm-examples{margin:4px 0 16px;}
 .pm-input textarea{min-height:175px;}.pm-submit{margin-top:10px;}
 @media(max-width:899px){.pm-input textarea{min-height:155px;}.pm-hero{padding-top:max(72px,calc((100svh - var(--nav-height,104px) - 620px)/2));}}
+
+@media(min-width:900px){.pm-hero{padding-top:clamp(96px,calc((100svh - var(--nav-height,86px) - 440px)/2),240px);}}

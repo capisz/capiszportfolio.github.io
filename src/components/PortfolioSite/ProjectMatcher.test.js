@@ -53,3 +53,13 @@ test('the introductory tip disappears but the input stays labelled',()=>{
  const {act}=require('@testing-library/react');act(()=>jest.advanceTimersByTime(4000));expect(container.querySelector('.pm-guidance')).not.toHaveClass('is-visible');
  expect(screen.getByRole('textbox',{name:'Drop a job description here'})).toBeInTheDocument();jest.useRealTimers();
 });
+
+ test('shares submitted matches with the gallery and clears them when editing',()=>{
+ const onResult=jest.fn();render(<ProjectMatcher motion={false} onResult={onResult}/>);
+ submit('React Firebase Azure');
+ const result=onResult.mock.calls.at(-1)[0];
+ expect(result.best.title).toBe('PrizeCheck');expect(result.alternatives).toHaveLength(4);
+ expect(result.alternatives.every(p=>p.matched.length>0)).toBe(true);
+ fireEvent.change(screen.getByRole('textbox'),{target:{value:'Python'}});
+ expect(onResult).toHaveBeenLastCalledWith(null);
+});

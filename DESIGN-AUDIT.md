@@ -1,3 +1,10 @@
+## Scroll discovery and lighter glass — September 11, 2026
+
+- Up to four evidenced alternatives fade in below the submitted result as the section enters the viewport; each card links directly to its project. Reduced motion shows them immediately, and keyboard focus reveals the group.
+- The main match and alternatives lead Selected Work in evidence rank order with a soft teal outline. Editing the brief clears the highlights and restores catalog order.
+- Wide-screen entry padding is increased. Header opacity now fades from 35% to 4%; footer reverses this for a darker bottom edge. Contact has a responsive 64–120px gap before the footer.
+- Production build succeeds and all 89 tests pass. Browser confirmed four recommendations revealing on scroll, matching gallery order/highlights, and contact spacing. No production deployment.
+
 ## Prompt guidance and Tech Alignment refinement — September 11, 2026
 
 This update supersedes the historical coverage-label and native Controls notes below.
