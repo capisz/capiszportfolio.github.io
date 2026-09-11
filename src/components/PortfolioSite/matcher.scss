@@ -76,18 +76,18 @@
 .pm-hero{justify-content:flex-start;padding-top:clamp(40px,calc((100svh - var(--nav-height,86px) - 620px)/2),160px);overflow-anchor:none;}
 
 /* A short welcome yields to the entry; a scroll gesture shortens the wait. */
-.pm-workbench,.pm-browse{transition:opacity 650ms ease,translate 650ms cubic-bezier(.22,1,.36,1);}
+.pm-workbench,.pm-browse{transition:opacity 1200ms ease,translate 1200ms cubic-bezier(.22,1,.36,1);}
 .intro-welcome .pm-workbench,.intro-welcome .pm-browse{opacity:0;visibility:hidden;translate:0 24px;}
-.intro-revealing .pm-workbench,.intro-revealing .pm-browse{opacity:1;visibility:visible;translate:0 0;}
+.intro-revealing .pm-workbench,.intro-revealing .pm-browse{opacity:1;visibility:visible;translate:0 0;transition-delay:400ms;}
 .pm-welcome{position:absolute;left:20px;right:20px;top:clamp(100px,28vh,300px);text-align:center;z-index:2;}
 .pm-welcome h2{font-size:clamp(44px,6vw,76px);line-height:1.12;letter-spacing:-.055em;margin:12px 0 18px;}
 .pm-welcome>p:not(.pm-welcome-eyebrow){font-size:clamp(18px,2vw,24px);color:#bfd8df;}
 .pm-welcome-eyebrow{color:var(--teal);font-size:14px;letter-spacing:.08em;}
 .pm-welcome-line{display:block;width:84px;height:2px;margin:30px auto 18px;background:linear-gradient(90deg,transparent,var(--teal),transparent);transform-origin:center;}
 .pm-welcome button{background:transparent;border:0;color:#adc7d2;min-height:44px;padding:10px 16px;font-size:14px;}
-.motion-on .intro-welcome .pm-welcome{animation:pm-welcome-in 700ms cubic-bezier(.22,1,.36,1) both;}
-.motion-on .intro-welcome .pm-welcome-line{animation:pm-welcome-line 1400ms ease-in-out both;}
-.intro-revealing .pm-welcome{pointer-events:none;animation:pm-welcome-out 240ms ease both;}
+.motion-on .intro-welcome .pm-welcome{animation:pm-welcome-in 1000ms cubic-bezier(.22,1,.36,1) both;}
+.motion-on .intro-welcome .pm-welcome-line{animation:pm-welcome-line 2800ms ease-in-out both;}
+.intro-revealing .pm-welcome{pointer-events:none;animation:pm-welcome-out 800ms ease both;}
 @keyframes pm-welcome-in{from{opacity:0;transform:translateY(18px);filter:blur(5px)}to{opacity:1;transform:none;filter:blur(0)}}
 @keyframes pm-welcome-out{to{opacity:0;transform:translateY(-18px);filter:blur(4px)}}
 @keyframes pm-welcome-line{from{transform:scaleX(.1);opacity:0}to{transform:scaleX(1);opacity:1}}

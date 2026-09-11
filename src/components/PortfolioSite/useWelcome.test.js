@@ -3,15 +3,15 @@ import useWelcome from './useWelcome';
 beforeEach(()=>{jest.useFakeTimers();window.history.replaceState(null,'','#top');});
 afterEach(()=>jest.useRealTimers());
 const wheel=()=>{const event=new WheelEvent('wheel',{deltaY:80,cancelable:true});act(()=>window.dispatchEvent(event));return event;};
-test('welcome automatically reveals and releases scrolling within 2050ms',()=>{
+test('welcome automatically reveals and releases scrolling within 4400ms',()=>{
  const {result}=renderHook(()=>useWelcome(true));expect(result.current.phase).toBe('welcome');
- act(()=>jest.advanceTimersByTime(1400));expect(result.current.phase).toBe('revealing');
- act(()=>jest.advanceTimersByTime(650));expect(result.current.phase).toBe('ready');expect(wheel().defaultPrevented).toBe(false);
+ act(()=>jest.advanceTimersByTime(2800));expect(result.current.phase).toBe('revealing');
+ act(()=>jest.advanceTimersByTime(1600));expect(result.current.phase).toBe('ready');expect(wheel().defaultPrevented).toBe(false);
 });
 test('scroll accelerates reveal and is held only until the form is visible',()=>{
  const {result}=renderHook(()=>useWelcome(true));expect(wheel().defaultPrevented).toBe(true);expect(result.current.phase).toBe('revealing');
  act(()=>jest.advanceTimersByTime(300));expect(wheel().defaultPrevented).toBe(true);
- act(()=>jest.advanceTimersByTime(350));expect(result.current.phase).toBe('ready');expect(wheel().defaultPrevented).toBe(false);
+ act(()=>jest.advanceTimersByTime(1300));expect(result.current.phase).toBe('ready');expect(wheel().defaultPrevented).toBe(false);
 });
 test('touch scroll accelerates while pinch remains available',()=>{
  const {result}=renderHook(()=>useWelcome(true));

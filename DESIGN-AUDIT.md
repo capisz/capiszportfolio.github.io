@@ -2,6 +2,10 @@
 
 Updated September 11, 2026. Implemented locally in this workspace. Preview: http://localhost:4173/. No deployment.
 
+## Timing adjustment: a slower welcome
+
+The welcome now settles for 2.8 seconds, then transitions over 1.6 seconds: the welcome fades out over 800ms and the form starts a 1.2-second fade after a 400ms overlap offset. Total automatic sequence: 4.4 seconds, up from 2.05 seconds. Scrolling skips the opening hold but preserves the full, slower transition. Skip intro, keyboard escape paths and reduced-motion bypass remain immediate. Timing tests were updated to verify release at the new deadline.
+
 ## Current refinement: welcome, accelerated reveal and résumé access
 
 Implemented September 11, 2026. Supersedes the immediate form entrance described below.
