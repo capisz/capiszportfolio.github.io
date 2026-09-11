@@ -228,3 +228,17 @@ html{overflow-anchor:none;}
 @media(prefers-reduced-motion:reduce){.pf-stack-pill.is-requested{animation:none!important;}}
 /* A stable tinted header avoids blurring bright buttons into the navigation. */
 .pf-nav,.pf-nav.is-scrolled{background:linear-gradient(180deg,#041923c4,#041923a3);backdrop-filter:none;-webkit-backdrop-filter:none;transition:none;}
+
+/* Slightly denser glass, without scroll-sensitive backdrop filters. */
+.pf-card,.pf-about-surface,.pf-contact-surface,.pf-related-card{background:linear-gradient(135deg,#21414a70,#10273570);box-shadow:inset 0 1px 0 #edffff0c;}
+.pf-stack-pills{gap:10px 14px;}.pf-stack-pill{padding:8px 12px;border:1px solid transparent;border-radius:999px;gap:9px;}
+.pf-stack-pill.is-requested{border-color:#89e6cf80;background:#67e7cb14;}
+.motion-on .pf-stack-pill.is-requested{animation:pf-tech-glow 1.15s ease-in-out infinite;}
+.pf-stack-note{color:#b4d4cf;font-size:15px;margin:-16px 0 32px;}
+.pf-discovery-actions{justify-content:center;}.pf-related>h2,.pf-related>.pf-eyebrow{text-align:center;}
+.pf-alignment-intro{color:#c0dcd8;max-width:760px;min-height:5em;line-height:1.8;margin:30px auto;text-align:center;font-size:17px;}
+.motion-on .pf-related.is-visible .pf-related-card{animation:pf-card-cascade 1200ms var(--related-delay) both;transition:none;}
+.motion-on .pf-cascade>.pf-card{animation:pf-card-cascade 1200ms var(--cascade-delay) both;}
+@keyframes pf-card-cascade{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.pf-related-card:focus-visible,.pf-cascade>.pf-card:focus-within{animation:none!important;opacity:1!important;transform:none!important;}
+@media(prefers-reduced-motion:reduce){.pf-related-card,.pf-cascade>.pf-card{animation:none!important;opacity:1!important;transform:none!important;}}

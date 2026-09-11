@@ -12,7 +12,7 @@ test('recommendations and full gallery require a choice and requested toolkit it
  expect(container.querySelectorAll('.pf-related-card')).toHaveLength(0);
  expect(container.querySelectorAll('#work article')).toHaveLength(0);
  expect([...container.querySelectorAll('.pf-stack-pill.is-requested')].map(e=>e.textContent)).toEqual(['React','Firebase','Azure SQL Database']);
- fireEvent.click(screen.getByRole('button',{name:'Yes, show related projects'}));
+ fireEvent.click(screen.getByRole('button',{name:'Show me more related projects'}));
  expect(container.querySelectorAll('.pf-related-card')).toHaveLength(4);
  expect(container.querySelectorAll('#work article')).toHaveLength(0);
  fireEvent.click(screen.getAllByRole('button',{name:/Show me your entire portfolio/})[0]);

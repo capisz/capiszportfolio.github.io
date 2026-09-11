@@ -1,3 +1,11 @@
+## Softer highlights and paced project reveals — September 11, 2026
+
+- Toolkit highlights now use padded rounded pills, a 1.15-second pulse, and “What you’re looking for is highlighted” subtext after a submitted brief.
+- Centered discovery actions use “Show me more related projects”. Related and full-gallery views begin with a typed explanation using evidenced technologies from the brief. Cards fade up over 1.2 seconds with staggered delays starting at 2.4 seconds; reduced motion presents content immediately.
+- Full-gallery navigation waits for the new layout, then scrolls with a 1.2-second eased transition, cancellable by wheel, touch, or keyboard input.
+- Content panels receive a slightly denser translucent gradient for a foggy finish without reinstating scroll-sensitive backdrop blur.
+- All 91 tests pass and the production build succeeds. Browser checks verified progressive introduction text, stagger timings, rounded 1.15-second toolkit pulses, and no horizontal overflow at the checked mobile viewport.
+
 ## Mobile navigation and opt-in discovery — September 11, 2026
 
 - Reviewed sampled frames of the supplied iPhone recording. Mobile navigation uses two stable rows, with résumé above the motion control. Header blur was replaced by a translucent tint to avoid smearing bright page elements into navigation.
