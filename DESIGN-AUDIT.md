@@ -1,3 +1,7 @@
+## Related preview framing — September 11, 2026
+
+Replaced shallow letterboxed previews with full-width 16:10 image frames and top-aligned cover fitting. Browser review confirmed the backstop.ai and chess previews fill their frames consistently. Production build passes.
+
 ## Recommendation labels and still previews — September 11, 2026
 
 - Highlighted Selected Work projects now have the introduction “You may also be interested in these”. It appears only when a brief has matched projects.
