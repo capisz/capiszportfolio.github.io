@@ -15,7 +15,7 @@ export const skillAliases = {
   Tailwind: ['tailwind', 'tailwindcss'], CSS: ['css', 'css3'], 'REST API': ['rest api', 'rest apis', 'restful'],
   'Claude API': ['claude', 'claude api'], LLM: ['llm', 'large language model'], AI: ['ai', 'artificial intelligence'],
   Statcast: ['statcast'], NextAuth: ['nextauth', 'next-auth'], SQL: ['sql'],
-  Java: ['java'], Go: ['golang', 'go'], Rust: ['rust'], AWS: ['aws', 'amazon web services'], Angular: ['angular'], '.NET': ['.net', 'c#', 'dotnet'], Ruby: ['ruby', 'rails'],
+  Java: ['java'], Go: ['golang', 'go'], Rust: ['rust'], AWS: ['aws', 'amazon web services'], Azure: ['azure', 'microsoft azure'], Angular: ['angular'], '.NET': ['.net', 'c#', 'dotnet'], Ruby: ['ruby', 'rails'],
 };
 export const roleAliases = {
   mobile: ['mobile', 'ios', 'native', 'iphone', 'android'], frontend: ['frontend', 'front-end', 'web', 'website'],

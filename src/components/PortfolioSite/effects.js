@@ -114,9 +114,9 @@ export function useResultMotion(resultRef, scoreRef, result, motion) {
       if(media)gsap.fromTo(media,{opacity:0,scale:.985},{opacity:1,scale:1,duration:.7,ease:'power2.out',clearProps:'transform,opacity'});
       gsap.fromTo(resultRef.current,{opacity:0,y:12},{opacity:1,y:0,duration:.5,ease:'power2.out',clearProps:'transform,opacity'});
       gsap.fromTo(resultRef.current?.querySelectorAll('.pm-tags > span'),{opacity:0,y:7},{opacity:1,y:0,stagger:.07,duration:.3,delay:.18,ease:'power2.out',clearProps:'transform,opacity'});
-      if(scoreRef.current && (result.best || result.suggestion).score !== null){
+      if(scoreRef.current && (result.best || result.suggestion).alignment !== null){
         const value={score:0};
-        gsap.to(value,{score:(result.best || result.suggestion).score,duration:.8,ease:'power2.out',onUpdate:()=>{if(scoreRef.current)scoreRef.current.textContent=String(Math.round(value.score));},onInterrupt:()=>{if(scoreRef.current)scoreRef.current.textContent=String((result.best || result.suggestion).score);}});
+        gsap.to(value,{score:(result.best || result.suggestion).alignment,duration:.8,ease:'power2.out',onUpdate:()=>{if(scoreRef.current)scoreRef.current.textContent=String(Math.round(value.score));},onInterrupt:()=>{if(scoreRef.current)scoreRef.current.textContent=String((result.best || result.suggestion).alignment);}});
       }
     });
     return()=>context.revert();

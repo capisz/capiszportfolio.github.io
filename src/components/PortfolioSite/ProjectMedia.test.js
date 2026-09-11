@@ -32,3 +32,11 @@ test('shows a usable fallback if media fails',()=>{
   expect(screen.getByText('Demo unavailable. Open the project below.')).toBeInTheDocument();
   expect(screen.getByRole('img',{name:'Demo preview'})).toHaveAttribute('src','/demo.jpg');
 });
+
+test('Demo links to the actual live app instead of toggling controls',()=>{
+ render(<ProjectMedia project={{...project,liveUrl:'https://example.com/demo'}} motion={false}/>);
+ expect(screen.getByRole('link',{name:'Open Demo live demo'})).toHaveAttribute('href','https://example.com/demo');expect(screen.queryByRole('button',{name:/controls/i})).toBeNull();
+});
+test('projects without a live URL do not get a fabricated Demo link',()=>{
+ render(<ProjectMedia project={project} motion={false}/>);expect(screen.queryByRole('link',{name:/live demo/})).toBeNull();expect(screen.getByRole('button',{name:'Play Demo demo'})).toBeInTheDocument();
+});

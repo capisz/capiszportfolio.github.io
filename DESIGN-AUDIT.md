@@ -1,3 +1,13 @@
+## Prompt guidance and Tech Alignment refinement — September 11, 2026
+
+This update supersedes the historical coverage-label and native Controls notes below.
+
+- The centered composer shows a floating “Drop a job description here” hint and soft border highlight after the welcome reveal. Both clear after four seconds, with a 500ms fade, or immediately on interaction. The accessible input label remains; examples sit inside a collapsed disclosure.
+- Results now show an explicitly described Tech Alignment estimate, with evidenced technologies weighted twice as much as gaps and a 95% cap. Literal counts and missing technologies remain visible. React + Firebase + Azure selects PrizeCheck at 80%, with two of three technologies evidenced and Azure listed as a gap. Ranking still uses actual evidence.
+- Video overlays link to each existing live demo instead of exposing a Controls button. Source-only projects do not receive invented demo links. Playback limits and fallback behavior remain intact.
+- Résumé links have a stronger gold treatment. Header and footer gradients fade from darker tops into translucent glass. The current résumé and recordings remain until replacements are supplied.
+- Verification: all 88 tests across eight suites pass; production build succeeds. Browser checks confirm the quiet composer, 80% example, actual PrizeCheck demo destination, header/footer gradients, and no horizontal overflow at 360px. Desktop composition was reviewed at 1440px. Existing tooling warnings remain non-blocking.
+
 # Seamless portfolio: design and interaction audit
 
 Updated September 11, 2026. Implemented locally in this workspace. Preview: http://localhost:4173/. No deployment.

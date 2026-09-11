@@ -25,7 +25,6 @@ export default function ProjectMedia({project, motion, autoPlay=true, compact=fa
   const [playing,setPlaying]=useState(false);
   const [failed,setFailed]=useState(false);
   const [blocked,setBlocked]=useState(false);
-  const [controls,setControls]=useState(false);
   useEffect(()=>{if(!shared)coordinator.configure({automatic:motion});},[shared,coordinator,motion]);
   useEffect(()=>{
     const video=ref.current;if(!video||failed)return;
@@ -39,14 +38,14 @@ export default function ProjectMedia({project, motion, autoPlay=true, compact=fa
   },[coordinator,id,project.demo,failed]);
   useEffect(()=>coordinator.update(id,{auto:autoPlay}),[coordinator,id,autoPlay]);
   return <div className={`pf-project-media ${compact?'is-compact':''} ${project.mediaSize?'is-portrait':''}`} style={project.mediaSize?{'--media-ratio':`${project.mediaSize.width} / ${project.mediaSize.height}`,'--portrait-width':`${480*project.mediaSize.width/project.mediaSize.height}px`,'--portrait-mobile-width':`${420*project.mediaSize.width/project.mediaSize.height}px`}:undefined}>
-    {project.demo&&!failed?<video ref={ref} src={project.demo} poster={project.poster} muted playsInline loop preload="none" controls={controls}
-      onPlay={()=>{setPlaying(true);setBlocked(false);coordinator.nativePlay(id,controls);}}
+    {project.demo&&!failed?<video ref={ref} src={project.demo} poster={project.poster} muted playsInline loop preload="none"
+      onPlay={()=>{setPlaying(true);setBlocked(false);coordinator.nativePlay(id,false);}}
       onPause={()=>{setPlaying(false);coordinator.nativePause(id);}}
       onError={()=>{coordinator.update(id,{failed:true});setFailed(true);}}
       aria-label={`${project.title} demo`} />:<img src={project.poster||project.media} alt={`${project.title} preview`} loading="lazy" />}
-    {project.demo&&!failed&&<div className={`pf-media-controls ${controls?'native-open':''}`}>
+    {project.demo&&!failed&&<div className="pf-media-controls">
       <button type="button" className="pf-play" aria-label={`${playing?'Pause':'Play'} ${project.title} demo`} onClick={()=>playing?coordinator.pause(id):coordinator.play(id)}><span aria-hidden="true">{playing?'Ⅱ':'▶'}</span><span>{playing?'Pause':'Play'}</span></button>
-      <button type="button" aria-label={`${controls?'Hide':'Show'} ${project.title} video controls`} aria-pressed={controls} onClick={()=>setControls(!controls)}>Controls</button>
+      {project.liveUrl&&<a className="pf-demo-link" href={project.liveUrl} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} live demo`}>Demo <span aria-hidden="true">↗</span></a>}
     </div>}
     {blocked&&!playing&&!failed&&<span className="pf-media-notice" role="status">Autoplay paused by your browser. Press Play to start.</span>}
     {failed&&<span className="pf-media-error" role="status">Demo unavailable. Open the project below.</span>}

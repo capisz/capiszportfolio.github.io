@@ -92,3 +92,11 @@
 @keyframes pm-welcome-out{to{opacity:0;transform:translateY(-18px);filter:blur(4px)}}
 @keyframes pm-welcome-line{from{transform:scaleX(.1);opacity:0}to{transform:scaleX(1);opacity:1}}
 @media(prefers-reduced-motion:reduce){.pm-workbench,.pm-browse{transition:none;}}
+
+/* A temporary invitation leaves a quiet, labelled composer behind. */
+.pm-guidance{position:absolute;left:0;top:-52px;max-width:100%;display:flex;align-items:center;gap:18px;padding:8px 13px;border:1px solid #87e5d64d;border-radius:9px;background:#0c2936e6;color:#d5f6ee;font-size:15px;line-height:1.5;pointer-events:none;opacity:0;transform:translateY(5px);transition:opacity 500ms ease,transform 500ms ease;}
+.pm-guidance.is-visible{opacity:1;transform:translateY(0);}.pm-guidance span{color:var(--teal);}
+.pm-input.is-guided .pm-composer{border-color:#89ddcc;box-shadow:0 0 0 3px #67e7cb10,0 0 25px #67e7cb18;}
+.pm-example-disclosure{margin:12px 0;color:#9bb9c5;font-size:14px;}.pm-example-disclosure summary{cursor:pointer;min-height:44px;display:list-item;padding-block:10px;}.pm-example-disclosure .pm-examples{margin:4px 0 16px;}
+.pm-input textarea{min-height:175px;}.pm-submit{margin-top:10px;}
+@media(max-width:899px){.pm-input textarea{min-height:155px;}.pm-hero{padding-top:max(72px,calc((100svh - var(--nav-height,104px) - 620px)/2));}}

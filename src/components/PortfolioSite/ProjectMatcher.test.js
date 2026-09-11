@@ -5,12 +5,12 @@ jest.mock('./ProjectMedia',()=>({__esModule:true,default:({project})=><div aria-
 beforeEach(()=>{global.IntersectionObserver=class {observe(){} disconnect(){}};});
 const submit=text=>{fireEvent.change(screen.getByLabelText('Drop a job description here'),{target:{value:text}});fireEvent.click(screen.getByRole('button',{name:/Find a relevant project/}));};
 test('native result, alternatives, visible score explanation and announcements',()=>{
- render(<ProjectMatcher motion={false}/>);submit('React Native Expo');expect(screen.getByRole('heading',{name:'FunkFit'})).toBeInTheDocument();expect(screen.getByRole('status')).toHaveTextContent('FunkFit: 100% evidence coverage');expect(screen.getByText(/Keyword-based evidence coverage/)).toBeVisible();
+ render(<ProjectMatcher motion={false}/>);submit('React Native Expo');expect(screen.getByRole('heading',{name:'FunkFit'})).toBeInTheDocument();expect(screen.getByRole('status')).toHaveTextContent('FunkFit: 95% Tech Alignment');expect(screen.getByText(/Tech Alignment is an estimate/)).toBeVisible();
  submit('React');expect(screen.getByText('Other projects with evidence')).toBeInTheDocument();
 });
 test('no-match states remain explicitly suggestions and announce truthfully',()=>{
  render(<ProjectMatcher motion={false}/>);submit('chef');expect(screen.getByRole('status')).toHaveTextContent('No recognized technologies');expect(screen.getByRole('heading',{name:'No recognized technologies'})).toBeVisible();expect(screen.queryByRole('heading',{name:'PrizeCheck'})).toBeNull();
- submit('Java AWS');expect(screen.getByRole('status')).toHaveTextContent('0% coverage. No project evidence');expect(screen.getByText(/0 of 2 recognized/)).toBeVisible();
+ submit('Java AWS');expect(screen.getByRole('status')).toHaveTextContent('0% Tech Alignment. No project evidence');expect(screen.getByText(/0 of 2 recognized/)).toBeVisible();
 });
 test('hostile markup stays inside textarea and never becomes rendered HTML',()=>{
  const {container}=render(<ProjectMatcher motion={false}/>);
@@ -39,9 +39,17 @@ test('worker loading state, completion, timeout and cleanup are real transitions
 test('arrival and typing show only the centered entry; button press reveals work',()=>{
  const {container}=render(<ProjectMatcher motion={false}/>);
  expect(container.querySelector('.pm-output')).toBeNull();expect(container.querySelector('.pm-entry')).toBeInTheDocument();
+ fireEvent.click(screen.getByText('Try an example'));
  fireEvent.click(screen.getByRole('button',{name:'React Native + Expo'}));
  expect(screen.getByRole('textbox')).toHaveValue('React Native + Expo');expect(container.querySelector('.pm-output')).toBeNull();
  fireEvent.click(screen.getByRole('button',{name:/Find a relevant project/}));
  expect(container.querySelector('.pm-hero')).toHaveClass('has-project');expect(screen.getByRole('heading',{name:'FunkFit'})).toBeVisible();
  fireEvent.change(screen.getByRole('textbox'),{target:{value:'SwiftUI'}});expect(container.querySelector('.pm-output')).toBeNull();expect(container.querySelector('.pm-hero')).not.toHaveClass('has-project');
+});
+
+test('the introductory tip disappears but the input stays labelled',()=>{
+ jest.useFakeTimers();const {container}=render(<ProjectMatcher motion={false}/>);
+ expect(container.querySelector('.pm-guidance')).toHaveClass('is-visible');
+ const {act}=require('@testing-library/react');act(()=>jest.advanceTimersByTime(4000));expect(container.querySelector('.pm-guidance')).not.toHaveClass('is-visible');
+ expect(screen.getByRole('textbox',{name:'Drop a job description here'})).toBeInTheDocument();jest.useRealTimers();
 });

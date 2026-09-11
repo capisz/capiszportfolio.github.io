@@ -13,6 +13,11 @@ export const catalog = [featured, ...projects].map(p => {
 });
 // Explicit broader relationships are partial ranking evidence, never exact matches.
 const broader = {React:['React Native'], SQL:['PostgreSQL'], Swift:['SwiftUI'], AI:['Claude API'], LLM:['Claude API']};
+// Alignment is an explicitly weighted estimate, distinct from literal coverage.
+export function techAlignment(matched, requested) {
+  if (!requested) return null;
+  return Math.min(95, Math.round(100 * matched / (matched + (requested - matched) * .5)));
+}
 export function matchProjects(input) {
   const text = normalizeMatchText(input).toLowerCase();
   const occupied = new Uint8Array(text.length), found = new Set();
@@ -32,12 +37,12 @@ export function matchProjects(input) {
     const matched=requested.filter(s=>skills.has(s)||(broader[s]||[]).some(t=>skills.has(t)));
     const supporting=matched.filter(s=>p.evidence.supportingTechnologies.includes(s));
     const roleMatches=requestedRoles.filter(s=>p.evidence.capabilities.includes(s));
-    return {...p, exact, matched, supporting, roleMatches, missing:requested.filter(s=>!matched.includes(s)), score:requested.length?Math.round(matched.length/requested.length*100):null};
+    return {...p, exact, matched, supporting, roleMatches, alignment:techAlignment(matched.length,requested.length), missing:requested.filter(s=>!matched.includes(s)), score:requested.length?Math.round(matched.length/requested.length*100):null};
   }).sort((a,b)=>b.exact.length-a.exact.length || b.matched.length-a.matched.length || (b.score||0)-(a.score||0) || b.roleMatches.length-a.roleMatches.length || (a.title.toLowerCase()<b.title.toLowerCase()?-1:1));
   const candidates=ranked.filter(p=>p.matched.length);
   const best=candidates[0]||null;
   const status=!requested.length?'unrecognized':best?'matched':'no-evidence';
   const suggestion=ranked.slice().sort((a,b)=>b.roleMatches.length-a.roleMatches.length || Number(b.title==='PrizeCheck')-Number(a.title==='PrizeCheck'))[0];
   const explanation=!requested.length?'No recognized technologies. This is a featured suggestion, not a scored match.':!best?`0 of ${requested.length} recognized technologies have verified project evidence. 0% coverage; no matching project.`:`${best.matched.length} of ${requested.length} recognized technologies have project evidence (${best.exact.length} exact${best.supporting.length?`; supporting tooling: ${best.supporting.join(', ')}`:''}).`;
-  return {requested, requestedRoles, status, best, suggestion, alternatives:candidates.slice(1,3), explanation:explanation+' Keyword-based evidence coverage, not hiring probability or overall qualification. Equal evidence is ordered by role relevance, then project title.'};
+  return {requested, requestedRoles, status, best, suggestion, alternatives:candidates.slice(1,3), explanation:explanation+' Tech Alignment is an estimate: evidenced skills count twice as much as gaps, capped at 95%. It is not literal coverage, hiring probability or overall qualification. Equal evidence is ordered by role relevance, then project title.'};
 }

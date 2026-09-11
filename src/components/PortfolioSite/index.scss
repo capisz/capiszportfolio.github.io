@@ -174,3 +174,13 @@ html{overflow-anchor:none;}
 .pf-contact-word:not(:last-child){margin-right:.18em;}
 /* Keep the current résumé downloadable at every viewport size. */
 @media(max-width:899px){.pf-nav .pf-resume{display:inline-flex;min-height:44px;align-items:center;font-size:13px;padding:6px 10px;}.pf-nav-actions{flex-wrap:wrap;justify-content:flex-end;gap:6px 12px;}.pf-nav-inner{row-gap:6px;}}
+
+/* Dark outer edges soften into the site's glass layer. */
+.pf-nav,.pf-nav.is-scrolled{background:linear-gradient(180deg,#020f19f5 0%,#041923df 38%,#14303b80 100%);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid #c8e9ef1c;}
+.pf-footer{max-width:none;padding-inline:max(40px,calc((100% - 1200px)/2));background:linear-gradient(180deg,#020f19ee 0%,#071e2ad9 42%,#16354085 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid #c8e9ef20;}
+.pf-nav .pf-resume,.pf-contact-resume{background:linear-gradient(140deg,#f9dd81,#eac453);color:#14252b!important;border:1px solid #ffeba6;border-radius:8px;font-weight:700;padding:10px 16px;text-shadow:none;box-shadow:0 4px 16px #0003,inset 0 1px 0 #fff5;}
+.pf-nav .pf-resume span{color:inherit;}.pf-nav .pf-resume:hover,.pf-contact-resume:hover{filter:brightness(1.08);}
+.pf-demo-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 12px;border:1px solid #adcfc54d;border-radius:8px;background:#041923ed;color:#e4f6f1;font-size:14px;}
+.pf-demo-link:hover,.pf-demo-link:focus-visible{border-color:var(--teal);}
+.pf-project-media.is-portrait .pf-demo-link{background:transparent;border-color:transparent;}
+@media(max-width:899px){.pf-footer{padding-inline:20px;}.pf-nav .pf-resume{padding:8px 12px;}}
