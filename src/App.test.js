@@ -5,7 +5,7 @@ test('keeps refreshed portfolio projects ordered and live', () => {
     'DraftKings NBA Optimizer',
     'Amazon Room Generator',
     'FunkFit',
-    'Pokémon Prize Checker',
+    'CareCation',
     'backstop.ai',
     'ParkNYC',
     'Contessa Shop',
