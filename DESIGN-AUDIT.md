@@ -1,3 +1,7 @@
+## Compact composer hint — September 11, 2026
+
+Reduced the temporary job-description hint to 12px, removed its arrow, and moved it inside the composer above the placeholder with reserved spacing. This separates it from the knight above the box. Production build passes.
+
 ## Knight placement timing — September 11, 2026
 
 During the name introduction the knight stays immediately above its text. Its move toward the composer is delayed 500ms into the box reveal; the final mark is smaller and at least 24px below the hero top, clear of the header. Production build passes.

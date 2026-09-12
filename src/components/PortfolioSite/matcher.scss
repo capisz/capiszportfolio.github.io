@@ -133,3 +133,6 @@
 .intro-revealing .pm-knight-intro,.intro-revealing .pm-knight-mark{transition-delay:500ms;}
 .intro-knight .pm-knight-intro{top:clamp(110px,28vh,300px);}
 .intro-knight .pm-knight-mark{transform:scale(1);}
+
+.pm-guidance{top:8px;left:16px;font-size:12px;line-height:1.4;padding:3px 7px;border-radius:5px;gap:0;z-index:1;}
+.pm-input textarea{padding-top:38px;}
