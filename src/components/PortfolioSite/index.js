@@ -135,7 +135,7 @@ export default function PortfolioSite() {
       <section id="work" className="pf-section">
         {choice!=='all'&&!match?.best&&<EmptyDiscovery onBrowse={showAll}/>}
         {choice==='all'&&<>
-        <SectionHeading label="Selected work" title="Built to solve something."><a className="pf-text-link" href={links.github} target="_blank" rel="noreferrer">All repositories <Arrow /></a></SectionHeading>
+        <SectionHeading label="Selected work" title="A project built to solve a problem."><a className="pf-text-link" href={links.github} target="_blank" rel="noreferrer">All repositories <Arrow /></a></SectionHeading>
         {highlighted.length>0&&<p className="pf-match-prompt">You may also be interested in these</p>}
         <AlignmentIntro result={match} motion={motion.enabled} entire/>
         <div className="pf-grid pf-cascade">{ordered.map((p,i)=><article className={`pf-card ${highlighted.includes(p.title)?'is-match':''}`} key={p.title} style={{'--cascade-delay':`${2400+Math.min(i,6)*350}ms`}}>

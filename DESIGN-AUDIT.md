@@ -1,3 +1,7 @@
+## Per-skill brief breakdown — September 11, 2026
+
+Changed Selected Work heading to “A project built to solve a problem.” Added a responsive evidence breakdown below the input, with fixed category estimates: direct 95%, supporting 80%, related 60%, absent 0%. Scores concern the selected project, not personal proficiency. Added HTML recognition without inventing project evidence. Detected accessibility, performance, sensitive-data, document-review and component-system requirements are listed separately for review without fabricated numeric ratings. A regression case based on the supplied document-review frontend posting passes. All 98 tests and production build pass. Visual preview validation was unavailable due to local server/browser empty responses.
+
 ## Compact composer hint — September 11, 2026
 
 Reduced the temporary job-description hint to 12px, removed its arrow, and moved it inside the composer above the placeholder with reserved spacing. This separates it from the knight above the box. Production build passes.

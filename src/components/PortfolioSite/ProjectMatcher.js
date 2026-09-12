@@ -101,6 +101,13 @@ export default function ProjectMatcher({motion,onResult,onBrowse}) {
         <button className="pm-submit" type="submit" disabled={busy}>{busy?'Reading your document…':'Find a relevant project'}<span aria-hidden="true">↗</span></button>
         <p id="input-privacy" className="pm-privacy"><svg aria-hidden="true" width="13" height="14" viewBox="0 0 16 18" fill="none"><rect x="2" y="7" width="12" height="9" rx="2" stroke="currentColor"/><path d="M5 7V4a3 3 0 016 0v3" stroke="currentColor"/></svg> Read in your browser. Never uploaded or saved.</p>
       </form>
+      {result?.skillBreakdown.length>0&&<section className="pm-skill-breakdown" aria-labelledby="skill-breakdown-title">
+        <h2 id="skill-breakdown-title">What your brief calls for</h2>
+        <p>Technology alignment with {project?.title||'the available project evidence'}.</p>
+        <ul>{result.skillBreakdown.map(({skill,score,label})=><li key={skill}><div><strong>{skill}</strong><span>{score}%</span></div><div className="pm-skill-track" aria-hidden="true"><span style={{width:`${score}%`}} /></div><small>{label}</small></li>)}</ul>
+        <p className="pm-skill-key">Evidence estimate: direct 95% · supporting tooling 80% · related 60% · not evidenced 0%. These are project-evidence scores, not proficiency ratings.</p>
+        {!!result.reviewAreas.length&&<div className="pm-review-areas"><h3>Also important in this role</h3><p>{result.reviewAreas.join(' · ')}</p><small>These requirements need a closer review; they aren’t scored by the technology matcher.</small></div>}
+      </section>}
       {result&&!project&&<div className="pm-no-match"><h2>{result.status==='unrecognized'?'No recognized technologies':'No project evidence yet'}</h2><p>{result.explanation.replace('This is a featured suggestion, not a scored match.', 'Try a technology such as React Native, Python, or Docker.')}</p></div>}
       </div>
       {project&&<div className="pm-output has-result">

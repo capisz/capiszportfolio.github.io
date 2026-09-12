@@ -12,7 +12,7 @@ export const skillAliases = {
   Python: ['python'], FastAPI: ['fastapi'], MongoDB: ['mongodb', 'mongo'], Firebase: ['firebase'],
   Docker: ['docker', 'containers', 'containerization'], Kubernetes: ['kubernetes', 'k8s'], kind: ['kind kubernetes', 'kind cluster'],
   'GitHub Actions': ['github actions', 'ci/cd', 'continuous integration'], Linux: ['linux'],
-  Tailwind: ['tailwind', 'tailwindcss'], CSS: ['css', 'css3'], 'REST API': ['rest api', 'rest apis', 'restful'],
+  Tailwind: ['tailwind', 'tailwindcss'], HTML: ['html', 'html5'], CSS: ['css', 'css3'], 'REST API': ['rest api', 'rest apis', 'restful'],
   'Claude API': ['claude', 'claude api'], LLM: ['llm', 'large language model'], AI: ['ai', 'artificial intelligence'],
   Statcast: ['statcast'], NextAuth: ['nextauth', 'next-auth'], SQL: ['sql'],
   Java: ['java'], Go: ['golang', 'go'], Rust: ['rust'], AWS: ['aws', 'amazon web services'], Azure: ['azure', 'microsoft azure'], Angular: ['angular'], '.NET': ['.net', 'c#', 'dotnet'], Ruby: ['ruby', 'rails'],

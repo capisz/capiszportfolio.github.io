@@ -136,3 +136,11 @@
 
 .pm-guidance{top:8px;left:16px;font-size:12px;line-height:1.4;padding:3px 7px;border-radius:5px;gap:0;z-index:1;}
 .pm-input textarea{padding-top:38px;}
+
+.pm-skill-breakdown{margin-top:30px;padding:24px;border:1px solid #c8e9ef26;border-radius:16px;background:linear-gradient(135deg,#21414a70,#10273570);}
+.pm-skill-breakdown h2{font-size:21px;margin:0 0 10px;}.pm-skill-breakdown p{font-size:14px;line-height:1.65;color:var(--muted);}
+.pm-skill-breakdown ul{padding:0;margin:24px 0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
+.pm-skill-breakdown li>div:first-child{display:flex;justify-content:space-between;gap:12px;font-size:14px;}.pm-skill-breakdown li strong{font-weight:500;}.pm-skill-breakdown li>div>span{color:var(--teal);}
+.pm-skill-track{height:4px;border-radius:4px;background:#abcbd31a;margin:9px 0;overflow:hidden;}.pm-skill-track>span{display:block;height:100%;background:#67e7cb;border-radius:4px;}
+.pm-skill-breakdown small{font-size:12px;color:#9eb7c2;line-height:1.5;}.pm-skill-breakdown .pm-skill-key{font-size:12px;}.pm-review-areas{border-top:1px solid #c8e9ef20;padding-top:16px;}.pm-review-areas h3{font-size:14px;font-weight:500;margin:0;}
+@media(max-width:420px){.pm-skill-breakdown{padding:20px;}.pm-skill-breakdown ul{grid-template-columns:1fr;}}
