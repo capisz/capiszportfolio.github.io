@@ -52,8 +52,9 @@ function RelatedProjects({result,motion,choice,onChoice}) {
   return <section ref={ref} className={`pf-related pf-section ${visible?'is-visible':''}`} aria-labelledby="related-title">
     <span className="pf-eyebrow">Keep exploring</span>
     <h2 id="related-title">Want to see more projects that align with your tech stack?</h2>
+    {!result.alternatives.length&&<p id="related-empty" className="pf-related-empty">This is my only project with evidence for those technologies. You can still explore the entire portfolio.</p>}
     <div className="pf-discovery-actions">
-      {result.alternatives.length>0&&<button type="button" aria-pressed={choice==='related'} onClick={()=>onChoice('related')}>Show me more related projects</button>}
+      <button type="button" disabled={!result.alternatives.length} aria-describedby={!result.alternatives.length?'related-empty':undefined} aria-pressed={choice==='related'} onClick={()=>onChoice('related')}>Show me more related projects</button>
       <button type="button" onClick={()=>onChoice('all')}>Show me your entire portfolio</button>
     </div>
     {choice==='related'&&<div className="pf-related-results"><AlignmentIntro result={result} motion={motion}/><div className="pf-related-grid">{result.alternatives.map((project,i)=>{
@@ -117,7 +118,7 @@ export default function PortfolioSite() {
       <RelatedProjects result={match} motion={motion.enabled} choice={choice} onChoice={choose} />
       <div className="pf-ticker" tabIndex="0" aria-label="Technology ticker. Focus or hover to pause."><div className="pf-ticker-track">{[0,1].map(copy=><div className="pf-ticker-set" key={copy} aria-hidden={copy===1}>{stack.slice(0,10).map(s=><span key={s.name}><img src={s.icon} alt="" />{s.name}</span>)}</div>)}</div></div>
       <section id="work" className="pf-section">
-        {choice!=='all'&&<button className="pf-show-all" type="button" onClick={showAll}>Show me your entire portfolio <Arrow /></button>}
+        {choice!=='all'&&!match?.best&&<button className="pf-show-all" type="button" onClick={showAll}>Show me your entire portfolio <Arrow /></button>}
         {choice==='all'&&<>
         <SectionHeading label="Selected work" title="Built to solve something."><a className="pf-text-link" href={links.github} target="_blank" rel="noreferrer">All repositories <Arrow /></a></SectionHeading>
         {highlighted.length>0&&<p className="pf-match-prompt">You may also be interested in these</p>}

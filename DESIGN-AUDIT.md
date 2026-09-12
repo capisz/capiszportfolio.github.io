@@ -1,3 +1,10 @@
+## Consistent discovery actions and toolkit glass — September 11, 2026
+
+- Related-project action remains visible when only the primary project has evidence, with a disabled state and explanation rather than silently disappearing. Removed the duplicate full-portfolio action beneath the ticker when the discovery section is present.
+- Regression tests compare all three example presets with equivalent manually entered briefs, including button availability and the single portfolio action.
+- Every toolkit pill now uses the same translucent gradient and opacity as the content panels. Relevant pills retain their extra border glow and motion-aware pulse.
+- All 94 tests pass; production build succeeds. Browser verified Docker + Kubernetes keeps both choices visible, explains the unavailable related action, and removes the duplicate button.
+
 ## Longer knight introduction — September 11, 2026
 
 The knight prelude now lasts 2.8 seconds, matching the name introduction. Scroll/touch acceleration remains unchanged. All 91 tests and the production build pass.
