@@ -45,7 +45,8 @@ export default function ProjectMedia({project, motion, autoPlay=true, compact=fa
       aria-label={`${project.title} demo`} />:<img src={project.poster||project.media} alt={`${project.title} preview`} loading="lazy" />}
     {project.demo&&!failed&&<div className="pf-media-controls">
       <button type="button" className="pf-play" aria-label={`${playing?'Pause':'Play'} ${project.title} demo`} onClick={()=>playing?coordinator.pause(id):coordinator.play(id)}><span aria-hidden="true">{playing?'Ⅱ':'▶'}</span><span>{playing?'Pause':'Play'}</span></button>
-      {project.liveUrl&&<a className="pf-demo-link" href={project.liveUrl} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} live demo`}>Demo <span aria-hidden="true">↗</span></a>}
+      <a className="pf-demo-link" href={project.demo} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} demo video in a new tab`}>View video <span aria-hidden="true">↗</span></a>
+      {project.liveUrl&&<a className="pf-demo-link" href={project.liveUrl} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} live app`}>Open app <span aria-hidden="true">↗</span></a>}
     </div>}
     {blocked&&!playing&&!failed&&<span className="pf-media-notice" role="status">Autoplay paused by your browser. Press Play to start.</span>}
     {failed&&<span className="pf-media-error" role="status">Demo unavailable. Open the project below.</span>}

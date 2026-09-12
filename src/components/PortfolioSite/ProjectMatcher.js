@@ -4,6 +4,7 @@ import { findPresentation } from './projectPresentation';
 import { useResultMotion } from './effects';
 import useWelcome from './useWelcome';
 import ProjectMedia from './ProjectMedia';
+import UnderTheHood from './UnderTheHood';
 import PixelKnight from './PixelKnight';
 import './matcher.scss';
 
@@ -118,6 +119,7 @@ export default function ProjectMatcher({motion,onResult,onBrowse}) {
           <div className="pm-tags">{(result?project.matched:project.tech.slice(0,3)).map(t=><span key={t}>{result?'✓ ':''}{t}</span>)}</div>
           {result&&project.missing.length>0&&<p className="pm-missing">Not evidenced here: {project.missing.join(', ')}.</p>}
           <div className="pm-project-footer"><a href={project.openUrl} target="_blank" rel="noreferrer">Explore project <span aria-hidden="true">↗</span></a></div>
+          <UnderTheHood project={display} motion={motion} />
           {result&&<p className="pm-explanation">{result.explanation}</p>}
           {!!result?.alternatives.length&&<details className="pm-alternatives"><summary>Other projects with evidence</summary><ul>{result.alternatives.map(p=><li key={p.title}><a href={p.openUrl} target="_blank" rel="noreferrer">{p.title}</a><span>{p.alignment}% Tech Alignment · {p.matched.join(', ')}</span></li>)}</ul></details>}
         </div>

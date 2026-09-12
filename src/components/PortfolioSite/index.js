@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import './index.scss';
 import usePortfolioEffects from './effects';
-import { useMotionPreferences, useTypewriter } from './motion';
+import { useMotionPreferences } from './motion';
 import ProjectMatcher from './ProjectMatcher';
 import PixelKnight from './PixelKnight';
 import ProjectMedia, { PlaybackProvider } from './ProjectMedia';
+import UnderTheHood from './UnderTheHood';
 import { presentation } from './projectPresentation';
 import { stack, codeColumns, links } from '../../data/portfolioContent';
 
@@ -14,11 +15,6 @@ function ProjectLinks({project}) {
     {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`}>Open project <Arrow /></a>}
     {project.codeUrl && <a href={project.codeUrl} target="_blank" rel="noreferrer" aria-label={`View ${project.title} source`}>View source <Arrow /></a>}
   </div>;
-}
-function UnderTheHood({project, motion}) {
-  const [open,setOpen]=useState(false);
-  const typed=useTypewriter(project.codeText, motion && open, 9);
-  return <details className="pf-underhood" onToggle={e=>setOpen(e.currentTarget.open)}><summary>Under the hood <span aria-hidden="true">＋</span></summary><pre aria-hidden="true">{typed}</pre><span className="pf-sr-only">{project.codeText}</span></details>;
 }
 function SectionHeading({label,title,children}) {
   return <div className="pf-section-heading" data-reveal><div><span className="pf-eyebrow">{label}</span><h2 data-heading>{title}</h2></div>{children}</div>;
@@ -78,6 +74,7 @@ function RelatedProjects({result,motion,choice,onChoice}) {
         <ProjectMedia mediaId={`related:${project.title}`} project={display} motion={motion} compact />
         <h3><a href={project.openUrl} target="_blank" rel="noreferrer">{project.title} <Arrow /></a></h3><p>{display.shortDescription}</p>
         <span className="pf-related-tech">{project.matched.join(' · ')}</span><a className="pf-related-action" href={project.openUrl} target="_blank" rel="noreferrer">Explore project ↗</a>
+        <UnderTheHood project={display} motion={motion} />
       </article>;
     })}</div></div>}
   </section>;
@@ -140,7 +137,7 @@ export default function PortfolioSite() {
         <AlignmentIntro result={match} motion={motion.enabled} entire/>
         <div className="pf-grid pf-cascade">{ordered.map((p,i)=><article className={`pf-card ${highlighted.includes(p.title)?'is-match':''}`} key={p.title} style={{'--cascade-delay':`${2400+Math.min(i,6)*350}ms`}}>
           <div className="pf-card-visual"><ProjectMedia mediaId={`gallery:${p.title}`} project={p} motion={motion.enabled} compact /></div>
-          <div className="pf-card-body"><div className="pf-card-title-row"><h3>{p.title}</h3><span className={`pf-project-status ${p.liveUrl ? 'pf-live' : ''}`}>{p.statusLabel === 'In progress' ? 'In progress' : p.liveUrl ? 'Live' : 'Source available'}</span></div><p>{p.shortDescription}</p><div className="pf-tags">{p.tech.slice(0,4).map(t=><span key={t}>{t}</span>)}</div><ProjectLinks project={p} />{p.title==='PrizeCheck'&&<UnderTheHood project={p} motion={motion.enabled} />}</div>
+          <div className="pf-card-body"><div className="pf-card-title-row"><h3>{p.title}</h3><span className={`pf-project-status ${p.liveUrl ? 'pf-live' : ''}`}>{p.statusLabel === 'In progress' ? 'In progress' : p.liveUrl ? 'Live' : 'Source available'}</span></div><p>{p.shortDescription}</p><div className="pf-tags">{p.tech.slice(0,4).map(t=><span key={t}>{t}</span>)}</div><ProjectLinks project={p} /><UnderTheHood project={p} motion={motion.enabled} /></div>
         </article>)}</div></>}
       </section>
       <section id="about" className="pf-section pf-about">

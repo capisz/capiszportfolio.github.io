@@ -33,10 +33,15 @@ test('shows a usable fallback if media fails',()=>{
   expect(screen.getByRole('img',{name:'Demo preview'})).toHaveAttribute('src','/demo.jpg');
 });
 
-test('Demo links to the actual live app instead of toggling controls',()=>{
+test('offers separate links for the video and the live app',()=>{
  render(<ProjectMedia project={{...project,liveUrl:'https://example.com/demo'}} motion={false}/>);
- expect(screen.getByRole('link',{name:'Open Demo live demo'})).toHaveAttribute('href','https://example.com/demo');expect(screen.queryByRole('button',{name:/controls/i})).toBeNull();
+ expect(screen.getByRole('link',{name:'Open Demo demo video in a new tab'})).toHaveAttribute('href','/demo.mp4');
+ expect(screen.getByRole('link',{name:'Open Demo live app'})).toHaveAttribute('href','https://example.com/demo');
+ expect(screen.queryByRole('button',{name:/controls/i})).toBeNull();
 });
-test('projects without a live URL do not get a fabricated Demo link',()=>{
- render(<ProjectMedia project={project} motion={false}/>);expect(screen.queryByRole('link',{name:/live demo/})).toBeNull();expect(screen.getByRole('button',{name:'Play Demo demo'})).toBeInTheDocument();
+test('projects without a live URL still link directly to their video',()=>{
+ render(<ProjectMedia project={project} motion={false}/>);
+ expect(screen.getByRole('link',{name:'Open Demo demo video in a new tab'})).toHaveAttribute('href','/demo.mp4');
+ expect(screen.queryByRole('link',{name:/live app/})).toBeNull();
+ expect(screen.getByRole('button',{name:'Play Demo demo'})).toBeInTheDocument();
 });

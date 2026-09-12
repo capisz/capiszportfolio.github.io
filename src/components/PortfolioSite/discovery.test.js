@@ -15,9 +15,11 @@ test('recommendations and full gallery require a choice and requested toolkit it
  fireEvent.click(screen.getByRole('button',{name:'Show me more related projects'}));
  expect(container.querySelectorAll('.pf-related-card')).toHaveLength(4);
  expect(container.querySelectorAll('.pf-related-card [data-media-id^="related:"]')).toHaveLength(4);
+ expect(container.querySelectorAll('.pf-related-card .pf-underhood')).toHaveLength(4);
  expect(container.querySelectorAll('#work article')).toHaveLength(0);
  fireEvent.click(screen.getAllByRole('button',{name:/Show me your entire portfolio/})[0]);
  expect(container.querySelectorAll('#work article')).toHaveLength(13);
+ expect(container.querySelectorAll('#work article .pf-underhood')).toHaveLength(13);
  expect(container.querySelectorAll('.pf-related-card')).toHaveLength(0);
  fireEvent.change(screen.getByRole('textbox'),{target:{value:'Python'}});
  expect(container.querySelectorAll('.is-requested')).toHaveLength(0);
