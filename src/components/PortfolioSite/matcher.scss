@@ -125,3 +125,11 @@
 @keyframes pm-cursor{50%{opacity:0}}
 @media(min-width:900px){.has-project .pm-knight-intro{left:calc(25% - 10px);}}
 @media(prefers-reduced-motion:reduce){.pm-knight-intro,.pm-knight-mark,.pm-hello{transition:none;}}
+/* Keep the knight near the current content, clear of the sticky header. */
+.pm-knight-intro{top:max(24px,calc(var(--entry-top) - 48px));}
+.pm-knight-mark{transform:scale(.3);}
+.intro-welcome .pm-knight-intro{top:calc(clamp(100px,28vh,300px) - 64px);}
+.intro-welcome .pm-knight-mark{transform:scale(.48);}
+.intro-revealing .pm-knight-intro,.intro-revealing .pm-knight-mark{transition-delay:500ms;}
+.intro-knight .pm-knight-intro{top:clamp(110px,28vh,300px);}
+.intro-knight .pm-knight-mark{transform:scale(1);}

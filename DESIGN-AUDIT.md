@@ -1,3 +1,7 @@
+## Knight placement timing — September 11, 2026
+
+During the name introduction the knight stays immediately above its text. Its move toward the composer is delayed 500ms into the box reveal; the final mark is smaller and at least 24px below the hero top, clear of the header. Production build passes.
+
 ## Persistent knight greeting — September 11, 2026
 
 The intro knight now remains mounted, types “Hello, World” with a blinking cursor, and shrinks upward over 1.1 seconds to rest above the composer. It follows the entry left when a desktop result appears. Greeting typing finishes in 1.44 seconds, within the existing 1.8-second minimum accelerated stage. Reduced motion bypasses the greeting and displays the small knight directly. All 97 tests and production build pass. Browser verified the greeting and final knight position above the composer.
