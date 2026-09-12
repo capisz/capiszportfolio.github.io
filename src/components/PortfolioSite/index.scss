@@ -242,3 +242,5 @@ html{overflow-anchor:none;}
 @keyframes pf-card-cascade{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 .pf-related-card:focus-visible,.pf-cascade>.pf-card:focus-within{animation:none!important;opacity:1!important;transform:none!important;}
 @media(prefers-reduced-motion:reduce){.pf-related-card,.pf-cascade>.pf-card{animation:none!important;opacity:1!important;transform:none!important;}}
+
+.pf-typed-line{display:block;min-height:1.8em;}

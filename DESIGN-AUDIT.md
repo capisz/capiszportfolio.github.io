@@ -1,3 +1,9 @@
+## Knight prelude and parallel typing — September 11, 2026
+
+- A 750ms knight-only prelude precedes the existing welcome. Scroll/touch still accelerates directly to the form reveal; reduced motion, explicit links, and keyboard escape retain their bypasses.
+- The alignment explanation uses two stacked lines typed simultaneously at 10ms per character, replacing the previous sequential 22ms treatment.
+- All 91 tests pass, including the knight timer boundary and scroll acceleration. Production build succeeds; browser check confirmed both lines advance together.
+
 ## Softer highlights and paced project reveals — September 11, 2026
 
 - Toolkit highlights now use padded rounded pills, a 1.15-second pulse, and “What you’re looking for is highlighted” subtext after a submitted brief.

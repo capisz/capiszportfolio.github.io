@@ -3,8 +3,10 @@ import useWelcome from './useWelcome';
 beforeEach(()=>{jest.useFakeTimers();window.history.replaceState(null,'','#top');});
 afterEach(()=>jest.useRealTimers());
 const wheel=()=>{const event=new WheelEvent('wheel',{deltaY:80,cancelable:true});act(()=>window.dispatchEvent(event));return event;};
-test('welcome automatically reveals and releases scrolling within 4400ms',()=>{
- const {result}=renderHook(()=>useWelcome(true));expect(result.current.phase).toBe('welcome');
+test('welcome automatically reveals and releases scrolling after the 750ms knight and welcome sequence',()=>{
+ const {result}=renderHook(()=>useWelcome(true));expect(result.current.phase).toBe('knight');
+ act(()=>jest.advanceTimersByTime(749));expect(result.current.phase).toBe('knight');
+ act(()=>jest.advanceTimersByTime(1));expect(result.current.phase).toBe('welcome');
  act(()=>jest.advanceTimersByTime(2800));expect(result.current.phase).toBe('revealing');
  act(()=>jest.advanceTimersByTime(1600));expect(result.current.phase).toBe('ready');expect(wheel().defaultPrevented).toBe(false);
 });

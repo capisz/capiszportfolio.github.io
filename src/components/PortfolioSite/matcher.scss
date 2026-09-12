@@ -102,3 +102,8 @@
 @media(max-width:899px){.pm-input textarea{min-height:155px;}.pm-hero{padding-top:max(72px,calc((100svh - var(--nav-height,104px) - 620px)/2));}}
 
 @media(min-width:900px){.pm-hero{padding-top:clamp(96px,calc((100svh - var(--nav-height,86px) - 440px)/2),240px);}}
+
+.intro-knight .pm-workbench,.intro-knight .pm-browse{opacity:0;visibility:hidden;translate:0 24px;}
+.pm-knight-intro{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;padding-bottom:90px;}
+.pm-knight-intro .pf-knight{width:76px;height:92px;filter:drop-shadow(0 0 22px #67e7cb40);animation:pm-knight-arrive 750ms ease both;}
+@keyframes pm-knight-arrive{0%{opacity:0;transform:translateY(8px) scale(.94)}25%,80%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-5px)}}
