@@ -108,3 +108,20 @@
 .pm-knight-intro .pf-knight{width:76px;height:92px;filter:drop-shadow(0 0 22px #67e7cb40);animation:pm-knight-arrive 2800ms ease both;}
 @keyframes pm-knight-arrive{0%{opacity:0;transform:translateY(8px) scale(.94)}25%,80%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-5px)}}
 .pm-input .pm-privacy{margin-top:18px;}
+
+/* The same knight moves from the greeting to its place above the composer. */
+.pm-hero{--entry-top:max(72px,calc((100svh - var(--nav-height,104px) - 620px)/2));}
+@media(min-width:900px){.pm-hero{--entry-top:clamp(96px,calc((100svh - var(--nav-height,86px) - 440px)/2),240px);}}
+.pm-knight-intro{inset:auto;left:50%;top:calc(var(--entry-top) - 68px);width:220px;height:92px;padding:0;display:block;transform:translateX(-50%);transition:top 1100ms cubic-bezier(.22,1,.36,1),left 700ms cubic-bezier(.22,1,.36,1);z-index:1;}
+.pm-knight-mark{width:76px;height:92px;margin:auto;transform:scale(.4);transform-origin:50% 0;transition:transform 1100ms cubic-bezier(.22,1,.36,1);}
+.pm-knight-intro .pf-knight{animation:none;width:76px;height:92px;filter:drop-shadow(0 0 15px #67e7cb30);}
+.intro-knight .pm-knight-intro{top:clamp(110px,28vh,300px);}
+.intro-knight .pm-knight-mark{transform:scale(1);}
+.pm-hello{display:flex;justify-content:center;gap:2px;position:absolute;top:116px;width:100%;font:22px/1.6 'JetBrains Mono',monospace;color:#d8f6ee;opacity:0;transition:opacity 350ms ease;}
+.intro-knight .pm-hello{opacity:1;}.pm-hello span{display:block;overflow:hidden;white-space:nowrap;width:12ch;}
+.intro-knight .pm-hello span{animation:pm-hello-type 1440ms steps(12,end) both;}
+.pm-hello b{font-weight:400;animation:pm-cursor 750ms step-end infinite;}
+@keyframes pm-hello-type{from{width:0}to{width:12ch}}
+@keyframes pm-cursor{50%{opacity:0}}
+@media(min-width:900px){.has-project .pm-knight-intro{left:calc(25% - 10px);}}
+@media(prefers-reduced-motion:reduce){.pm-knight-intro,.pm-knight-mark,.pm-hello{transition:none;}}

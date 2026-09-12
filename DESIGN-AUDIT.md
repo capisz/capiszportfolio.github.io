@@ -1,3 +1,7 @@
+## Persistent knight greeting — September 11, 2026
+
+The intro knight now remains mounted, types “Hello, World” with a blinking cursor, and shrinks upward over 1.1 seconds to rest above the composer. It follows the entry left when a desktop result appears. Greeting typing finishes in 1.44 seconds, within the existing 1.8-second minimum accelerated stage. Reduced motion bypasses the greeting and displays the small knight directly. All 97 tests and production build pass. Browser verified the greeting and final knight position above the composer.
+
 ## Alignment explanation fade — September 11, 2026
 
 Replaced simultaneous typewriter text with complete, readable lines that fade in together over 1.1 seconds. The existing slower card cascade remains. Reduced motion shows the text immediately. Production build passes.

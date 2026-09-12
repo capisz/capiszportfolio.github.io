@@ -74,3 +74,10 @@ test('mobile submissions scroll to the demo after layout settles and touch cance
  act(()=>jest.advanceTimersByTime(450));expect(scroll).not.toHaveBeenCalled();
  window.innerWidth=width;delete Element.prototype.scrollIntoView;jest.useRealTimers();
 });
+
+test('keeps one knight above the composer after the introduction',()=>{
+ const {container}=render(<ProjectMatcher motion={false}/>);
+ expect(container.querySelectorAll('.pm-knight-intro')).toHaveLength(1);
+ expect(container.querySelector('.pm-hello')).toHaveTextContent('Hello, World');
+ submit('React');expect(container.querySelectorAll('.pm-knight-intro')).toHaveLength(1);
+});
