@@ -1,3 +1,9 @@
+## Empty-state guidance and privacy spacing — September 11, 2026
+
+- Empty discovery now offers one centered group of actions, with related projects disabled in neutral gray until a match is available. A short viewport-triggered hint explains how to get tailored results and links back to the input.
+- Added 18px above the privacy note to separate it from the submit button.
+- All 96 tests pass, including empty-state guidance and single-action-group coverage. Production build succeeds.
+
 ## Gradual intro scroll acceleration — September 11, 2026
 
 Scroll distance now modestly shortens the current intro stage rather than skipping to the form reveal. Knight and name stages each retain at least 1.8 seconds, with a 350ms lead time before an accelerated boundary; the form reveal remains 1.6 seconds. Touch movement uses incremental distance and wheel units are normalized. Explicit skip and accessibility bypasses remain available. All 95 tests pass, including light-scroll, momentum-burst, and touch progression; production build succeeds.

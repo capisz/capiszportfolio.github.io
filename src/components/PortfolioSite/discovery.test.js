@@ -39,3 +39,11 @@ test.each(['React + TypeScript','Python + Claude','Docker + Kubernetes'])('prese
  expect(screen.getByRole('button',{name:'Show me more related projects'}).disabled).toBe(presetDisabled);
  expect(screen.getAllByRole('button',{name:'Show me your entire portfolio'})).toHaveLength(1);
 });
+
+test('empty discovery provides a tailored-results hint and one centered set of choices',()=>{
+ const {container}=render(<PortfolioSite/>);
+ expect(screen.getByText(/Enter the role or technologies/)).toBeVisible();
+ expect(screen.getByRole('button',{name:'Show me more related projects'})).toBeDisabled();
+ expect(screen.getAllByRole('button',{name:'Show me your entire portfolio'})).toHaveLength(1);
+ expect(container.querySelector('.pf-empty-discovery .pf-discovery-actions')).toBeInTheDocument();
+});

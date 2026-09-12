@@ -36,6 +36,23 @@ function AlignmentIntro({result,motion,entire=false}) {
   const typedSecond=useTypewriter(second,motion,30);
   return <p className="pf-alignment-intro"><span className="pf-typed-line" aria-hidden="true">{typedFirst}</span><span className="pf-typed-line" aria-hidden="true">{typedSecond}</span><span className="pf-sr-only">{first} {second}</span></p>;
 }
+function EmptyDiscovery({onBrowse}) {
+  const ref=useRef(null);
+  const [visible,setVisible]=useState(false);
+  useEffect(()=>{
+    const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){setVisible(true);observer.disconnect();}},{threshold:.2});
+    if(ref.current)observer.observe(ref.current);
+    return()=>observer.disconnect();
+  },[]);
+  return <div ref={ref} className={`pf-empty-discovery ${visible?'is-visible':''}`}>
+    <p id="tailored-hint">Enter the role or technologies you’re looking for above to get tailored project results.</p>
+    <a href="#top">Add what you’re looking for ↑</a>
+    <div className="pf-discovery-actions">
+      <button type="button" disabled aria-describedby="tailored-hint">Show me more related projects</button>
+      <button type="button" onClick={onBrowse}>Show me your entire portfolio</button>
+    </div>
+  </div>;
+}
 function RelatedProjects({result,motion,choice,onChoice}) {
   const ref=useRef(null);
   const [visible,setVisible]=useState(false);
@@ -118,7 +135,7 @@ export default function PortfolioSite() {
       <RelatedProjects result={match} motion={motion.enabled} choice={choice} onChoice={choose} />
       <div className="pf-ticker" tabIndex="0" aria-label="Technology ticker. Focus or hover to pause."><div className="pf-ticker-track">{[0,1].map(copy=><div className="pf-ticker-set" key={copy} aria-hidden={copy===1}>{stack.slice(0,10).map(s=><span key={s.name}><img src={s.icon} alt="" />{s.name}</span>)}</div>)}</div></div>
       <section id="work" className="pf-section">
-        {choice!=='all'&&!match?.best&&<button className="pf-show-all" type="button" onClick={showAll}>Show me your entire portfolio <Arrow /></button>}
+        {choice!=='all'&&!match?.best&&<EmptyDiscovery onBrowse={showAll}/>}
         {choice==='all'&&<>
         <SectionHeading label="Selected work" title="Built to solve something."><a className="pf-text-link" href={links.github} target="_blank" rel="noreferrer">All repositories <Arrow /></a></SectionHeading>
         {highlighted.length>0&&<p className="pf-match-prompt">You may also be interested in these</p>}
