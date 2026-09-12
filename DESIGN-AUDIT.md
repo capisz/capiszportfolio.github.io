@@ -1,3 +1,7 @@
+## Consistent discovery scrolling — September 11, 2026
+
+Related-project selection now uses the same 1.2-second eased, cancellable scroll as full-portfolio selection. It targets the related-results introduction with the same header clearance. All 101 tests and production build pass.
+
 ## Equal contact actions — September 11, 2026
 
 Email and résumé contact buttons now share 190px width, 52px height, centered content, and 14px type. The nested email surface fills its anchor; mobile keeps equal sizes while stacking. Production build passes.

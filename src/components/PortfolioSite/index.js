@@ -96,10 +96,10 @@ export default function PortfolioSite() {
   });
   const motion=useMotionPreferences();
   useEffect(()=>{
-    if(choice!=='all')return;
+    if(choice!=='all'&&choice!=='related')return;
     let frame;
     const timer=setTimeout(()=>{
-      const target=document.getElementById('work');
+      const target=choice==='related'?rootRef.current?.querySelector('.pf-related-results'):document.getElementById('work');
       if(!target)return;
       const start=window.scrollY;
       const end=start+target.getBoundingClientRect().top-(rootRef.current?.querySelector('header')?.offsetHeight||100)-20;
