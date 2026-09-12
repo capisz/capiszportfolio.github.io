@@ -1,3 +1,9 @@
+## Natural typing pace and broader example — September 11, 2026
+
+- Slowed both simultaneous explanation lines from 10ms to 30ms per character.
+- Replaced the React Native + Expo preset with React + TypeScript, which has several evidenced alternatives. Manual React Native/Expo matching remains available.
+- All 94 tests pass, including an explicit check that the new preset enables related projects. Production build succeeds.
+
 ## Consistent discovery actions and toolkit glass — September 11, 2026
 
 - Related-project action remains visible when only the primary project has evidence, with a disabled state and explanation rather than silently disappearing. Removed the duplicate full-portfolio action beneath the ticker when the discovery section is present.

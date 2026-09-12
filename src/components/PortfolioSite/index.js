@@ -32,8 +32,8 @@ function AlignmentIntro({result,motion,entire=false}) {
   const skills=[...new Set([result?.best,...(result?.alternatives||[])].filter(Boolean).flatMap(p=>p.matched))];
   const first=skills.length?`These projects connect to ${skills.join(', ')} in your brief.`:'Explore the projects and the problems they solve.';
   const second=skills.length?(entire?'The closest matches come first, followed by the rest of my work.':'Each card shows the technologies we have in common. Take a closer look.'):'Take a look at the technologies behind them.';
-  const typedFirst=useTypewriter(first,motion,10);
-  const typedSecond=useTypewriter(second,motion,10);
+  const typedFirst=useTypewriter(first,motion,30);
+  const typedSecond=useTypewriter(second,motion,30);
   return <p className="pf-alignment-intro"><span className="pf-typed-line" aria-hidden="true">{typedFirst}</span><span className="pf-typed-line" aria-hidden="true">{typedSecond}</span><span className="pf-sr-only">{first} {second}</span></p>;
 }
 function RelatedProjects({result,motion,choice,onChoice}) {

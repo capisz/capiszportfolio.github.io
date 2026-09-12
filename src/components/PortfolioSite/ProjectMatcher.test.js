@@ -40,10 +40,10 @@ test('arrival and typing show only the centered entry; button press reveals work
  const {container}=render(<ProjectMatcher motion={false}/>);
  expect(container.querySelector('.pm-output')).toBeNull();expect(container.querySelector('.pm-entry')).toBeInTheDocument();
  fireEvent.click(screen.getByText('Try an example'));
- fireEvent.click(screen.getByRole('button',{name:'React Native + Expo'}));
- expect(screen.getByRole('textbox')).toHaveValue('React Native + Expo');expect(container.querySelector('.pm-output')).toBeNull();
+ fireEvent.click(screen.getByRole('button',{name:'React + TypeScript'}));
+ expect(screen.getByRole('textbox')).toHaveValue('React + TypeScript');expect(container.querySelector('.pm-output')).toBeNull();
  fireEvent.click(screen.getByRole('button',{name:/Find a relevant project/}));
- expect(container.querySelector('.pm-hero')).toHaveClass('has-project');expect(screen.getByRole('heading',{name:'FunkFit'})).toBeVisible();
+ expect(container.querySelector('.pm-hero')).toHaveClass('has-project');expect(screen.getByRole('heading',{name:'Amazon Room Generator'})).toBeVisible();
  fireEvent.change(screen.getByRole('textbox'),{target:{value:'SwiftUI'}});expect(container.querySelector('.pm-output')).toBeNull();expect(container.querySelector('.pm-hero')).not.toHaveClass('has-project');
 });
 

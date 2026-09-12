@@ -23,13 +23,14 @@ test('recommendations and full gallery require a choice and requested toolkit it
  expect(container.querySelectorAll('#work article')).toHaveLength(0);
 });
 
-test.each(['React Native + Expo','Python + Claude','Docker + Kubernetes'])('preset %s behaves identically to typed input without duplicate portfolio buttons',brief=>{
+test.each(['React + TypeScript','Python + Claude','Docker + Kubernetes'])('preset %s behaves identically to typed input without duplicate portfolio buttons',brief=>{
  const {container}=render(<PortfolioSite/>);
  fireEvent.click(screen.getByText('Try an example'));
  fireEvent.click(screen.getByRole('button',{name:brief}));
  fireEvent.click(screen.getByRole('button',{name:'Find a relevant project'}));
  const presetTitle=container.querySelector('.pm-project h2').textContent;
  const presetDisabled=screen.getByRole('button',{name:'Show me more related projects'}).disabled;
+ if(brief==='React + TypeScript')expect(presetDisabled).toBe(false);
  expect(screen.getAllByRole('button',{name:'Show me your entire portfolio'})).toHaveLength(1);
  if(presetDisabled)expect(screen.getByText(/only project with evidence/)).toBeVisible();
  fireEvent.change(screen.getByRole('textbox'),{target:{value:brief+' '}});
