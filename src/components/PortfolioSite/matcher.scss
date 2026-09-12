@@ -144,3 +144,16 @@
 .pm-skill-track{height:4px;border-radius:4px;background:#abcbd31a;margin:9px 0;overflow:hidden;}.pm-skill-track>span{display:block;height:100%;background:#67e7cb;border-radius:4px;}
 .pm-skill-breakdown small{font-size:12px;color:#9eb7c2;line-height:1.5;}.pm-skill-breakdown .pm-skill-key{font-size:12px;}.pm-review-areas{border-top:1px solid #c8e9ef20;padding-top:16px;}.pm-review-areas h3{font-size:14px;font-weight:500;margin:0;}
 @media(max-width:420px){.pm-skill-breakdown{padding:20px;}.pm-skill-breakdown ul{grid-template-columns:1fr;}}
+
+/* Compact breakdown beside the project narrative. */
+.pm-skill-breakdown{margin-top:16px;padding:18px 20px;border-radius:12px;}
+.pm-skill-breakdown h2{font-size:18px;margin-bottom:4px;}
+.pm-skill-breakdown>p{font-size:12px;margin:4px 0;}
+.pm-skill-breakdown ul{margin:16px 0;gap:12px 20px;}
+.pm-skill-breakdown li>div:first-child{font-size:13px;}
+.pm-skill-track{height:3px;margin:6px 0 3px;}
+.pm-skill-breakdown small{font-size:11px;line-height:1.4;}
+.pm-score-method{font-size:12px;color:#a8c4ce;margin-top:8px;}
+.pm-score-method summary{cursor:pointer;min-height:32px;display:list-item;padding:7px 0;}
+.pm-review-areas{padding-top:10px;margin-top:8px;}.pm-review-areas h3{font-size:12px;}.pm-review-areas p{font-size:12px;margin:6px 0;line-height:1.5;}
+@media(min-width:900px){.has-project .pm-entry{align-self:stretch;display:flex;flex-direction:column;}.has-project .pm-skill-breakdown{margin-top:auto;}.has-project .pm-input{margin-bottom:20px;}}

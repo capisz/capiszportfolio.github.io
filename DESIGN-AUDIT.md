@@ -1,3 +1,7 @@
+## Compact AI breakdown — September 11, 2026
+
+Renamed the panel “AI breakdown”, reduced heading, row, and panel spacing, and moved the scoring explanation into a disclosure that identifies local technology matching. Desktop entry stretches alongside the output so the compact breakdown aligns toward the bottom of the project narrative. Mobile retains normal flow. Production build passes; browser visual verification remains unavailable from the prior preview connection issue.
+
 ## Per-skill brief breakdown — September 11, 2026
 
 Changed Selected Work heading to “A project built to solve a problem.” Added a responsive evidence breakdown below the input, with fixed category estimates: direct 95%, supporting 80%, related 60%, absent 0%. Scores concern the selected project, not personal proficiency. Added HTML recognition without inventing project evidence. Detected accessibility, performance, sensitive-data, document-review and component-system requirements are listed separately for review without fabricated numeric ratings. A regression case based on the supplied document-review frontend posting passes. All 98 tests and production build pass. Visual preview validation was unavailable due to local server/browser empty responses.
