@@ -105,5 +105,5 @@
 
 .intro-knight .pm-workbench,.intro-knight .pm-browse{opacity:0;visibility:hidden;translate:0 24px;}
 .pm-knight-intro{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;padding-bottom:90px;}
-.pm-knight-intro .pf-knight{width:76px;height:92px;filter:drop-shadow(0 0 22px #67e7cb40);animation:pm-knight-arrive 750ms ease both;}
+.pm-knight-intro .pf-knight{width:76px;height:92px;filter:drop-shadow(0 0 22px #67e7cb40);animation:pm-knight-arrive 2800ms ease both;}
 @keyframes pm-knight-arrive{0%{opacity:0;transform:translateY(8px) scale(.94)}25%,80%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-5px)}}

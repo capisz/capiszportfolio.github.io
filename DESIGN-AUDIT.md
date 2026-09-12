@@ -1,3 +1,7 @@
+## Longer knight introduction — September 11, 2026
+
+The knight prelude now lasts 2.8 seconds, matching the name introduction. Scroll/touch acceleration remains unchanged. All 91 tests and the production build pass.
+
 ## Knight prelude and parallel typing — September 11, 2026
 
 - A 750ms knight-only prelude precedes the existing welcome. Scroll/touch still accelerates directly to the form reveal; reduced motion, explicit links, and keyboard escape retain their bypasses.

@@ -8,7 +8,7 @@ export default function useWelcome(motion) {
     if(phase==='ready')return;
     const finish=()=>setPhase('ready');
     const accelerate=()=>setPhase(current=>current==='welcome'||current==='knight'?'revealing':current);
-    const timer=setTimeout(phase==='knight'?()=>setPhase('welcome'):phase==='welcome'?accelerate:finish,phase==='knight'?750:phase==='welcome'?2800:1600);
+    const timer=setTimeout(phase==='knight'?()=>setPhase('welcome'):phase==='welcome'?accelerate:finish,phase==='knight'?2800:phase==='welcome'?2800:1600);
     const wheel=e=>{if(e.ctrlKey || Math.abs(e.deltaX)>Math.abs(e.deltaY) || e.deltaY<=0)return;if(e.cancelable)e.preventDefault();accelerate();};
     let touchY=null;
     const touchStart=e=>{touchY=e.touches.length===1?e.touches[0].clientY:null;};
