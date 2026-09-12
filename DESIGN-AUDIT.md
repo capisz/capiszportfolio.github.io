@@ -1,3 +1,7 @@
+## Alignment explanation fade — September 11, 2026
+
+Replaced simultaneous typewriter text with complete, readable lines that fade in together over 1.1 seconds. The existing slower card cascade remains. Reduced motion shows the text immediately. Production build passes.
+
 ## Empty-state guidance and privacy spacing — September 11, 2026
 
 - Empty discovery now offers one centered group of actions, with related projects disabled in neutral gray until a match is available. A short viewport-triggered hint explains how to get tailored results and links back to the input.

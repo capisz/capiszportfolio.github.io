@@ -255,3 +255,7 @@ html{overflow-anchor:none;}
 .pf-empty-discovery>a{display:inline-flex;align-items:center;min-height:44px;color:var(--teal);font-size:14px;}
 .pf-discovery-actions button:disabled{opacity:1;color:#87959c;background:#71808a1a;border-color:#8e9ba12e;box-shadow:none;}
 @media(prefers-reduced-motion:reduce){.pf-empty-discovery>p{opacity:1;transform:none;transition:none;}}
+
+.motion-on .pf-fade-intro{animation:pf-intro-fade 1100ms ease both;}
+@keyframes pf-intro-fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.pf-fade-intro{animation:none!important;}}
