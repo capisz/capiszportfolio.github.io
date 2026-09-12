@@ -1,3 +1,4 @@
+import { projectEvidence } from './projectEvidence';
 // Content + derivation for the single-page portfolio redesign.
 // Ported from the design handoff (design_handoff_portfolio/rendered-site support.js -> renderVals).
 // Assets live in /public/assets and are referenced by absolute path so they resolve
@@ -26,6 +27,14 @@ const TECH = {
   postgres: "Postgres",
   ai: "AI Analyst",
   statcast: "Statcast",
+  firebase: "Firebase",
+  git: "Git",
+  vercel: "Vercel",
+  docker: "Docker",
+  kubernetes: "Kubernetes",
+  kind: "kind",
+  githubactions: "GitHub Actions",
+  linux: "Linux",
 };
 const labels = (arr) => arr.map((t) => TECH[t] || t);
 
@@ -71,20 +80,25 @@ for (let c = 0; c < 8; c++) {
 }
 
 export const featured = {
-  title: "CareCation",
-  blurb:
-    "Reimagines medical tourism by centralizing clinic selection and travel planning into one intuitive platform — bridging healthcare and vacation planning.",
-  media: asset("assets/shots/carecation-hq.gif"),
-  tech: labels(["nextjs", "react", "typescript", "api", "tailwind", "node"]),
-  openUrl: "https://carecation.vercel.app/",
-  codeText: '{\n  name: "CareCation",\n  stack: ["Next.js", "React", "Node"],\n  status: "live",\n}',
+  title: "PrizeCheck",
+  blurb: "Practice Pokémon TCG prize-checking. Built with Next.js, TypeScript and Firebase, with Docker, local Kubernetes recovery and rollback exercises, and GitHub Actions testing. Production: Vercel. Kubernetes: local via kind.",
+  media: asset("assets/shots/pokemon.gif"),
+  tech: [...projectEvidence.PrizeCheck.canonicalSkills, ...projectEvidence.PrizeCheck.supportingTechnologies],
+  openUrl: "https://www.prizecheck.us",
+  codeUrl: "https://github.com/capisz/pokemon-tcg-prize-checker",
+  codeText: JSON.stringify({
+    name: "PrizeCheck",
+    stack: ["Next.js", "TypeScript", "Firebase"],
+    production: "Vercel",
+    kubernetes: "local via kind",
+  }, null, 2),
 };
 
 const raw = [
-  { title: "DraftKings NBA Optimizer", blurb: "Pulls the live DraftKings slate and ranks players by a transparent points-per-dollar metric. A built-in AI analyst proposes the best cap-legal, position-legal swap for any slot — with reasoning. Classic & Showdown support.", media: "assets/shots/draftkings.gif", tech: ["nextjs", "typescript", "tailwind", "python", "ai"], live: "https://draftkings-optimizer.vercel.app/", code: "https://github.com/capisz/draftkings-optimizer", status: "complete", ai: true },
+  { title: "DraftKings NBA Optimizer", blurb: "Pulls the live DraftKings slate and ranks players by a transparent points-per-dollar metric. A local recommendation engine proposes the best cap-legal, position-legal swap for any slot — with reasoning. Classic & Showdown support.", media: "assets/shots/draftkings.gif", tech: ["nextjs", "typescript", "tailwind", "python", "ai"], live: "https://draftkings-optimizer.vercel.app/", code: "https://github.com/capisz/draftkings-optimizer", status: "complete" },
   { title: "Amazon Room Generator", blurb: "Enter your measurements, generate a room layout, then shop pieces that actually fit your space — no more guessing.", media: "assets/projects/amazon-room.mp4", tech: ["react", "javascript", "api"], live: "https://amazon-room-designr.vercel.app/", code: "https://github.com/capisz/amazon-room-gen", status: "complete" },
-  { title: "FunkFit", blurb: "Your body changes daily, so should your logging. FunkFit recalculates your calorie needs week-to-week, even day-to-day.", media: "assets/projects/elephit.mp4", portrait: true, tech: ["nextjs", "react", "typescript", "tailwind", "api", "mongodb"], live: "", code: "https://github.com/capisz/funkfit", status: "complete" },
-  { title: "Pokémon Prize Checker", blurb: "A tool to simulate and perfect your Pokémon TCG prize-checking without physical cards — any time, any place, zero setup.", media: "assets/shots/pokemon.gif", tech: ["nextjs", "react", "typescript", "api", "tailwind", "mongodb"], live: "https://prizecheck.us/", code: "https://github.com/capisz/pokemon-tcg-prize-checker", status: "complete" },
+  { title: "FunkFit", blurb: "Your body changes daily, so should your logging. FunkFit recalculates your calorie needs week-to-week, even day-to-day.", media: "assets/projects/elephit.mp4", portrait: true, tech: ["React Native", "Expo", "typescript", "Expo Router", "React Navigation", "AsyncStorage", "HealthKit"], live: "", code: "https://github.com/capisz/funkfit", status: "complete" },
+  { title: "CareCation", blurb: "Reimagines medical tourism by centralizing clinic selection and travel planning into one intuitive platform — bridging healthcare and vacation planning.", media: "assets/shots/carecation-hq.gif", tech: ["nextjs", "react", "typescript", "api", "tailwind", "node"], live: "https://carecation.vercel.app/", status: "complete" },
   { title: "backstop.ai", blurb: "A public-data baseball product that grades catcher pitch-calling in real time from the MLB Stats API. One click streams a Claude analyst's grounded read of each catcher's live zone report.", media: "assets/shots/backstop.gif", tech: ["nextjs", "typescript", "fastapi", "python", "postgres", "claude"], live: "https://ai-catcher-grade-app-web.vercel.app/", code: "https://github.com/capisz/ai-catcher-grade-app", status: "complete", ai: true },
   { title: "ParkNYC", blurb: "Plan a destination and compare conservative curb guidance on an interactive NYC map, with meter rules and route-aware parking options.", media: "assets/projects/parknyc.mp4", tech: ["swift", "api", "typescript"], live: "", code: "https://github.com/capisz/ParkNYCPrototype", status: "complete" },
   { title: "Contessa Shop", blurb: "A Next.js storefront concept for a three-piece essentials drop — a Skims-inspired product grid with per-item size/color selection, an auto-rotating product-angle carousel, and a PCRF impact section.", media: "assets/shots/contessa.gif", tech: ["nextjs", "react", "typescript", "tailwind"], live: "https://contessa-shop.vercel.app/", code: "https://github.com/capisz/contessa-shop", status: "complete" },
@@ -108,7 +122,7 @@ export const projects = raw.map((p, i) => {
   const isCode = !hasMedia;
   const inProgress = p.status === "in-progress";
   const hasLive = !!p.live;
-  const shortTech = labels(p.tech)
+  const shortTech = (projectEvidence[p.title]?.verified ? projectEvidence[p.title].canonicalSkills : labels(p.tech))
     .slice(0, 3)
     .map((s) => '"' + s + '"')
     .join(", ");
@@ -135,8 +149,10 @@ export const projects = raw.map((p, i) => {
     codeText,
     ai: !!p.ai,
     accent: accents[i % accents.length],
-    tech: labels(p.tech),
+    tech: projectEvidence[p.title]?.verified ? [...projectEvidence[p.title].canonicalSkills, ...projectEvidence[p.title].supportingTechnologies] : labels(p.tech),
     openUrl: p.live || p.code,
+    liveUrl: p.live || null,
+    codeUrl: p.code || null,
     statusLabel: inProgress ? "In progress" : "Live",
     statusColor: inProgress ? "#e0a93b" : "#5fd07a",
     liveLabel: hasLive ? "visit live ↗" : "view repo ↗",
@@ -155,7 +171,18 @@ const stackBase = [
   { name: "Tailwind", icon: asset("assets/tech/tailwind.svg") },
   { name: "Python", icon: asset("assets/tech/python.png") },
   { name: "Electron", icon: asset("assets/tech/electron.png") },
-  { name: "Swift", icon: asset("assets/tech/swift.png") },
+  { name: "Swift", icon: asset("assets/tech/swift.svg") },
+  { name: "GitHub Actions", icon: asset("assets/tech/github-actions.svg") },
+  { name: "Xcode", icon: asset("assets/tech/xcode.svg") },
+  { name: "Figma", icon: asset("assets/tech/figma.svg") },
+  { name: "Vite.js", icon: asset("assets/tech/vite.svg") },
+  { name: "Ubuntu", icon: asset("assets/tech/ubuntu.svg") },
+  { name: "Linux", icon: asset("assets/tech/linux.svg") },
+  { name: "Kubernetes", icon: asset("assets/tech/kubernetes.svg") },
+  { name: "Firebase", icon: asset("assets/tech/firebase.svg") },
+  { name: "Docker", icon: asset("assets/tech/docker.svg") },
+  { name: "Azure SQL Database", icon: asset("assets/tech/azure-sql-database.svg") },
+  { name: "kind", icon: asset("assets/tech/kind.jpg") },
 ];
 
 export const stack = stackBase.map((s, i) => ({ ...s, delay: (i % 5) * 60 }));

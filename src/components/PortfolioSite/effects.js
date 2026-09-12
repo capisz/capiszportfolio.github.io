@@ -1,323 +1,112 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 
-// Ports the design's support.js componentDidMount interaction logic to a React
-// effect that operates on the mounted DOM via the given root ref. Everything is
-// gated on prefers-reduced-motion.
-export default function usePortfolioEffects(rootRef) {
+export default function usePortfolioEffects(rootRef, motion) {
+  const entered = useRef(false);
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
-
-    const reduce =
-      window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const q = (sel) => Array.from(root.querySelectorAll(sel));
-    const cleanups = [];
-
-    // ---- reveal on scroll (force-show once in view) ----
-    const forceShow = (el) => {
-      if (el.__shown) return;
-      el.__shown = true;
-      el.style.animation = "none";
-      el.style.opacity = "1";
-      el.style.transform = "none";
-    };
-
-    const revealEls = q("[data-reveal]");
-    if (reduce) {
-      revealEls.forEach(forceShow);
-    } else {
-      const revealIO = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (!e.isIntersecting) return;
-            const el = e.target;
-            revealIO.unobserve(el);
-            // never re-hide/re-animate something already visible — doing so
-            // flashed content to opacity 0 as it scrolled into view
-            if (el.__shown) return;
-            el.__shown = true;
-            const d = parseInt(el.getAttribute("data-delay") || "0", 10);
-            el.style.animation =
-              "pf-reveal .7s cubic-bezier(.2,.7,.2,1) " + d + "ms both";
-            el.addEventListener(
-              "animationend",
-              () => {
-                el.style.animation = "none";
-                el.style.opacity = "1";
-                el.style.transform = "none";
-              },
-              { once: true }
-            );
-          });
-        },
-        { threshold: 0.05, rootMargin: "0px 0px -4% 0px" }
-      );
-      const vh = window.innerHeight || 800;
-      revealEls.forEach((el) => {
-        if (el.getBoundingClientRect().top < vh * 0.97) {
-          forceShow(el);
-        } else {
-          el.style.opacity = "0";
-          revealIO.observe(el);
+    const cleanup = [];
+    const q = selector => Array.from(root.querySelectorAll(selector));
+    const context = gsap.context(() => {}, root);
+    const animate = (target, from, to) => context.add(() => gsap.fromTo(target, from, to));
+    const textarea=root.querySelector('textarea');
+    let typingTimer;
+    const typing=()=>{if(!motion)return;textarea?.closest('.pm-composer')?.classList.add('is-typing');clearTimeout(typingTimer);typingTimer=setTimeout(()=>textarea?.closest('.pm-composer')?.classList.remove('is-typing'),900);};
+    textarea?.addEventListener('input',typing);
+    cleanup.push(()=>{textarea?.removeEventListener('input',typing);clearTimeout(typingTimer);textarea?.closest('.pm-composer')?.classList.remove('is-typing');});
+    const reveals = q('[data-reveal]');
+    // Elements are visible in base CSS. Motion is an enhancement, never a gate.
+    const revealIO = new IntersectionObserver(entries => {
+      entries.forEach(({target, isIntersecting}) => {
+        if (!isIntersecting) return;
+        revealIO.unobserve(target);
+        if (target.dataset.entered) return;
+        target.dataset.entered = 'true';
+        target.classList.add('is-entered');
+        if (!motion) return;
+        animate(target, {y: 0, opacity: 1}, {y: 0, opacity: 1, duration: .45, delay: Number(target.dataset.delay || 0) / 1000, ease: 'power3.out', clearProps: 'transform,opacity'});
+        const heading=target.querySelector('[data-heading]');
+        if(heading) animate(heading,{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:.45,ease:'power2.out',clearProps:'clipPath'});
+        const icon = target.querySelector('.pf-stack-icon');
+        if (icon) animate(icon, {rotation: -14, scale: .8}, {rotation: 0, scale: 1, duration: .6, ease: 'back.out(1.4)', clearProps: 'transform'});
+        if (target.hasAttribute('data-contact-reveal')) {
+          animate(target.querySelectorAll('.pf-contact-word'), {y: 22, opacity: .3, scale: .97}, {y: 0, opacity: 1, scale: 1, stagger: .09, duration: .65, ease: 'back.out(1.35)', clearProps: 'transform,opacity'});
         }
       });
-      cleanups.push(() => revealIO.disconnect());
-      // safety: rescue only elements already inside the viewport that never
-      // revealed. Below-fold elements must stay hidden until the observer
-      // animates them in — blanket-showing them here made the observer later
-      // re-animate visible content (the scroll flicker).
-      const safety = setTimeout(() => {
-        const h = window.innerHeight || 800;
-        revealEls.forEach((el) => {
-          const r = el.getBoundingClientRect();
-          if (!el.__shown && r.top < h && r.bottom > 0) forceShow(el);
-        });
-      }, 1600);
-      cleanups.push(() => clearTimeout(safety));
+    }, {threshold: .08});
+    reveals.forEach(el => revealIO.observe(el));
+    cleanup.push(() => revealIO.disconnect());
+    const ticker=root.querySelector('.pf-ticker');
+    const tickerIO=new IntersectionObserver(([e])=>ticker?.classList.toggle('is-offscreen',!e.isIntersecting));
+    if(ticker)tickerIO.observe(ticker);
+    cleanup.push(()=>tickerIO.disconnect());
+
+    if (!entered.current && motion) {
+      const words = q('.pm-title-word');
+      animate(words, {y: 35, opacity: .25, rotationX: 12}, {y: 0, opacity: 1, rotationX: 0, stagger: .075, duration: .45, ease: 'power3.out', clearProps: 'transform,opacity'});
+      entered.current = true;
     }
+    let frame = 0;
 
-    // ---- count-up stats ----
-    const animateCount = (el) => {
-      const target = parseInt(el.getAttribute("data-countup"), 10);
-      if (isNaN(target)) return;
-      const dur = 1000;
-      const start = performance.now();
-      const step = (now) => {
-        const t = Math.min(1, (now - start) / dur);
-        const val = Math.round(target * (1 - Math.pow(1 - t, 3)));
-        el.textContent = String(val);
-        if (t < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
+
+    let activeMagnet = null;
+    const layers = q('[data-depth]');
+    const nav = root.querySelector('.pf-nav');
+    const measureNav=()=>root.style.setProperty('--nav-height',`${nav?.getBoundingClientRect().height||100}px`);
+    measureNav();
+    const navObserver=typeof ResizeObserver!=='undefined'?new ResizeObserver(measureNav):null;
+    if(nav)navObserver?.observe(nav);
+    cleanup.push(()=>navObserver?.disconnect());
+    const progress = root.querySelector('[data-progress]');
+    const sections = q('section[id]');
+    const update = () => {
+      frame = 0;
+      const y = window.scrollY;
+      nav?.classList.toggle('is-scrolled', y > 20);
+      if (progress) progress.style.transform = `scaleX(${Math.min(1, y / Math.max(1, document.documentElement.scrollHeight - window.innerHeight))})`;
+      let active = 'top';
+      sections.forEach(section => { if (section.getBoundingClientRect().top <= 150) active = section.id; });
+      root.dataset.section=active;
+      q('.pf-navlink').forEach(link => link.classList.toggle('is-active', link.hash === '#' + active));
+      if (!motion) return;
+      if (activeMagnet) {
+        const {el,x,y:localY} = activeMagnet;
+        el.firstElementChild.style.transform = `translate(${Math.max(-6,Math.min(6,x))}px,${Math.max(-6,Math.min(6,localY))}px)`;
+      }
     };
-    const countIO = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            animateCount(e.target);
-            countIO.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
-    q("[data-countup]").forEach((el) => countIO.observe(el));
-    cleanups.push(() => countIO.disconnect());
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    const scroll=schedule;
+    window.addEventListener('scroll', scroll, {passive:true});
+    window.addEventListener('resize', schedule, {passive:true});
+    cleanup.push(() => { window.removeEventListener('scroll', scroll); window.removeEventListener('resize', schedule); cancelAnimationFrame(frame); });
+    if (motion && window.innerWidth>=900 && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
 
-    // ---- videos: freeze a representative frame (static) or play while in view ----
-    const playIO = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          const v = e.target;
-          if (e.isIntersecting) v.play && v.play().catch(() => {});
-          else v.pause && v.pause();
-        });
-      },
-      { threshold: 0.2 }
-    );
-    q("video[data-pv]").forEach((v) => {
-      if (v.hasAttribute("data-static")) {
-        v.removeAttribute("loop");
-        v.addEventListener(
-          "loadeddata",
-          () => {
-            try {
-              v.currentTime = Math.min(0.6, (v.duration || 2) / 4);
-            } catch (err) {}
-            v.pause();
-          },
-          { once: true }
-        );
-        v.addEventListener("seeked", () => v.pause(), { once: true });
-        v.load();
-      } else {
-        playIO.observe(v);
+      q('[data-magnetic]').forEach(el => {
+        const onMove=e=>{const r=el.getBoundingClientRect();activeMagnet={el,x:(e.clientX-r.left-r.width/2)*.1,y:(e.clientY-r.top-r.height/2)*.2};schedule();};
+        const leave=()=>{activeMagnet=null;el.firstElementChild.style.transform='';};
+        el.addEventListener('pointermove',onMove);el.addEventListener('pointerleave',leave);
+        cleanup.push(()=>{leave();el.removeEventListener('pointermove',onMove);el.removeEventListener('pointerleave',leave);});
+      });
+    }
+    update();
+    return () => {cleanup.forEach(fn=>fn());context.revert();layers.forEach(el=>{el.style.transform='';});q('.pf-code-column').forEach(el=>el.getAnimations?.().forEach(a=>{a.playbackRate=1;}));};
+  }, [rootRef, motion]);
+}
+
+export function useResultMotion(resultRef, scoreRef, result, motion) {
+  useLayoutEffect(() => {
+    if (!result?.best || !motion) return;
+    const context=gsap.context(()=>{
+      const media=resultRef.current?.previousElementSibling;
+      if(media)gsap.fromTo(media,{opacity:0,scale:.985},{opacity:1,scale:1,duration:.7,ease:'power2.out',clearProps:'transform,opacity'});
+      gsap.fromTo(resultRef.current,{opacity:0,y:12},{opacity:1,y:0,duration:.5,ease:'power2.out',clearProps:'transform,opacity'});
+      gsap.fromTo(resultRef.current?.querySelectorAll('.pm-tags > span'),{opacity:0,y:7},{opacity:1,y:0,stagger:.07,duration:.3,delay:.18,ease:'power2.out',clearProps:'transform,opacity'});
+      if(scoreRef.current && (result.best || result.suggestion).alignment !== null){
+        const value={score:0};
+        gsap.to(value,{score:(result.best || result.suggestion).alignment,duration:.8,ease:'power2.out',onUpdate:()=>{if(scoreRef.current)scoreRef.current.textContent=String(Math.round(value.score));},onInterrupt:()=>{if(scoreRef.current)scoreRef.current.textContent=String((result.best || result.suggestion).alignment);}});
       }
     });
-    cleanups.push(() => playIO.disconnect());
-
-    // ---- card 3D tilt + media zoom + code overlay reveal ----
-    if (!reduce && window.matchMedia("(hover: hover)").matches) {
-      q("[data-tilt]").forEach((card) => {
-        const max = parseFloat(card.getAttribute("data-tilt")) || 5;
-        const accent = card.getAttribute("data-accent") || "#ffd54a";
-        const media = card.querySelector("[data-media]");
-        const overlay = card.querySelector("[data-codeoverlay]");
-        const onMove = (e) => {
-          const r = card.getBoundingClientRect();
-          const px = (e.clientX - r.left) / r.width - 0.5;
-          const py = (e.clientY - r.top) / r.height - 0.5;
-          card.style.transform =
-            "perspective(900px) rotateY(" +
-            (px * max).toFixed(2) +
-            "deg) rotateX(" +
-            (-py * max).toFixed(2) +
-            "deg) translateY(-5px)";
-          card.style.borderColor = accent;
-          card.style.boxShadow =
-            "0 24px 48px -26px rgba(0,0,0,0.6), 0 0 0 1px " + accent + "55";
-          if (media && media.tagName !== "PRE") media.style.transform = "scale(1.07)";
-          if (overlay) overlay.style.opacity = "1";
-        };
-        const onLeave = () => {
-          card.style.transform = "";
-          // restore the resting accent tint (set inline in JSX) — clearing to ''
-          // would wipe that inline style along with the hover color
-          card.style.borderColor = accent + "2e";
-          card.style.boxShadow = "";
-          if (media) media.style.transform = "";
-          if (overlay) overlay.style.opacity = "0";
-        };
-        card.addEventListener("mousemove", onMove);
-        card.addEventListener("mouseleave", onLeave);
-        cleanups.push(() => {
-          card.removeEventListener("mousemove", onMove);
-          card.removeEventListener("mouseleave", onLeave);
-        });
-      });
-    }
-
-    // ---- glass/ice readability: hovering a bare-background text block frosts
-    // its legibility patch (pf-glass) and dims the cursor torch so the
-    // brightened code never fights the text ----
-    const torchLayer = root.querySelector("[data-codebg]");
-    q("[data-textguard]").forEach((block) => {
-      const enter = () => {
-        block.classList.add("pf-glass");
-        if (torchLayer) torchLayer.classList.add("pf-torch-dimmed");
-      };
-      const leave = () => {
-        block.classList.remove("pf-glass");
-        if (torchLayer) torchLayer.classList.remove("pf-torch-dimmed");
-      };
-      block.addEventListener("pointerenter", enter);
-      block.addEventListener("pointerleave", leave);
-      cleanups.push(() => {
-        block.removeEventListener("pointerenter", enter);
-        block.removeEventListener("pointerleave", leave);
-      });
-    });
-
-    // ---- code waterfall: cursor torch mask ----
-    const codebg = root.querySelector("[data-codebg]");
-    if (codebg && !reduce) {
-      const setMask = (x, y) => {
-        const m =
-          "radial-gradient(circle 210px at " +
-          x +
-          "px " +
-          y +
-          "px,#000 0%,rgba(0,0,0,0.55) 48%,transparent 74%)";
-        codebg.style.webkitMaskImage = m;
-        codebg.style.maskImage = m;
-      };
-      const onMouseMove = (e) => setMask(e.clientX, e.clientY);
-      const onMouseLeave = () => setMask(-400, -400);
-      window.addEventListener("mousemove", onMouseMove, { passive: true });
-      document.addEventListener("mouseleave", onMouseLeave);
-      cleanups.push(() => {
-        window.removeEventListener("mousemove", onMouseMove);
-        document.removeEventListener("mouseleave", onMouseLeave);
-      });
-    }
-
-    // ---- parallax + nav shadow + scroll-progress bar ----
-    const plx = q("[data-parallax]").map((el) => ({
-      el,
-      speed: parseFloat(el.getAttribute("data-parallax")) || 0,
-    }));
-    const nav = root.querySelector("[data-nav]");
-    const bar = root.querySelector("[data-progress]");
-    const navSections = ["work", "about", "stack", "contact"]
-      .map((id) => ({ id, el: document.getElementById(id) }))
-      .filter((s) => s.el);
-    const navLinks = q(".pf-navlink");
-    const onScroll = () => {
-      const y = window.scrollY || window.pageYOffset || 0;
-      if (!reduce)
-        plx.forEach((p) => {
-          p.el.style.transform = "translate3d(0," + (y * p.speed).toFixed(1) + "px,0)";
-        });
-      if (nav) {
-        if (y > 8) {
-          nav.style.boxShadow = "0 10px 30px -16px rgba(0,0,0,0.7)";
-          nav.style.borderBottomColor = "rgba(255,255,255,0.16)";
-        } else {
-          nav.style.boxShadow = "none";
-          nav.style.borderBottomColor = "rgba(255,255,255,0.10)";
-        }
-      }
-      if (bar) {
-        const max = document.documentElement.scrollHeight - window.innerHeight || 1;
-        bar.style.width = Math.min(100, (y / max) * 100) + "%";
-      }
-      // reveal fallback: show anything already well inside the viewport that
-      // the observer hasn't animated yet. The observer triggers at the ~96%
-      // line, so at normal scroll speed it wins and the animation plays; this
-      // only catches very fast scrolls and environments where
-      // IntersectionObserver misbehaves — content must never stay hidden.
-      const h = window.innerHeight || 800;
-      revealEls.forEach((el) => {
-        if (!el.__shown) {
-          const r = el.getBoundingClientRect();
-          if (r.top < h * 0.75 && r.bottom > 0) forceShow(el);
-        }
-      });
-      // active nav link: highlight the section containing the upper-third line
-      const probe = y + h * 0.35;
-      let activeId = "";
-      navSections.forEach((s) => {
-        if (probe >= s.el.offsetTop) activeId = s.id;
-      });
-      navLinks.forEach((l) => {
-        l.classList.toggle("is-active", l.getAttribute("href") === "#" + activeId);
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    cleanups.push(() => window.removeEventListener("scroll", onScroll));
-
-    // ---- marquee: randomly glow items as they travel ----
-    if (!reduce) {
-      const glowAccents = ["#ffd54a", "#3fd6c2", "#b794ff", "#ff8a5c", "#74e0a0"];
-      const items = q("[data-marquee] > div");
-      items.forEach((it) => {
-        const label = it.querySelector("span:last-child");
-        const icon = it.querySelector("span:first-child");
-        if (label) label.style.transition = "color .5s ease, text-shadow .5s ease";
-        if (icon) icon.style.transition = "opacity .5s ease, filter .5s ease";
-      });
-      const glowOne = () => {
-        if (!items.length) return;
-        const it = items[Math.floor(Math.random() * items.length)];
-        const c = glowAccents[Math.floor(Math.random() * glowAccents.length)];
-        const label = it.querySelector("span:last-child");
-        const icon = it.querySelector("span:first-child");
-        if (label) {
-          label.style.color = c;
-          label.style.textShadow = "0 0 14px " + c;
-        }
-        if (icon) {
-          icon.style.opacity = "1";
-          icon.style.filter = "drop-shadow(0 0 8px " + c + ")";
-        }
-        setTimeout(() => {
-          if (label) {
-            label.style.color = "";
-            label.style.textShadow = "";
-          }
-          if (icon) {
-            icon.style.opacity = "";
-            icon.style.filter = "";
-          }
-        }, 1400);
-      };
-      const glowTimer = setInterval(glowOne, 900);
-      cleanups.push(() => clearInterval(glowTimer));
-    }
-
-    return () => cleanups.forEach((fn) => fn());
-  }, [rootRef]);
+    return()=>context.revert();
+  },[resultRef,scoreRef,result,motion]);
 }

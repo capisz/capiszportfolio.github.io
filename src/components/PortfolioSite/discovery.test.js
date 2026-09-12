@@ -1,0 +1,50 @@
+import {fireEvent,render,screen} from '@testing-library/react';
+import PortfolioSite from './index';
+jest.mock('./effects',()=>({__esModule:true,default:()=>{},useResultMotion:()=>{}}));
+jest.mock('./motion',()=>({useMotionPreferences:()=>({enabled:false}),useTypewriter:()=>''}));
+jest.mock('./PixelKnight',()=>()=>null);
+jest.mock('./ProjectMedia',()=>({__esModule:true,default:({project,mediaId})=><div data-media-id={mediaId} aria-label={`${project.title} demo media`}/>,PlaybackProvider:({children})=>children}));
+beforeEach(()=>{global.IntersectionObserver=class{observe(){}disconnect(){}};});
+test('recommendations and full gallery require a choice and requested toolkit items highlight',()=>{
+ const {container}=render(<PortfolioSite/>);
+ fireEvent.change(screen.getByRole('textbox'),{target:{value:'React Firebase Azure'}});
+ fireEvent.click(screen.getByRole('button',{name:'Find a relevant project'}));
+ expect(container.querySelectorAll('.pf-related-card')).toHaveLength(0);
+ expect(container.querySelectorAll('#work article')).toHaveLength(0);
+ expect([...container.querySelectorAll('.pf-stack-pill.is-requested')].map(e=>e.textContent)).toEqual(['React','Firebase','Azure SQL Database']);
+ fireEvent.click(screen.getByRole('button',{name:'Show me more related projects'}));
+ expect(container.querySelectorAll('.pf-related-card')).toHaveLength(4);
+ expect(container.querySelectorAll('.pf-related-card [data-media-id^="related:"]')).toHaveLength(4);
+ expect(container.querySelectorAll('#work article')).toHaveLength(0);
+ fireEvent.click(screen.getAllByRole('button',{name:/Show me your entire portfolio/})[0]);
+ expect(container.querySelectorAll('#work article')).toHaveLength(13);
+ expect(container.querySelectorAll('.pf-related-card')).toHaveLength(0);
+ fireEvent.change(screen.getByRole('textbox'),{target:{value:'Python'}});
+ expect(container.querySelectorAll('.is-requested')).toHaveLength(0);
+ expect(container.querySelectorAll('#work article')).toHaveLength(0);
+});
+
+test.each(['React + TypeScript','Python + Claude','Docker + Kubernetes'])('preset %s behaves identically to typed input without duplicate portfolio buttons',brief=>{
+ const {container}=render(<PortfolioSite/>);
+ fireEvent.click(screen.getByText('Try an example'));
+ fireEvent.click(screen.getByRole('button',{name:brief}));
+ fireEvent.click(screen.getByRole('button',{name:'Find a relevant project'}));
+ const presetTitle=container.querySelector('.pm-project h2').textContent;
+ const presetDisabled=screen.getByRole('button',{name:'Show me more related projects'}).disabled;
+ if(brief==='React + TypeScript')expect(presetDisabled).toBe(false);
+ expect(screen.getAllByRole('button',{name:'Show me your entire portfolio'})).toHaveLength(1);
+ if(presetDisabled)expect(screen.getByText(/only project with evidence/)).toBeVisible();
+ fireEvent.change(screen.getByRole('textbox'),{target:{value:brief+' '}});
+ fireEvent.click(screen.getByRole('button',{name:'Find a relevant project'}));
+ expect(container.querySelector('.pm-project h2')).toHaveTextContent(presetTitle);
+ expect(screen.getByRole('button',{name:'Show me more related projects'}).disabled).toBe(presetDisabled);
+ expect(screen.getAllByRole('button',{name:'Show me your entire portfolio'})).toHaveLength(1);
+});
+
+test('empty discovery provides a tailored-results hint and one centered set of choices',()=>{
+ const {container}=render(<PortfolioSite/>);
+ expect(screen.getByText(/Enter the role or technologies/)).toBeVisible();
+ expect(screen.getByRole('button',{name:'Show me more related projects'})).toBeDisabled();
+ expect(screen.getAllByRole('button',{name:'Show me your entire portfolio'})).toHaveLength(1);
+ expect(container.querySelector('.pf-empty-discovery .pf-discovery-actions')).toBeInTheDocument();
+});

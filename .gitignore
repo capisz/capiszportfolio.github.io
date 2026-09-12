@@ -3,3 +3,6 @@ build/
 .DS_Store
 .env
 design_handoff_portfolio/
+
+# Parser runtime is generated from locked dependencies by prestart/prebuild.
+/public/vendor/

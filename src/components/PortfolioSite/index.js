@@ -1,551 +1,159 @@
-import { useRef } from "react";
-import "./index.scss";
-import usePortfolioEffects from "./effects";
-import {
-  featured,
-  projects,
-  stack,
-  marquee,
-  codeColumns,
-  links,
-} from "../../data/portfolioContent";
+import { useEffect, useRef, useState } from 'react';
+import './index.scss';
+import usePortfolioEffects from './effects';
+import { useMotionPreferences, useTypewriter } from './motion';
+import ProjectMatcher from './ProjectMatcher';
+import PixelKnight from './PixelKnight';
+import ProjectMedia, { PlaybackProvider } from './ProjectMedia';
+import { presentation } from './projectPresentation';
+import { stack, codeColumns, links } from '../../data/portfolioContent';
 
-function ProjectMedia({ project }) {
-  if (project.isVideoPortrait) {
-    return (
-      <div data-media className="pf-media-el pf-media-video-portrait">
-        <video
-          data-pv
-          src={project.media}
-          aria-hidden="true"
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="pf-media-video-portrait-bg"
-        />
-        <video
-          data-pv
-          src={project.media}
-          aria-label={project.title}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="pf-media-video-portrait-main"
-        />
-      </div>
-    );
-  }
-  if (project.isVideo) {
-    return (
-      <video
-        data-media
-        data-pv
-        src={project.media}
-        aria-label={project.title}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        className="pf-media-el pf-media-video"
-      />
-    );
-  }
-  if (project.isImage) {
-    return (
-      <div
-        data-media
-        role="img"
-        aria-label={project.title}
-        className="pf-media-el pf-media-image"
-        style={{ backgroundImage: `url('${project.media}')` }}
-      />
-    );
-  }
-  if (project.isGifPortrait) {
-    return (
-      <div data-media className="pf-media-el pf-media-gifportrait">
-        <img src={project.media} alt={project.title} />
-      </div>
-    );
-  }
-  if (project.isGif) {
-    return (
-      <div data-media className="pf-media-el pf-media-gif">
-        <img src={project.media} alt={project.title} />
-      </div>
-    );
-  }
-  // isCode
-  return (
-    <pre data-media className="pf-media-el pf-media-code">
-      {project.codeText}
-    </pre>
-  );
+const Arrow = () => <span className="pf-link-arrow" aria-hidden="true">↗</span>;
+function ProjectLinks({project}) {
+  return <div className="pf-project-links">
+    {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`}>Open project <Arrow /></a>}
+    {project.codeUrl && <a href={project.codeUrl} target="_blank" rel="noreferrer" aria-label={`View ${project.title} source`}>View source <Arrow /></a>}
+  </div>;
 }
-
-export default function PortfolioSite() {
-  const rootRef = useRef(null);
-  usePortfolioEffects(rootRef);
-
-  return (
-    <div className="pf-root" ref={rootRef}>
-      {/* scroll progress */}
-      <div className="pf-progress-track">
-        <div data-progress className="pf-progress-bar" />
-      </div>
-
-      {/* code waterfall — base (always faint) + cursor-revealed torch layer */}
-      <div data-codebg-base className="pf-codebg pf-codebg-base">
-        {codeColumns.map((col, i) => (
-          <pre
-            key={i}
-            data-codecol
-            data-parallax={col.speed}
-            className="pf-codecol"
-            style={{ color: col.color }}
-          >
-            {col.text}
-          </pre>
-        ))}
-      </div>
-      <div data-codebg className="pf-codebg pf-codebg-torch">
-        {codeColumns.map((col, i) => (
-          <pre
-            key={i}
-            data-codecol
-            data-parallax={col.speed}
-            className="pf-codecol"
-            style={{ color: col.color }}
-          >
-            {col.text}
-          </pre>
-        ))}
-      </div>
-
-      {/* async illuminating background patches */}
-      <div aria-hidden="true" className="pf-glows">
-        <span className="pf-glow pf-glow-1" />
-        <span className="pf-glow pf-glow-2" />
-        <span className="pf-glow pf-glow-3" />
-        <span className="pf-glow pf-glow-4" />
-        <span className="pf-glow pf-glow-5" />
-        <span className="pf-glow pf-glow-6" />
-        <span className="pf-glow pf-glow-7" />
-      </div>
-
-      <div className="pf-content">
-        {/* NAV */}
-        <header data-nav className="pf-nav">
-          <div className="pf-nav-inner">
-            <a href="#top" className="pf-brand">
-              <span className="pf-monogram">CC</span>
-              <span className="pf-brand-name">Chris Capizzuto</span>
-            </a>
-            <nav className="pf-nav-links">
-              <a href="#work" className="pf-navlink">work</a>
-              <a href="#about" className="pf-navlink">about</a>
-              <a href="#stack" className="pf-navlink">stack</a>
-              <a href="#contact" className="pf-navlink">contact</a>
-              <a href={links.resume} download className="pf-resume-btn">
-                Résumé ↓
-              </a>
-            </nav>
-          </div>
-        </header>
-
-        {/* HERO */}
-        <section id="top" data-hero className="pf-hero">
-          <div className="pf-hero-left" data-textguard>
-            <div aria-hidden="true" className="pf-hero-backdrop" />
-            <div data-reveal className="pf-pill">
-              <span className="pf-pill-dot" />
-              Open to software engineering roles
-            </div>
-            <h1 data-reveal data-delay="60" className="pf-h1">
-              Software engineer building
-              <br />
-              <span className="pf-teal">useful</span>, data-driven
-              <br />
-              <span className="pf-yellow">web apps.</span>
-            </h1>
-            <p data-reveal data-delay="120" className="pf-hero-sub">
-              I'm Chris — a full-stack developer in New York who turns real
-              problems into simple, fast products with{" "}
-              <span className="pf-strong">React</span>,{" "}
-              <span className="pf-strong">Next.js</span>,{" "}
-              <span className="pf-strong">TypeScript</span> and{" "}
-              <span className="pf-strong">Node</span> — increasingly with{" "}
-              <span className="pf-strong pf-strong-yellow">AI</span> woven in.
-            </p>
-            <div data-reveal data-delay="180" className="pf-hero-ctas">
-              <a href="#work" className="pf-btn pf-btn-yellow">
-                View my work →
-              </a>
-              <a href={links.email} className="pf-btn pf-btn-outline">
-                Get in touch
-              </a>
-            </div>
-            <div data-reveal data-delay="240" className="pf-stats">
-              <div aria-hidden="true" className="pf-stats-backdrop" />
-              <div className="pf-stat">
-                <div data-countup="13" className="pf-stat-num pf-stat-yellow">13</div>
-                <div className="pf-stat-label">projects shipped</div>
-              </div>
-              <div className="pf-stat-div" />
-              <div className="pf-stat">
-                <div data-countup="11" className="pf-stat-num pf-stat-teal">11</div>
-                <div className="pf-stat-label">live in production</div>
-              </div>
-              <div className="pf-stat-div" />
-              <div className="pf-stat">
-                <div data-countup="2" className="pf-stat-num pf-stat-orange">2</div>
-                <div className="pf-stat-label">AI integrations</div>
-              </div>
-            </div>
-          </div>
-
-          {/* code card */}
-          <div aria-hidden="true" className="pf-card-backdrop" />
-          <div data-reveal data-delay="120" data-parallax="-0.05" className="pf-codecard">
-            <div className="pf-codecard-bar">
-              <span className="pf-dot pf-dot-r" />
-              <span className="pf-dot pf-dot-y" />
-              <span className="pf-dot pf-dot-g" />
-              <span className="pf-codecard-title">chris.ts</span>
-            </div>
-            <pre className="pf-codecard-body">
-              <span className="c-key">const</span>{" "}
-              <span className="c-var">chris</span> = {"{"}
-              {"\n  role: "}
-              <span className="c-str">"Software Engineer"</span>,{"\n  location: "}
-              <span className="c-str">"New York, NY"</span>,{"\n  stack: ["}
-              <span className="c-str">"React"</span>,{" "}
-              <span className="c-str">"Next.js"</span>,{" "}
-              <span className="c-str">"TS"</span>
-              {"],\n  backend: ["}
-              <span className="c-str">"Node"</span>,{" "}
-              <span className="c-str">"FastAPI"</span>,{" "}
-              <span className="c-str">"Postgres"</span>
-              {"],\n  ai: ["}
-              <span className="c-str">"Claude"</span>,{" "}
-              <span className="c-str">"recommenders"</span>
-              {"],\n  status: "}
-              <span className="c-status">"available"</span>,{"\n}"}
-              <span className="pf-cursor" />
-            </pre>
-          </div>
-        </section>
-
-        {/* TECH MARQUEE */}
-        <div className="pf-marquee-wrap">
-          <div data-marquee className="pf-marquee">
-            {marquee.map((m, i) => (
-              <div key={i} className="pf-marquee-item">
-                <span
-                  aria-hidden="true"
-                  className="pf-marquee-icon"
-                  style={{ backgroundImage: `url('${m.icon}')` }}
-                />
-                <span className="pf-marquee-label">{m.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* WORK */}
-        <section id="work" className="pf-section pf-work">
-          <div data-reveal data-textguard className="pf-work-head">
-            <div aria-hidden="true" className="pf-work-head-backdrop" />
-            <div>
-              <div className="pf-eyebrow">
-                <span className="pf-eyebrow-bar pf-bar-yellow" />
-                <span className="pf-eyebrow-text pf-txt-yellow">Selected work</span>
-              </div>
-              <h2 className="pf-h2">Things I've built</h2>
-            </div>
-            <a
-              href={links.github}
-              target="_blank"
-              rel="noreferrer"
-              className="pf-work-gh"
-            >
-              github.com/capisz ↗
-            </a>
-          </div>
-
-          {/* featured */}
-          <a
-            data-reveal
-            data-tilt="3"
-            data-accent="#ffd700"
-            href={featured.openUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="pf-featured"
-            style={{ borderColor: "#ffd7002e" }}
-          >
-            <div className="pf-featured-media">
-              <div data-media className="pf-featured-media-inner">
-                {featured.media.endsWith(".mp4") ? (
-                  <video
-                    data-pv
-                    src={featured.media}
-                    aria-label={featured.title}
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    className="pf-featured-video"
-                  />
-                ) : (
-                  <img src={featured.media} alt={featured.title} />
-                )}
-              </div>
-              <pre data-codeoverlay className="pf-codeoverlay pf-codeoverlay-lg">
-                {featured.codeText}
-              </pre>
-            </div>
-            <div className="pf-featured-body">
-              <div className="pf-badges">
-                <span className="pf-badge-live">
-                  <span className="pf-badge-live-dot" />
-                  Live
-                </span>
-                <span className="pf-badge-featured">★ Featured</span>
-              </div>
-              <h3 className="pf-featured-title">{featured.title}</h3>
-              <p className="pf-featured-blurb">{featured.blurb}</p>
-              <div className="pf-chips">
-                {featured.tech.map((t) => (
-                  <span key={t} className="pf-chip pf-chip-lg">
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <div className="pf-featured-links">
-                <span className="pf-link-yellow">Visit live ↗</span>
-                <span className="pf-link-muted">View code ↗</span>
-              </div>
-            </div>
-          </a>
-
-          {/* grid */}
-          <div className="pf-grid">
-            {projects.map((project, i) => (
-              <a
-                key={i}
-                data-reveal
-                data-tilt="6"
-                data-accent={project.accent}
-                data-delay={project.revealDelay}
-                href={project.openUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="pf-card"
-                style={{ borderColor: `${project.accent}2e` }}
-              >
-                <div className="pf-card-media">
-                  <ProjectMedia project={project} />
-                  <span className="pf-status-pill">
-                    <span
-                      className="pf-status-dot"
-                      style={{ background: project.statusColor }}
-                    />
-                    {project.statusLabel}
-                  </span>
-                  {project.ai && <span className="pf-ai-badge">✦ AI</span>}
-                  <pre data-codeoverlay className="pf-codeoverlay">
-                    {project.codeText}
-                  </pre>
-                  <span
-                    data-accentbar
-                    className="pf-accentbar"
-                    style={{ background: project.accent }}
-                  />
-                </div>
-                <div className="pf-card-body">
-                  <h3 className="pf-card-title">{project.title}</h3>
-                  <p className="pf-card-blurb">{project.blurb}</p>
-                  <div className="pf-chips">
-                    {project.tech.map((t) => (
-                      <span key={t} className="pf-chip">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="pf-card-foot">
-                    <span
-                      className="pf-card-foot-live"
-                      style={{ color: project.liveColor }}
-                    >
-                      {project.liveLabel}
-                    </span>
-                    <span className="pf-card-foot-code">code ↗</span>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        {/* ABOUT */}
-        <section id="about" className="pf-section pf-about">
-          <div className="pf-about-grid">
-            <div data-reveal data-textguard className="pf-about-left">
-              <div aria-hidden="true" className="pf-about-backdrop" />
-              <div className="pf-eyebrow">
-                <span className="pf-eyebrow-bar pf-bar-teal" />
-                <span className="pf-eyebrow-text pf-txt-teal">About</span>
-              </div>
-              <h2 className="pf-h2">A bit about me</h2>
-              <p className="pf-about-p">
-                I'm a full-stack web developer based in New York who likes turning
-                real problems into simple, thoughtful, genuinely useful web apps.
-              </p>
-              <p className="pf-about-p">
-                Most of my work centers on <span className="pf-strong">React</span>,{" "}
-                <span className="pf-strong">Next.js</span> and{" "}
-                <span className="pf-strong">TypeScript</span> — building data-driven
-                products like a DraftKings lineup optimizer, a real-time
-                catcher-grading dashboard, and analysis tools for the Pokémon TCG. I
-                care about smooth UX, performance, and code the next developer can
-                actually read.
-              </p>
-              <p className="pf-about-p pf-about-p-last">
-                Lately I've been pairing <span className="pf-strong">Node</span>,{" "}
-                <span className="pf-strong">FastAPI</span> and{" "}
-                <span className="pf-strong">Postgres</span> back ends with{" "}
-                <span className="pf-strong pf-strong-yellow">AI</span> — a streamed
-                Claude analyst in backstop.ai and a local recommendation model in my
-                DraftKings optimizer — to turn raw data into clear, grounded
-                decisions.
-              </p>
-            </div>
-            <div className="pf-about-right">
-              <div data-reveal data-delay="80" className="pf-about-card">
-                <h3 className="pf-about-card-title">What I'm working on</h3>
-                <ul className="pf-about-list">
-                  <li>
-                    <span className="pf-arrow">→</span>Grounding AI features in real
-                    data so the output stays trustworthy
-                  </li>
-                  <li>
-                    <span className="pf-arrow">→</span>Integrating public + live APIs
-                    to extend what my apps can do
-                  </li>
-                  <li>
-                    <span className="pf-arrow">→</span>Solving niche and everyday
-                    problems alike — from parking to commerce
-                  </li>
-                </ul>
-              </div>
-              <div data-reveal data-delay="160" className="pf-about-card pf-about-card-yellow">
-                <h3 className="pf-about-card-title">Outside of code</h3>
-                <p className="pf-about-card-p">
-                  When I'm not building, I'm playing Pokémon or Magic, teaching chess
-                  to elementary-school kids, or lifting at the gym. I'm drawn to
-                  things that reward strategy, consistency, and steady long-term
-                  improvement — the same instincts I bring to engineering.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* STACK */}
-        <section id="stack" className="pf-section pf-stack">
-          <div data-reveal data-textguard className="pf-stack-head">
-            <div aria-hidden="true" className="pf-stack-backdrop" />
-            <div className="pf-eyebrow">
-              <span className="pf-eyebrow-bar pf-bar-purple" />
-              <span className="pf-eyebrow-text pf-txt-purple">Toolkit</span>
-            </div>
-            <h2 className="pf-h2">Tech I work with</h2>
-          </div>
-          <div className="pf-stack-grid">
-            {stack.map((s, i) => (
-              <div key={i} data-reveal data-delay={s.delay} className="pf-stack-tile">
-                <span
-                  aria-hidden="true"
-                  className="pf-stack-icon"
-                  style={{ backgroundImage: `url('${s.icon}')` }}
-                />
-                <span className="pf-stack-name">{s.name}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* CONTACT */}
-        <section id="contact" className="pf-section pf-contact">
-          <div data-reveal className="pf-contact-card">
-            <div className="pf-contact-left">
-              <div className="pf-eyebrow">
-                <span className="pf-eyebrow-bar pf-bar-orange" />
-                <span className="pf-eyebrow-text pf-txt-orange">Contact</span>
-              </div>
-              <h2 className="pf-contact-title">
-                Let's build
-                <br />
-                something <span className="pf-orange">good.</span>
-              </h2>
-              <p className="pf-contact-blurb">
-                Open to software engineering roles and interesting projects. The
-                fastest way to reach me is email — I usually reply within a day.
-              </p>
-              <div className="pf-contact-ctas">
-                <a href={links.email} className="pf-btn pf-btn-yellow">
-                  {links.emailLabel}
-                </a>
-                <a href={links.resume} download className="pf-btn pf-btn-outline">
-                  Download résumé ↓
-                </a>
-              </div>
-            </div>
-            <div className="pf-contact-right">
-              <a
-                href={links.github}
-                target="_blank"
-                rel="noreferrer"
-                className="pf-contact-row"
-              >
-                <span className="pf-contact-row-text">
-                  <span className="pf-contact-row-label">GitHub</span>
-                  <span className="pf-contact-row-val">{links.githubLabel}</span>
-                </span>
-                <span className="pf-contact-row-arrow">↗</span>
-              </a>
-              <a
-                href={links.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="pf-contact-row"
-              >
-                <span className="pf-contact-row-text">
-                  <span className="pf-contact-row-label">LinkedIn</span>
-                  <span className="pf-contact-row-val">{links.linkedinLabel}</span>
-                </span>
-                <span className="pf-contact-row-arrow">↗</span>
-              </a>
-              <a href={links.email} className="pf-contact-row">
-                <span className="pf-contact-row-text">
-                  <span className="pf-contact-row-label">Email</span>
-                  <span className="pf-contact-row-val">{links.emailLabel}</span>
-                </span>
-                <span className="pf-contact-row-arrow">↗</span>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* FOOTER */}
-        <footer className="pf-footer">
-          <span className="pf-footer-text">© 2026 Chris Capizzuto</span>
-          <span className="pf-footer-text">New York, NY · Built from scratch</span>
-        </footer>
-      </div>
+function UnderTheHood({project, motion}) {
+  const [open,setOpen]=useState(false);
+  const typed=useTypewriter(project.codeText, motion && open, 9);
+  return <details className="pf-underhood" onToggle={e=>setOpen(e.currentTarget.open)}><summary>Under the hood <span aria-hidden="true">＋</span></summary><pre aria-hidden="true">{typed}</pre><span className="pf-sr-only">{project.codeText}</span></details>;
+}
+function SectionHeading({label,title,children}) {
+  return <div className="pf-section-heading" data-reveal><div><span className="pf-eyebrow">{label}</span><h2 data-heading>{title}</h2></div>{children}</div>;
+}
+const groups = {
+  Frontend: ['React','Next.js','TypeScript','JavaScript','Tailwind','Swift','Electron'],
+  Backend: ['Node.js','Python','MongoDB','Firebase','Azure SQL Database'],
+  'Tools & infrastructure': ['GitHub Actions','Xcode','Figma','Vite.js','Ubuntu','Linux','Kubernetes','Docker','kind'],
+};
+function AlignmentIntro({result,motion,entire=false}) {
+  const skills=[...new Set([result?.best,...(result?.alternatives||[])].filter(Boolean).flatMap(p=>p.matched))];
+  const first=skills.length?`These projects connect to ${skills.join(', ')} in your brief.`:'Explore the projects and the problems they solve.';
+  const second=skills.length?(entire?'The closest matches come first, followed by the rest of my work.':'Each card shows the technologies we have in common. Take a closer look.'):'Take a look at the technologies behind them.';
+  return <p className="pf-alignment-intro pf-fade-intro"><span className="pf-typed-line">{first}</span><span className="pf-typed-line">{second}</span></p>;
+}
+function EmptyDiscovery({onBrowse}) {
+  const ref=useRef(null);
+  const [visible,setVisible]=useState(false);
+  useEffect(()=>{
+    const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){setVisible(true);observer.disconnect();}},{threshold:.2});
+    if(ref.current)observer.observe(ref.current);
+    return()=>observer.disconnect();
+  },[]);
+  return <div ref={ref} className={`pf-empty-discovery ${visible?'is-visible':''}`}>
+    <p id="tailored-hint">Enter the role or technologies you’re looking for above to get tailored project results.</p>
+    <a href="#top">Add what you’re looking for ↑</a>
+    <div className="pf-discovery-actions">
+      <button type="button" disabled aria-describedby="tailored-hint">Show me more related projects</button>
+      <button type="button" onClick={onBrowse}>Show me your entire portfolio</button>
     </div>
-  );
+  </div>;
+}
+function RelatedProjects({result,motion,choice,onChoice}) {
+  const ref=useRef(null);
+  const [visible,setVisible]=useState(false);
+  useEffect(()=>{
+    setVisible(false);
+    if(!motion){setVisible(true);return;}
+    const observer=new IntersectionObserver(entries=>{
+      if(entries.some(entry=>entry.isIntersecting)){setVisible(true);observer.disconnect();}
+    },{threshold:.15});
+    if(ref.current)observer.observe(ref.current);
+    return()=>observer.disconnect();
+  },[result,motion]);
+  if(!result?.best)return null;
+  return <section ref={ref} className={`pf-related pf-section ${visible?'is-visible':''}`} aria-labelledby="related-title">
+    <span className="pf-eyebrow">Keep exploring</span>
+    <h2 id="related-title">Want to see more projects that align with your tech stack?</h2>
+    {!result.alternatives.length&&<p id="related-empty" className="pf-related-empty">This is my only project with evidence for those technologies. You can still explore the entire portfolio.</p>}
+    <div className="pf-discovery-actions">
+      <button type="button" disabled={!result.alternatives.length} aria-describedby={!result.alternatives.length?'related-empty':undefined} aria-pressed={choice==='related'} onClick={()=>onChoice('related')}>Show me more related projects</button>
+      <button type="button" onClick={()=>onChoice('all')}>Show me your entire portfolio</button>
+    </div>
+    {choice==='related'&&<div className="pf-related-results"><AlignmentIntro result={result} motion={motion}/><div className="pf-related-grid">{result.alternatives.map((project,i)=>{
+      const display=presentation.find(p=>p.title===project.title);
+      return <article key={project.title} className="pf-related-card" style={{'--related-delay':`${2400+i*420}ms`}}>
+        <ProjectMedia mediaId={`related:${project.title}`} project={display} motion={motion} compact />
+        <h3><a href={project.openUrl} target="_blank" rel="noreferrer">{project.title} <Arrow /></a></h3><p>{display.shortDescription}</p>
+        <span className="pf-related-tech">{project.matched.join(' · ')}</span><a className="pf-related-action" href={project.openUrl} target="_blank" rel="noreferrer">Explore project ↗</a>
+      </article>;
+    })}</div></div>}
+  </section>;
+}
+export default function PortfolioSite() {
+  const rootRef=useRef(null);
+  const [match,setMatch]=useState(null);
+  const [choice,setChoice]=useState(null);
+  useEffect(()=>setChoice(null),[match]);
+  const showAll=()=>setChoice('all');
+  const choose=value=>setChoice(value);
+  const highlighted=match?.best?[match.best,...match.alternatives].map(p=>p.title):[];
+  const ordered=[...presentation].sort((a,b)=>{
+    const rank=p=>highlighted.includes(p.title)?highlighted.indexOf(p.title):presentation.length;
+    return rank(a)-rank(b);
+  });
+  const motion=useMotionPreferences();
+  useEffect(()=>{
+    if(choice!=='all'&&choice!=='related')return;
+    let frame;
+    const timer=setTimeout(()=>{
+      const target=choice==='related'?rootRef.current?.querySelector('.pf-related-results'):document.getElementById('work');
+      if(!target)return;
+      const start=window.scrollY;
+      const end=start+target.getBoundingClientRect().top-(rootRef.current?.querySelector('header')?.offsetHeight||100)-20;
+      if(!motion.enabled){window.scrollTo(0,end);return;}
+      const began=performance.now();
+      const step=now=>{const t=Math.min(1,(now-began)/1200);const eased=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;window.scrollTo({top:start+(end-start)*eased,behavior:'instant'});if(t<1)frame=requestAnimationFrame(step);};
+      frame=requestAnimationFrame(step);
+    },100);
+    const cancel=()=>{clearTimeout(timer);cancelAnimationFrame(frame);};
+    window.addEventListener('wheel',cancel,{passive:true});window.addEventListener('touchstart',cancel,{passive:true});window.addEventListener('keydown',cancel);
+    return()=>{cancel();window.removeEventListener('wheel',cancel);window.removeEventListener('touchstart',cancel);window.removeEventListener('keydown',cancel);};
+  },[choice,motion.enabled]);
+
+  usePortfolioEffects(rootRef,motion.enabled);
+  return <PlaybackProvider motion={motion.enabled}><div ref={rootRef} className={`pf-root ${motion.enabled ? 'motion-on' : 'motion-off'}`}>
+    <a className="pf-skip" href="#top">Skip to main content</a>
+    <div className="pf-progress" aria-hidden="true"><span data-progress /></div>
+    <div className="pf-atmosphere" aria-hidden="true">
+      {[0,1,2].map(layer=><div className={`pf-code-depth depth-${layer}`} data-depth={layer+1} key={layer}>
+        {[0,1].map(i=><pre key={i} className="pf-code-column" style={{'--code-color':codeColumns[layer*2+i].color,'--phase':`${-(layer*3+i*4)}s`}}>{codeColumns[layer*2+i].text.split('\n').slice(0,52).join('\n')}</pre>)}
+      </div>)}
+      <div className="pf-aura aura-teal" /><div className="pf-aura aura-violet" /><div className="pf-aura aura-gold" />
+    </div>
+    <header className="pf-nav"><div className="pf-nav-inner">
+      <a className="pf-brand" href="#top"><PixelKnight /><span>Chris Capizzuto</span></a>
+      <nav aria-label="Main navigation"><a className="pf-navlink" href="#work" onClick={showAll}>Work</a><a className="pf-navlink" href="#about">About</a><a className="pf-navlink" href="#stack">Stack</a><a className="pf-navlink" href="#contact">Contact</a></nav>
+      <div className="pf-nav-actions"><button className="pf-motion-toggle" type="button" onClick={motion.toggle} aria-pressed={motion.paused} disabled={motion.reduced} title={motion.reduced ? 'System reduced motion is enabled' : 'Pause or resume decorative motion'}>{motion.reduced ? 'Motion reduced' : motion.paused ? '▶ Resume motion' : 'Ⅱ Pause motion'}</button><a href={links.resume} download className="pf-resume" aria-label="Download résumé">Résumé <span aria-hidden="true">↓</span></a></div>
+    </div></header>
+    <main>
+      <ProjectMatcher motion={motion.enabled} onResult={setMatch} onBrowse={showAll} />
+      <RelatedProjects result={match} motion={motion.enabled} choice={choice} onChoice={choose} />
+      <div className="pf-ticker" tabIndex="0" aria-label="Technology ticker. Focus or hover to pause."><div className="pf-ticker-track">{[0,1].map(copy=><div className="pf-ticker-set" key={copy} aria-hidden={copy===1}>{stack.slice(0,10).map(s=><span key={s.name}><img src={s.icon} alt="" />{s.name}</span>)}</div>)}</div></div>
+      <section id="work" className="pf-section">
+        {choice!=='all'&&!match?.best&&<EmptyDiscovery onBrowse={showAll}/>}
+        {choice==='all'&&<>
+        <SectionHeading label="Selected work" title="A project built to solve a problem."><a className="pf-text-link" href={links.github} target="_blank" rel="noreferrer">All repositories <Arrow /></a></SectionHeading>
+        {highlighted.length>0&&<p className="pf-match-prompt">You may also be interested in these</p>}
+        <AlignmentIntro result={match} motion={motion.enabled} entire/>
+        <div className="pf-grid pf-cascade">{ordered.map((p,i)=><article className={`pf-card ${highlighted.includes(p.title)?'is-match':''}`} key={p.title} style={{'--cascade-delay':`${2400+Math.min(i,6)*350}ms`}}>
+          <div className="pf-card-visual"><ProjectMedia mediaId={`gallery:${p.title}`} project={p} motion={motion.enabled} compact /></div>
+          <div className="pf-card-body"><div className="pf-card-title-row"><h3>{p.title}</h3><span className={`pf-project-status ${p.liveUrl ? 'pf-live' : ''}`}>{p.statusLabel === 'In progress' ? 'In progress' : p.liveUrl ? 'Live' : 'Source available'}</span></div><p>{p.shortDescription}</p><div className="pf-tags">{p.tech.slice(0,4).map(t=><span key={t}>{t}</span>)}</div><ProjectLinks project={p} />{p.title==='PrizeCheck'&&<UnderTheHood project={p} motion={motion.enabled} />}</div>
+        </article>)}</div></>}
+      </section>
+      <section id="about" className="pf-section pf-about">
+        <div className="pf-about-surface"><SectionHeading label="About me" title="Good questions. Useful software." />
+        <div className="pf-about-grid"><div className="pf-about-copy">
+          <p data-reveal>I’m Chris, a software engineer in New York. I turn questions from everyday life into software I want to use.</p>
+          <p data-reveal>That might mean making a card-game routine easier to practice, comparing parking options, or explaining a baseball statistic. I build across <strong>React and Next.js</strong> interfaces and <strong>Node, FastAPI, and PostgreSQL</strong> backends, with attention to how the whole experience works.</p>
+          <p data-reveal>Outside of code, I teach chess to elementary-school kids, play Pokémon and Magic, and lift. Teaching keeps me focused on clear explanations; games keep me curious about how systems work.</p>
+        </div><aside className="pf-about-aside"><h3>Currently exploring</h3><ul>{['AI features grounded in real data','Public APIs with practical applications','Local infrastructure, recovery, and rollback'].map((text,i)=><li data-reveal data-delay={i*80} key={text}><span aria-hidden="true">↗</span>{text}</li>)}</ul><span className="pf-aside-note">Learning by building, testing, and revisiting.</span></aside></div></div>
+      </section>
+      <section id="stack" className="pf-section pf-stack"><SectionHeading label="The toolkit" title="What I build with." />{match?.requested.length>0&&<p className="pf-stack-note">What you’re looking for is highlighted</p>}<div className="pf-stack-groups">{Object.entries(groups).map(([name,names])=><div className="pf-stack-group" key={name}><h3>{name}</h3><div className="pf-stack-pills">{names.map((name,i)=>{const s=stack.find(t=>t.name===name);return <div className={`pf-stack-pill ${match?.requested.includes(name==='Vite.js'?'Vite':name==='Azure SQL Database'?'Azure':name)?'is-requested':''}`} data-reveal data-delay={(i%4)*60} key={name}><img className="pf-stack-icon" src={s.icon} alt="" /><span>{name}</span></div>;})}</div></div>)}</div></section>
+      <section id="contact" className="pf-section pf-contact"><div className="pf-contact-surface" data-reveal data-contact-reveal><span className="pf-eyebrow">Get in touch</span><div className="pf-contact-grid"><div><h2 aria-label="Have something in mind?">{['Have','something','in','mind?'].map(word=><span aria-hidden="true" className={`pf-contact-word ${word==='mind?'?'is-accent':''}`} key={word}>{word} </span>)}</h2><p>I’m open to software engineering roles and thoughtful collaborations. Send me the problem you’re working on and what you need from your next engineer.</p><a className="pf-magnetic" data-magnetic href={links.email}><span>Email Chris <Arrow /></span></a><a className="pf-contact-resume" href={links.resume} download>Download résumé ↓</a></div><div className="pf-contact-links">{[['Email',links.email,links.emailLabel],['GitHub',links.github,links.githubLabel],['LinkedIn',links.linkedin,links.linkedinLabel]].map(([label,url,detail])=><a className="pf-contact-row" key={label} href={url} {...(label!=='Email'?{target:'_blank',rel:'noreferrer'}:{})}><span><small>{label}</small><span>{detail}</span></span><Arrow /></a>)}</div></div></div></section>
+    </main>
+    <footer className="pf-footer"><a className="pf-brand" href="#top" aria-label="Chris Capizzuto — back to top"><PixelKnight /><span>Chris Capizzuto</span></a><span>© {new Date().getFullYear()} Chris Capizzuto · New York</span></footer>
+  </div></PlaybackProvider>;
 }
