@@ -1,3 +1,4 @@
+import {assessResume} from '../../data/resumeEvidence';
 import { featured, projects } from '../../data/portfolioContent';
 import { projectEvidence, skillAliases, roleAliases } from '../../data/projectEvidence';
 import { normalizeMatchText } from './matchText';
@@ -44,10 +45,6 @@ export function matchProjects(input) {
   const status=!requested.length?'unrecognized':best?'matched':'no-evidence';
   const suggestion=ranked.slice().sort((a,b)=>b.roleMatches.length-a.roleMatches.length || Number(b.title==='PrizeCheck')-Number(a.title==='PrizeCheck'))[0];
   const explanation=!requested.length?'No recognized technologies. This is a featured suggestion, not a scored match.':!best?`0 of ${requested.length} recognized technologies have verified project evidence. 0% coverage; no matching project.`:`${best.matched.length} of ${requested.length} recognized technologies have project evidence (${best.exact.length} exact${best.supporting.length?`; supporting tooling: ${best.supporting.join(', ')}`:''}).`;
-  const skillBreakdown=requested.map(skill=>{
-    const exact=best?.exact.includes(skill), supporting=best?.supporting.includes(skill), related=best?.matched.includes(skill);
-    return {skill,score:exact?(supporting?80:95):related?60:0,label:exact?(supporting?'Supporting tooling':'Direct evidence'):related?'Related evidence':'Not evidenced here'};
-  });
-  const reviewAreas=[['Accessibility',/accessibility|accessible/],['Performance at scale',/performance|fast and legible|at scale/],['Sensitive browser data',/sensitive data/],['Document review and annotation',/document view|annotation|annotate|citation/],['Component systems',/component system/]].filter(([,pattern])=>pattern.test(text)).map(([name])=>name);
-  return {skillBreakdown, reviewAreas, requested, requestedRoles, status, best, suggestion, alternatives:candidates.slice(1,5), explanation:explanation+' Tech Alignment is an estimate: evidenced skills count twice as much as gaps, capped at 95%. It is not literal coverage, hiring probability or overall qualification. Equal evidence is ordered by role relevance, then project title.'};
+  const resumeMatch=assessResume(requested);
+  return {resumeMatch, skillBreakdown:resumeMatch.skills, requested, requestedRoles, status, best, suggestion, alternatives:candidates.slice(1,5), explanation:explanation+' Tech Alignment is an estimate: evidenced skills count twice as much as gaps, capped at 95%. It is not literal coverage, hiring probability or overall qualification. Equal evidence is ordered by role relevance, then project title.'};
 }

@@ -1,3 +1,9 @@
+## Résumé-based compact breakdown — September 11, 2026
+
+Read the current bundled résumé and transcribed only its technical evidence into src/data/resumeEvidence.js. Breakdown scores now use résumé-wide demonstrated skills (95), listed skills/coursework (90), and explicitly familiar Python (65), independently of the selected project. Unmentioned skills show “Not listed”; they receive no credit in the recognized-technology average. The expandable explanation makes the local keyword estimate and its limits explicit. The old unscored role-requirements section is removed. The panel starts as a compact expandable summary with overall résumé skill match and coverage count. Refresh the evidence profile when the replacement résumé arrives.
+
+All 101 tests across ten suites pass and production build succeeds. Tests confirm HTML/JavaScript/CSS evidence, familiarity, absent skills, and the collapsed panel. Browser visual verification remains pending due to the existing preview connection issue.
+
 ## Compact AI breakdown — September 11, 2026
 
 Renamed the panel “AI breakdown”, reduced heading, row, and panel spacing, and moved the scoring explanation into a disclosure that identifies local technology matching. Desktop entry stretches alongside the output so the compact breakdown aligns toward the bottom of the project narrative. Mobile retains normal flow. Production build passes; browser visual verification remains unavailable from the prior preview connection issue.

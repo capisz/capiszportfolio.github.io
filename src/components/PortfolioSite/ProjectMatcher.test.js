@@ -81,3 +81,12 @@ test('keeps one knight above the composer after the introduction',()=>{
  expect(container.querySelector('.pm-hello')).toHaveTextContent('Hello, World');
  submit('React');expect(container.querySelectorAll('.pm-knight-intro')).toHaveLength(1);
 });
+
+test('résumé breakdown starts compact and expands without the removed role section',()=>{
+ const {container}=render(<ProjectMatcher motion={false}/>);submit('React HTML CSS');
+ const panel=container.querySelector('.pm-skill-breakdown');
+ expect(panel.tagName).toBe('DETAILS');expect(panel).not.toHaveAttribute('open');
+ expect(panel.querySelector('summary')).toHaveTextContent('Résumé skill match');
+ expect(panel).not.toHaveTextContent('Not evidenced here');
+ expect(screen.queryByText('Also important in this role')).toBeNull();
+});

@@ -47,7 +47,8 @@ test('alignment is a weighted estimate while literal coverage stays accurate',()
 test('document-review frontend brief breaks down technologies and separates unscored requirements',()=>{
  const r=matchProjects(`Build a review interface to read, search, and annotate large document sets. Implement document viewing, citation, and navigation to verify AI generated results. Work against backend APIs. Keep data dense workflows fast and legible at scale. Contribute to a component system. Care about accessibility, performance, and sensitive data in the browser. Production web interfaces with React. Strong JavaScript or TypeScript, HTML, and CSS. Comfort with REST APIs and client side state. Bonus document viewers, large tables, search results, annotation tools. Tech Environment: React, TypeScript, modern frontend tooling, REST APIs.`);
  expect(r.skillBreakdown.map(s=>s.skill)).toEqual(expect.arrayContaining(['React','TypeScript','JavaScript','HTML','CSS','REST API','AI']));
- expect(r.skillBreakdown.find(s=>s.skill==='HTML')).toMatchObject({score:0,label:'Not evidenced here'});
+ expect(r.skillBreakdown.find(s=>s.skill==='HTML')).toMatchObject({score:90,label:'Listed in résumé skills or coursework'});
  expect(r.skillBreakdown.find(s=>s.skill==='React').score).toBe(95);
- expect(r.reviewAreas).toEqual(expect.arrayContaining(['Accessibility','Performance at scale','Sensitive browser data','Document review and annotation','Component systems']));
+ expect(r.resumeMatch.covered).toBe(6);
+ expect(r.resumeMatch.skills.find(s=>s.skill==='AI').score).toBeNull();
 });

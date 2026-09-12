@@ -157,3 +157,14 @@
 .pm-score-method summary{cursor:pointer;min-height:32px;display:list-item;padding:7px 0;}
 .pm-review-areas{padding-top:10px;margin-top:8px;}.pm-review-areas h3{font-size:12px;}.pm-review-areas p{font-size:12px;margin:6px 0;line-height:1.5;}
 @media(min-width:900px){.has-project .pm-entry{align-self:stretch;display:flex;flex-direction:column;}.has-project .pm-skill-breakdown{margin-top:auto;}.has-project .pm-input{margin-bottom:20px;}}
+
+/* One compact résumé summary; detailed evidence is available on demand. */
+.pm-skill-breakdown{padding:0;}
+.pm-skill-breakdown>summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;cursor:pointer;list-style:none;}
+.pm-skill-breakdown>summary::-webkit-details-marker{display:none;}
+.pm-skill-breakdown>summary strong{font-size:15px;font-weight:600;}
+.pm-skill-breakdown>summary small{display:block;margin-top:4px;font-size:11px;}
+.pm-resume-score{color:var(--teal);font-size:23px;white-space:nowrap;}.pm-resume-score>span{font-size:15px;margin-left:8px;}
+.pm-breakdown-content{padding:0 18px 14px;border-top:1px solid #c8e9ef16;}
+.pm-breakdown-content .pm-skill-key{font-size:11px;line-height:1.6;}
+@media(min-width:900px){.has-project .pm-skill-breakdown{margin-top:12px;}}
