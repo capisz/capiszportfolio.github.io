@@ -1,3 +1,7 @@
+## Gradual intro scroll acceleration — September 11, 2026
+
+Scroll distance now modestly shortens the current intro stage rather than skipping to the form reveal. Knight and name stages each retain at least 1.8 seconds, with a 350ms lead time before an accelerated boundary; the form reveal remains 1.6 seconds. Touch movement uses incremental distance and wheel units are normalized. Explicit skip and accessibility bypasses remain available. All 95 tests pass, including light-scroll, momentum-burst, and touch progression; production build succeeds.
+
 ## Natural typing pace and broader example — September 11, 2026
 
 - Slowed both simultaneous explanation lines from 10ms to 30ms per character.
