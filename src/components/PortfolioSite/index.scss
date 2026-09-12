@@ -241,7 +241,10 @@ html{overflow-anchor:none;}
 .motion-on .pf-related.is-visible .pf-related-card{animation:pf-card-cascade 1200ms var(--related-delay) both;transition:none;}
 .motion-on .pf-cascade>.pf-card{animation:pf-card-cascade 1200ms var(--cascade-delay) both;}
 @keyframes pf-card-cascade{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
-.pf-related-card:focus-visible,.pf-cascade>.pf-card:focus-within{animation:none!important;opacity:1!important;transform:none!important;}
+.pf-related-card:focus-visible{animation:none!important;opacity:1!important;transform:none!important;}
+/* Keep a focused card visible without changing its animation name; toggling the
+   animation off and back on restarts its delayed entrance when focus leaves. */
+.pf-cascade>.pf-card:focus-within{opacity:1!important;transform:none!important;}
 @media(prefers-reduced-motion:reduce){.pf-related-card,.pf-cascade>.pf-card{animation:none!important;opacity:1!important;transform:none!important;}}
 
 .pf-typed-line{display:block;min-height:1.8em;}
