@@ -194,7 +194,6 @@ const stackBase = [
   { name: "Postman", icon: asset("assets/tech/postman.svg") },
   { name: "Supabase", icon: asset("assets/tech/supabase.svg") },
   { name: "C++", icon: asset("assets/tech/cpp.svg") },
-  { name: "SVG Viewer", icon: asset("assets/tech/svgviewer.svg") },
 ];
 
 export const stack = stackBase.map((s, i) => ({ ...s, delay: (i % 5) * 60 }));
