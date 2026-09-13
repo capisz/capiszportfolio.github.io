@@ -163,6 +163,7 @@ export const projects = raw.map((p, i) => {
 
 const stackBase = [
   { name: "React", icon: asset("assets/tech/react.svg") },
+  { name: "React Native", icon: asset("assets/tech/react-native.svg") },
   { name: "Next.js", icon: asset("assets/tech/nextjs.png") },
   { name: "TypeScript", icon: asset("assets/tech/typescript.svg") },
   { name: "JavaScript", icon: asset("assets/tech/javascript.svg") },

@@ -20,7 +20,7 @@ function SectionHeading({label,title,children}) {
   return <div className="pf-section-heading" data-reveal><div><span className="pf-eyebrow">{label}</span><h2 data-heading>{title}</h2></div>{children}</div>;
 }
 const groups = {
-  Frontend: ['React','Next.js','TypeScript','JavaScript','Tailwind','Swift','Electron','Framer','LottieLab'],
+  Frontend: ['React','React Native','Next.js','TypeScript','JavaScript','Tailwind','Swift','Electron','Framer','LottieLab'],
   Backend: ['Node.js','Python','MongoDB','Firebase','Azure SQL Database','Redis','PostgreSQL','Supabase','C++'],
   'Tools & infrastructure': ['GitHub Actions','Xcode','Figma','Vite.js','Ubuntu','Linux','Kubernetes','Docker','kind','Git','Claude AI','Google Gemini','Cursor AI','Codex','Postman'],
 };
