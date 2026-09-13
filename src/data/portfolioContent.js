@@ -189,6 +189,7 @@ const stackBase = [
   { name: "Docker", icon: asset("assets/tech/docker.svg") },
   { name: "Azure SQL Database", icon: asset("assets/tech/azure-sql-database.svg") },
   { name: "kind", icon: asset("assets/tech/kind.jpg") },
+  { name: "Git", icon: asset("assets/tech/git.svg") },
   { name: "Codex", icon: asset("assets/tech/codex.svg") },
   { name: "Redis", icon: asset("assets/tech/redis.svg") },
   { name: "Postman", icon: asset("assets/tech/postman.svg") },
