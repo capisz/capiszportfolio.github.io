@@ -20,9 +20,9 @@ function SectionHeading({label,title,children}) {
   return <div className="pf-section-heading" data-reveal><div><span className="pf-eyebrow">{label}</span><h2 data-heading>{title}</h2></div>{children}</div>;
 }
 const groups = {
-  Frontend: ['React','Next.js','TypeScript','JavaScript','Tailwind','Swift','Electron'],
-  Backend: ['Node.js','Python','MongoDB','Firebase','Azure SQL Database'],
-  'Tools & infrastructure': ['GitHub Actions','Xcode','Figma','Vite.js','Ubuntu','Linux','Kubernetes','Docker','kind'],
+  Frontend: ['React','Next.js','TypeScript','JavaScript','Tailwind','Swift','Electron','Framer','LottieLab'],
+  Backend: ['Node.js','Python','MongoDB','Firebase','Azure SQL Database','Redis','Supabase','C++'],
+  'Tools & infrastructure': ['GitHub Actions','Xcode','Figma','Vite.js','Ubuntu','Linux','Kubernetes','Docker','kind','Claude AI','Google Gemini','Cursor AI','Codex','Postman','SVG Viewer'],
 };
 function AlignmentIntro({result,motion,entire=false}) {
   const skills=[...new Set([result?.best,...(result?.alternatives||[])].filter(Boolean).flatMap(p=>p.matched))];
