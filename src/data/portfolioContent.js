@@ -183,6 +183,12 @@ const stackBase = [
   { name: "Docker", icon: asset("assets/tech/docker.svg") },
   { name: "Azure SQL Database", icon: asset("assets/tech/azure-sql-database.svg") },
   { name: "kind", icon: asset("assets/tech/kind.jpg") },
+  { name: "Framer", icon: asset("assets/tech/framer.svg") },
+  { name: "Lottie", icon: asset("assets/tech/lottie.svg") },
+  { name: "Redis", icon: asset("assets/tech/redis.svg") },
+  { name: "Postman", icon: asset("assets/tech/postman.svg") },
+  { name: "Supabase", icon: asset("assets/tech/supabase.svg") },
+  { name: "C++", icon: asset("assets/tech/cpp.svg") },
 ];
 
 export const stack = stackBase.map((s, i) => ({ ...s, delay: (i % 5) * 60 }));
