@@ -192,6 +192,7 @@ const stackBase = [
   { name: "Git", icon: asset("assets/tech/git.svg") },
   { name: "Codex", icon: asset("assets/tech/codex.svg") },
   { name: "Redis", icon: asset("assets/tech/redis.svg") },
+  { name: "PostgreSQL", icon: asset("assets/tech/postgresql.svg") },
   { name: "Postman", icon: asset("assets/tech/postman.svg") },
   { name: "Supabase", icon: asset("assets/tech/supabase.svg") },
   { name: "C++", icon: asset("assets/tech/cpp.svg") },

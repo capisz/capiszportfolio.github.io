@@ -21,7 +21,7 @@ function SectionHeading({label,title,children}) {
 }
 const groups = {
   Frontend: ['React','Next.js','TypeScript','JavaScript','Tailwind','Swift','Electron','Framer','LottieLab'],
-  Backend: ['Node.js','Python','MongoDB','Firebase','Azure SQL Database','Redis','Supabase','C++'],
+  Backend: ['Node.js','Python','MongoDB','Firebase','Azure SQL Database','Redis','PostgreSQL','Supabase','C++'],
   'Tools & infrastructure': ['GitHub Actions','Xcode','Figma','Vite.js','Ubuntu','Linux','Kubernetes','Docker','kind','Git','Claude AI','Google Gemini','Cursor AI','Codex','Postman'],
 };
 function AlignmentIntro({result,motion,entire=false}) {
