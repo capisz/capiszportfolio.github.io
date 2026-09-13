@@ -192,6 +192,7 @@ const stackBase = [
   { name: "Kubernetes", icon: asset("assets/tech/kubernetes.svg") },
   { name: "Firebase", icon: asset("assets/tech/firebase.svg") },
   { name: "Docker", icon: asset("assets/tech/docker.svg") },
+  { name: "AWS", icon: asset("assets/tech/aws.svg") },
   { name: "Vercel", icon: asset("assets/tech/vercel.svg") },
   { name: "Cloudflare", icon: asset("assets/tech/cloudflare.svg") },
   { name: "Azure SQL Database", icon: asset("assets/tech/azure-sql-database.svg") },

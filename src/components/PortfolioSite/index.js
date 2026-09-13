@@ -22,7 +22,7 @@ function SectionHeading({label,title,children}) {
 const groups = {
   Frontend: ['React','React Native','Next.js','TypeScript','JavaScript','Tailwind','Swift','Electron','Webpack','Framer','LottieLab'],
   Backend: ['Node.js','Python','MongoDB','Firebase','Azure SQL Database','Redis','Mongoose.js','PostgreSQL','Supabase','C++'],
-  'Tools & infrastructure': ['GitHub Actions','GitHub','Xcode','Visual Studio','Figma','Canva','Vite.js','Ubuntu','Linux','Kubernetes','Docker','Vercel','Cloudflare','kind','Git','Claude AI','Google Gemini','Cursor AI','Codex','Postman'],
+  'Tools & infrastructure': ['GitHub Actions','GitHub','Xcode','Visual Studio','Figma','Canva','Vite.js','Ubuntu','Linux','Kubernetes','Docker','AWS','Vercel','Cloudflare','kind','Git','Claude AI','Google Gemini','Cursor AI','Codex','Postman'],
 };
 function AlignmentIntro({result,motion,entire=false}) {
   const skills=[...new Set([result?.best,...(result?.alternatives||[])].filter(Boolean).flatMap(p=>p.matched))];
