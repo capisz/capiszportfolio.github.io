@@ -182,6 +182,12 @@ const stackBase = [
   { name: "Firebase", icon: asset("assets/tech/firebase.svg") },
   { name: "Docker", icon: asset("assets/tech/docker.svg") },
   { name: "Azure SQL Database", icon: asset("assets/tech/azure-sql-database.svg") },
+  { name: "Framer", icon: asset("assets/tech/framer.svg") },
+  { name: "Lottie", icon: asset("assets/tech/lottie.svg") },
+  { name: "Claude AI", icon: asset("assets/tech/claude-ai.svg") },
+  { name: "Google Gemini", icon: asset("assets/tech/google-gemini.svg") },
+  { name: "Cursor", icon: asset("assets/tech/cursor.svg") },
+  { name: "Codex", icon: asset("assets/tech/codex.svg") },
   { name: "kind", icon: asset("assets/tech/kind.jpg") },
 ];
 
