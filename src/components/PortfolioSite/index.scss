@@ -36,6 +36,7 @@
 
 .pf-eyebrow{display:block;font:12px/1.6 'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.13em;color:var(--teal);margin-bottom:14px;}
 .pf-section-heading h2{font-size:clamp(28px,3.2vw,42px);line-height:1.2;letter-spacing:-.045em;font-weight:600;margin:0;}.pf-text-link{font-size:14px;color:var(--muted)!important;white-space:nowrap;}.pf-link-arrow{display:inline-block;transition:transform .25s;margin-left:8px;}a:hover .pf-link-arrow,a:focus-visible .pf-link-arrow{transform:translate(3px,-3px);}
+.pf-heading-accent{color:var(--teal);}
 .pf-featured{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:48px;align-items:center;margin:60px 0 110px;}
 .pf-featured-visual{position:relative;min-width:0;}.pf-feature-label{position:absolute;top:-28px;left:0;color:var(--yellow);font:12px 'JetBrains Mono',monospace;}
 .pf-featured-body{position:relative;padding:0;min-width:0;}.pf-featured h3{font-size:36px;letter-spacing:-.04em;margin:8px 0 12px;}.pf-featured p,.pf-card p{font-size:16px;line-height:1.65;color:var(--muted);margin-bottom:20px;}

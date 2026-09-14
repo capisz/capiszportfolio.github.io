@@ -141,7 +141,7 @@ export default function PortfolioSite() {
         </article>)}</div></>}
       </section>
       <section id="about" className="pf-section pf-about">
-        <div className="pf-about-surface"><SectionHeading label="About me" title="Tired of AI slop?" />
+        <div className="pf-about-surface"><SectionHeading label="About me" title={<>Tired of <span className="pf-heading-accent">AI slop</span>?</>} />
         <div className="pf-about-grid"><div className="pf-about-copy">
           <p data-reveal>I’m Chris, a software engineer in New York. I turn questions from everyday life into software I want to use.</p>
           <p data-reveal>That might mean making a card-game routine easier to practice, comparing parking options, or explaining a baseball statistic. I build across <strong>React and Next.js</strong> interfaces and <strong>Node, FastAPI, and PostgreSQL</strong> backends, with attention to how the whole experience works.</p>
