@@ -185,6 +185,13 @@ html{overflow-anchor:none;}
 .pf-demo-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 12px;border:1px solid #adcfc54d;border-radius:8px;background:#041923ed;color:#e4f6f1;font-size:14px;}
 .pf-demo-link:hover,.pf-demo-link:focus-visible{border-color:var(--teal);}
 .pf-project-media.is-portrait .pf-demo-link{background:transparent;border-color:transparent;}
+@media(max-width:899px){
+ .pf-project-media:not(.is-portrait){aspect-ratio:auto;overflow:visible;border-radius:0;display:flex;flex-direction:column;gap:10px;}
+ .pf-project-media:not(.is-portrait)>video,.pf-project-media:not(.is-portrait)>img{height:auto;aspect-ratio:16/9;border-radius:8px;}
+ .pf-project-media:not(.is-portrait) .pf-media-controls{position:static;justify-content:center;align-items:center;}
+ .pf-project-media:not(.is-portrait) .pf-media-controls button,.pf-project-media:not(.is-portrait) .pf-demo-link{background:transparent;border-color:transparent;}
+ .pf-project-media:not(.is-portrait) .pf-media-controls button:hover,.pf-project-media:not(.is-portrait) .pf-media-controls button:focus-visible,.pf-project-media:not(.is-portrait) .pf-demo-link:hover,.pf-project-media:not(.is-portrait) .pf-demo-link:focus-visible{border-color:#67e7cb70;}
+}
 @media(max-width:899px){.pf-footer{padding-inline:20px;}.pf-nav .pf-resume{padding:8px 12px;}}
 
 /* Matched work remains discoverable as the visitor continues down the page. */
