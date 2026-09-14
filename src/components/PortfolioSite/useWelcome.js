@@ -1,5 +1,9 @@
 import {useEffect, useState} from 'react';
 
+// Each visual stage finishes before the next content can mount.
+export const INTRO_STAGES = {knight:2200,badges:3200,departing:1100,welcome:2400,revealing:500};
+const nextPhase = {knight:'badges',badges:'departing',departing:'welcome',welcome:'revealing',revealing:'ready'};
+
 // A bounded introduction, not a permanent scroll lock. Explicit navigation wins.
 export default function useWelcome(motion) {
   const [phase,setPhase]=useState(()=>motion && window.scrollY<50 && (!window.location.hash || window.location.hash==='#top')?'knight':'ready');
@@ -7,15 +11,15 @@ export default function useWelcome(motion) {
     if(!motion){setPhase('ready');return;}
     if(phase==='ready')return;
     const finish=()=>setPhase('ready');
-    const advance=()=>setPhase(phase==='knight'?'welcome':phase==='welcome'?'revealing':'ready');
+    const advance=()=>setPhase(nextPhase[phase]);
     const started=Date.now();
-    let deadline=started+(phase==='knight'?3600:phase==='revealing'?1600:2800);
+    let deadline=started+INTRO_STAGES[phase];
     let timer=setTimeout(advance,deadline-started);
     const accelerate=distance=>{
       // Preserve each stage and its animation even during trackpad momentum.
-      if(phase==='revealing')return;
+      if(phase!=='badges' && phase!=='welcome')return;
       const now=Date.now();
-      const next=Math.min(deadline,Math.max(started+1800,now+350,deadline-Math.min(120,Math.max(0,distance)*1.5)));
+      const next=Math.min(deadline,Math.max(started+(phase==='badges'?2600:1800),now+350,deadline-Math.min(120,Math.max(0,distance)*1.5)));
       if(next===deadline)return;
       deadline=next;clearTimeout(timer);timer=setTimeout(advance,Math.max(0,deadline-now));
     };

@@ -84,16 +84,18 @@ export default function ProjectMatcher({motion,onResult,onBrowse}) {
     <h1 id="matcher-title" className="pf-sr-only">Chris Capizzuto — software engineering portfolio</h1>
     <span className="pf-sr-only" role="status">{busy?'Reading document locally.':result?project?`${project.title}: ${project.alignment}% Tech Alignment`:result.status==='unrecognized'?'No recognized technologies. Try another brief.':'0% Tech Alignment. No project evidence.':fileName?'Document ready. Select Find a relevant project.':''}</span>
     <div className="pm-knight-intro" aria-hidden="true">
-      <div className="pm-cert pm-cert-aws">
-        <img src="/assets/certifications/aws-devops-pro.png" alt="" />
-      </div>
       <div className="pm-knight-mark"><PixelKnight /></div>
-      <div className="pm-cert pm-cert-claude">
-        <img src="/assets/certifications/claude-certified-architect.png" alt="" />
-      </div>
-      <div className="pm-hello"><span>Hello, World</span><b>|</b></div>
+      {['knight','badges','departing'].includes(welcome.phase)&&<div className="pm-cert-stage">
+        <div className="pm-cert pm-cert-aws">
+          <img src="/assets/certifications/aws-devops-pro.png" alt="" />
+        </div>
+        <div className="pm-cert pm-cert-claude">
+          <img src="/assets/certifications/claude-certified-architect.png" alt="" />
+        </div>
+        <div className="pm-hello"><span>Hello, World</span><b>|</b></div>
+      </div>}
     </div>
-    {welcome.phase!=='ready'&&welcome.phase!=='knight'&&<div className="pm-welcome">
+    {['welcome','revealing'].includes(welcome.phase)&&<div className="pm-welcome">
       <p className="pm-welcome-eyebrow">Welcome to my portfolio</p>
       <h2>Hi, I’m Chris.</h2>
       <p>Let’s find the work that fits.</p>

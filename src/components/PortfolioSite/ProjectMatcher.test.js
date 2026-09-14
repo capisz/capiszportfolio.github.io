@@ -78,7 +78,7 @@ test('mobile submissions scroll to the demo after layout settles and touch cance
 test('keeps one knight above the composer after the introduction',()=>{
  const {container}=render(<ProjectMatcher motion={false}/>);
  expect(container.querySelectorAll('.pm-knight-intro')).toHaveLength(1);
- expect(container.querySelector('.pm-hello')).toHaveTextContent('Hello, World');
+ expect(container.querySelector('.pm-hello')).toBeNull();
  submit('React');expect(container.querySelectorAll('.pm-knight-intro')).toHaveLength(1);
 });
 
@@ -89,4 +89,23 @@ test('résumé breakdown starts compact and expands without the removed role sec
  expect(panel.querySelector('summary')).toHaveTextContent('Résumé skill match');
  expect(panel).not.toHaveTextContent('Not evidenced here');
  expect(screen.queryByText('Also important in this role')).toBeNull();
+});
+
+test('certifications unmount before welcome, without caption elements',()=>{
+ jest.useFakeTimers();window.history.replaceState(null,'','#top');
+ const {act}=require('@testing-library/react');
+ const {container}=render(<ProjectMatcher motion={true}/>);
+ expect(container.querySelectorAll('.pm-cert')).toHaveLength(2);
+ expect(container.querySelectorAll('.pm-cert span')).toHaveLength(0);
+ for(const duration of [2200,3200])act(()=>jest.advanceTimersByTime(duration));
+ expect(container.querySelector('.pm-welcome')).toBeNull();
+ expect(container.querySelectorAll('.pm-cert')).toHaveLength(2);
+ act(()=>jest.advanceTimersByTime(1100));
+ expect(container.querySelectorAll('.pm-cert')).toHaveLength(0);
+ expect(container.querySelector('.pm-hello')).toBeNull();
+ expect(container.querySelector('.pm-welcome')).not.toBeNull();
+ act(()=>jest.advanceTimersByTime(2400));act(()=>jest.advanceTimersByTime(500));
+ expect(container.querySelector('.pm-welcome')).toBeNull();
+ expect(container.querySelector('.pm-workbench')).not.toHaveAttribute('inert');
+ jest.useRealTimers();
 });
