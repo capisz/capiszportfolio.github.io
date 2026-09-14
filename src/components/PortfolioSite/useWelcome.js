@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 
 // Each visual stage finishes before the next content can mount.
-export const INTRO_STAGES = {knight:2200,greetingOut:700,badges:3200,departing:700,welcome:2400,revealing:500};
+export const INTRO_STAGES = {knight:2200,greetingOut:1300,badges:3200,departing:700,welcome:2400,revealing:500};
 const nextPhase = {knight:'greetingOut',greetingOut:'badges',badges:'departing',departing:'welcome',welcome:'revealing',revealing:'ready'};
 
 // A bounded introduction, not a permanent scroll lock. Explicit navigation wins.
