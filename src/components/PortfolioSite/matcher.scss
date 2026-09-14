@@ -107,7 +107,7 @@
 .pm-cert-aws{--side:-1;}.pm-cert-claude{--side:1;}
 .pm-cert img{display:block;width:100%;height:100%;object-fit:contain;opacity:.75;filter:drop-shadow(0 0 12px rgba(103,231,203,.2));}
 .pm-cert-claude img{transform:scale(.925);transform-origin:center;}
-.pm-cert-caption{position:absolute;left:20px;right:20px;top:calc(54px + var(--badge-size)/2);margin:0;text-align:center;color:#bfd8df;font-size:clamp(13px,1.4vw,16px);line-height:1.5;opacity:0;}
+.pm-cert-caption{position:absolute;left:20px;right:20px;top:calc(62px + var(--badge-size)/2);margin:0;text-align:center;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:clamp(18px,2vw,24px);font-weight:400;letter-spacing:-.015em;color:#bfd8df;opacity:0;}
 .intro-badges .pm-cert{animation:pm-cert-in 600ms ease-out both;}
 .intro-badges .pm-cert-caption{animation:pm-cert-in 600ms 120ms ease-out both;}
 .intro-departing .pm-cert,.intro-departing .pm-cert-caption,.intro-departing .pm-knight-mark{animation:pm-hello-out 500ms ease both;}
