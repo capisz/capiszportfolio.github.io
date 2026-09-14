@@ -12,10 +12,19 @@ export const skillAliases = {
   Python: ['python'], FastAPI: ['fastapi'], MongoDB: ['mongodb', 'mongo'], Firebase: ['firebase'],
   Docker: ['docker', 'containers', 'containerization'], Kubernetes: ['kubernetes', 'k8s'], kind: ['kind kubernetes', 'kind cluster'],
   'GitHub Actions': ['github actions', 'ci/cd', 'continuous integration'], Linux: ['linux'],
-  Tailwind: ['tailwind', 'tailwindcss'], HTML: ['html', 'html5'], CSS: ['css', 'css3'], 'REST API': ['rest api', 'rest apis', 'restful'],
-  'Claude API': ['claude', 'claude api'], LLM: ['llm', 'large language model'], AI: ['ai', 'artificial intelligence'],
+  Tailwind: ['tailwind', 'tailwindcss'], Webpack: ['webpack'], Framer: ['framer motion', 'framer'], LottieLab: ['lottielab', 'lottie lab'],
+  HTML: ['html', 'html5'], CSS: ['css', 'css3'], 'REST API': ['rest api', 'rest apis', 'restful'],
+  Redis: ['redis'], Mongoose: ['mongoose.js', 'mongoosejs', 'mongoose'], Supabase: ['supabase'], 'C++': ['c++', 'cpp'],
+  'Claude API': ['claude api', 'claude ai', 'claude'], 'Google Gemini': ['google gemini', 'gemini'], Cursor: ['cursor ai', 'cursor'], Codex: ['openai codex', 'codex'],
+  LLM: ['llm', 'large language model'], AI: ['ai', 'artificial intelligence'],
   Statcast: ['statcast'], NextAuth: ['nextauth', 'next-auth'], SQL: ['sql'],
-  Java: ['java'], Go: ['golang', 'go'], Rust: ['rust'], AWS: ['aws', 'amazon web services'], Azure: ['azure', 'microsoft azure'], Angular: ['angular'], '.NET': ['.net', 'c#', 'dotnet'], Ruby: ['ruby', 'rails'],
+  Java: ['java'], Go: ['golang', 'go'], Rust: ['rust'], AWS: ['aws', 'amazon web services'], Lambda: ['aws lambda', 'lambda'], Azure: ['azure', 'microsoft azure'], Angular: ['angular'], '.NET': ['.net', 'c#', 'dotnet'], Ruby: ['ruby', 'rails'],
+  GitHub: ['github'], Xcode: ['xcode'], 'Visual Studio': ['visual studio'], Figma: ['figma'], Canva: ['canva'], Ubuntu: ['ubuntu'],
+  Webhooks: ['webhooks', 'webhook'], Vercel: ['vercel'], Cloudflare: ['cloudflare'], Git: ['git'], Postman: ['postman'],
+};
+export const stackSkillByLabel = {
+  'Node.js': 'Node', 'Vite.js': 'Vite', 'Azure SQL Database': 'Azure', 'Mongoose.js': 'Mongoose',
+  'Claude AI': 'Claude API', 'Cursor AI': 'Cursor',
 };
 export const roleAliases = {
   mobile: ['mobile', 'ios', 'native', 'iphone', 'android'], frontend: ['frontend', 'front-end', 'web', 'website'],

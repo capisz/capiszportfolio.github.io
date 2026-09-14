@@ -110,7 +110,7 @@
 .intro-badges .pm-cert{animation:pm-cert-in 600ms ease-out both;}
 .intro-departing .pm-cert,.intro-departing .pm-knight-mark{animation:pm-hello-out 500ms ease both;}
 .pm-hello{position:absolute;top:128px;left:0;right:0;display:flex;justify-content:center;gap:2px;font:20px/1.6 'JetBrains Mono',monospace;color:#d8f6ee;}
-.pm-hello span{display:block;overflow:hidden;white-space:nowrap;width:12ch;}
+.pm-hello span{display:block;overflow:hidden;white-space:nowrap;width:12ch;text-shadow:0 0 10px rgba(103,231,203,.22);}
 .intro-knight .pm-hello span{animation:pm-hello-type 1200ms 500ms steps(12,end) both;}
 .pm-hello b{font-weight:400;animation:pm-cursor 750ms step-end infinite;}
 .intro-knight .pm-hello{animation:pm-cert-in 1ms 500ms both;}

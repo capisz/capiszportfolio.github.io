@@ -50,3 +50,10 @@ test('empty discovery provides a tailored-results hint and one centered set of c
  expect(screen.getAllByRole('button',{name:'Show me your entire portfolio'})).toHaveLength(1);
  expect(container.querySelector('.pf-empty-discovery .pf-discovery-actions')).toBeInTheDocument();
 });
+
+test('common AI tool names highlight their matching toolkit labels',()=>{
+ const {container}=render(<PortfolioSite/>);
+ fireEvent.change(screen.getByRole('textbox'),{target:{value:'Claude, Gemini, and Cursor'}});
+ fireEvent.click(screen.getByRole('button',{name:'Find a relevant project'}));
+ expect([...container.querySelectorAll('.pf-stack-pill.is-requested')].map(e=>e.textContent)).toEqual(['Claude AI','Google Gemini','Cursor AI']);
+});
