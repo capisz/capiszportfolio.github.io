@@ -9,7 +9,7 @@ export default function useWelcome(motion) {
     const finish=()=>setPhase('ready');
     const advance=()=>setPhase(phase==='knight'?'welcome':phase==='welcome'?'revealing':'ready');
     const started=Date.now();
-    let deadline=started+(phase==='revealing'?1600:2800);
+    let deadline=started+(phase==='knight'?3600:phase==='revealing'?1600:2800);
     let timer=setTimeout(advance,deadline-started);
     const accelerate=distance=>{
       // Preserve each stage and its animation even during trackpad momentum.

@@ -86,12 +86,10 @@ export default function ProjectMatcher({motion,onResult,onBrowse}) {
     <div className="pm-knight-intro" aria-hidden="true">
       <div className="pm-cert pm-cert-aws">
         <img src="/assets/certifications/aws-devops-pro.png" alt="" />
-        <span>AWS Certified DevOps Engineer Professional</span>
       </div>
       <div className="pm-knight-mark"><PixelKnight /></div>
       <div className="pm-cert pm-cert-claude">
         <img src="/assets/certifications/claude-certified-architect.png" alt="" />
-        <span>Claude Certified Architect Professional</span>
       </div>
       <div className="pm-hello"><span>Hello, World</span><b>|</b></div>
     </div>
