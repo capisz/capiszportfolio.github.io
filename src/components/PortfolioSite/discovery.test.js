@@ -57,3 +57,10 @@ test('common AI tool names highlight their matching toolkit labels',()=>{
  fireEvent.click(screen.getByRole('button',{name:'Find a relevant project'}));
  expect([...container.querySelectorAll('.pf-stack-pill.is-requested')].map(e=>e.textContent)).toEqual(['Claude AI','Google Gemini','Cursor AI']);
 });
+
+test('Blender input highlights the Blender toolkit icon',()=>{
+ const {container}=render(<PortfolioSite/>);
+ fireEvent.change(screen.getByRole('textbox'),{target:{value:'Blender'}});
+ fireEvent.click(screen.getByRole('button',{name:'Find a relevant project'}));
+ expect([...container.querySelectorAll('.pf-stack-pill.is-requested')].map(e=>e.textContent)).toEqual(['Blender']);
+});

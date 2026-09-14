@@ -19,7 +19,7 @@ export const skillAliases = {
   LLM: ['llm', 'large language model'], AI: ['ai', 'artificial intelligence'],
   Statcast: ['statcast'], NextAuth: ['nextauth', 'next-auth'], SQL: ['sql'],
   Java: ['java'], Go: ['golang', 'go'], Rust: ['rust'], AWS: ['aws', 'amazon web services'], Lambda: ['aws lambda', 'lambda'], Azure: ['azure', 'microsoft azure'], Angular: ['angular'], '.NET': ['.net', 'c#', 'dotnet'], Ruby: ['ruby', 'rails'],
-  GitHub: ['github'], Xcode: ['xcode'], 'Visual Studio': ['visual studio'], Figma: ['figma'], Canva: ['canva'], Ubuntu: ['ubuntu'],
+  GitHub: ['github'], Xcode: ['xcode'], 'Visual Studio': ['visual studio'], Figma: ['figma'], Blender: ['blender'], Canva: ['canva'], Ubuntu: ['ubuntu'],
   Webhooks: ['webhooks', 'webhook'], Vercel: ['vercel'], Cloudflare: ['cloudflare'], Git: ['git'], Postman: ['postman'],
 };
 export const stackSkillByLabel = {

@@ -185,6 +185,7 @@ const stackBase = [
   { name: "Xcode", icon: asset("assets/tech/xcode.svg") },
   { name: "Visual Studio", icon: asset("assets/tech/visual-studio.svg") },
   { name: "Figma", icon: asset("assets/tech/figma.svg") },
+  { name: "Blender", icon: asset("assets/tech/blender.svg") },
   { name: "Canva", icon: asset("assets/tech/canva.svg") },
   { name: "Vite.js", icon: asset("assets/tech/vite.svg") },
   { name: "Ubuntu", icon: asset("assets/tech/ubuntu.svg") },
