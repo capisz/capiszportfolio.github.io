@@ -132,7 +132,7 @@ export default function PortfolioSite() {
       <section id="work" className="pf-section">
         {choice!=='all'&&!match?.best&&<EmptyDiscovery onBrowse={showAll}/>}
         {choice==='all'&&<>
-        <SectionHeading label="Selected work" title="A project built to solve a problem."><a className="pf-text-link" href={links.github} target="_blank" rel="noreferrer">All repositories <Arrow /></a></SectionHeading>
+        <SectionHeading label="Selected work" title="Actual projects, not a bunch of Spotify clones"><a className="pf-text-link" href={links.github} target="_blank" rel="noreferrer">All repositories <Arrow /></a></SectionHeading>
         {highlighted.length>0&&<p className="pf-match-prompt">You may also be interested in these</p>}
         <AlignmentIntro result={match} motion={motion.enabled} entire/>
         <div className="pf-grid pf-cascade">{ordered.map((p,i)=><article className={`pf-card ${highlighted.includes(p.title)?'is-match':''}`} key={p.title} style={{'--cascade-delay':`${2400+Math.min(i,6)*350}ms`}}>
@@ -141,7 +141,7 @@ export default function PortfolioSite() {
         </article>)}</div></>}
       </section>
       <section id="about" className="pf-section pf-about">
-        <div className="pf-about-surface"><SectionHeading label="About me" title="Good questions. Useful software." />
+        <div className="pf-about-surface"><SectionHeading label="About me" title="Tired of AI slop?" />
         <div className="pf-about-grid"><div className="pf-about-copy">
           <p data-reveal>I’m Chris, a software engineer in New York. I turn questions from everyday life into software I want to use.</p>
           <p data-reveal>That might mean making a card-game routine easier to practice, comparing parking options, or explaining a baseball statistic. I build across <strong>React and Next.js</strong> interfaces and <strong>Node, FastAPI, and PostgreSQL</strong> backends, with attention to how the whole experience works.</p>
