@@ -95,6 +95,7 @@ export default function ProjectMatcher({motion,onResult,onBrowse}) {
         <div className="pm-cert pm-cert-claude">
           <img src="/assets/certifications/claude-certified-architect.png" alt="" />
         </div>
+        <p className="pm-cert-caption">Skilled, Certified, and the Portfolio to prove it</p>
       </div>}
     </div>
     {['welcome','revealing'].includes(welcome.phase)&&<div className="pm-welcome">

@@ -102,6 +102,7 @@ test('knight joins the badges and all three leave before welcome',()=>{
  expect(container.querySelector('.pm-knight-mark')).toBe(knight);
  expect(container.querySelectorAll('.pm-cert')).toHaveLength(2);
  expect(container.querySelectorAll('.pm-cert span')).toHaveLength(0);
+ expect(container.querySelector('.pm-cert-caption')).toHaveTextContent('Skilled, Certified, and the Portfolio to prove it');
  act(()=>jest.advanceTimersByTime(2200));
  expect(container.querySelector('.pm-welcome')).toBeNull();
  expect(container.querySelector('.pm-knight-mark')).toBe(knight);
