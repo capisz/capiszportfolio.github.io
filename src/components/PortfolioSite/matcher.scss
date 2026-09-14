@@ -99,7 +99,8 @@
 .pm-knight-mark{width:76px;height:92px;margin:auto;}
 .pm-knight-mark .pf-knight{width:76px;height:92px;}
 .intro-knight .pm-knight-mark{animation:pm-knight-arrive 450ms ease-out both;}
-.intro-greetingOut .pm-greeting-stage{transform-origin:50% 46px;animation:pm-greeting-out 1200ms cubic-bezier(.65,0,.35,1) both;}
+.intro-greetingOut .pm-knight-mark{transform-origin:50% 50%;animation:pm-greeting-out 1200ms cubic-bezier(.65,0,.35,1) both;}
+.intro-greetingOut .pm-hello{animation:pm-hello-out 350ms ease both;}
 .pm-cert-stage{position:absolute;left:0;right:0;top:var(--stage-top);height:calc(var(--badge-size) + 100px);}
 .pm-cert{position:absolute;left:calc(50% + var(--side)*var(--badge-offset));top:calc(46px - var(--badge-size)/2);width:var(--badge-size);height:var(--badge-size);transform:translateX(-50%);opacity:0;}
 .pm-cert-aws{--side:-1;}.pm-cert-claude{--side:1;}
@@ -124,7 +125,8 @@
 @keyframes pm-knight-arrive{from{opacity:0}to{opacity:1}}
 @keyframes pm-hello-type{from{width:0}to{width:12ch}}
 @keyframes pm-cert-in{from{opacity:0}to{opacity:1}}
-@keyframes pm-greeting-out{from{opacity:1;transform:scale(1)}70%{opacity:1}to{opacity:0;transform:scale(0)}}
+/* End at the former composer knight center: entry top - 64px + 23px. */
+@keyframes pm-greeting-out{from{opacity:1;transform:translateY(0) scale(1)}70%{opacity:1}to{opacity:0;transform:translateY(calc(var(--entry-top) - var(--stage-top) - 87px)) scale(0)}}
 @keyframes pm-hello-out{from{opacity:1}to{opacity:0}}
 @keyframes pm-welcome-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @media(min-width:900px){
