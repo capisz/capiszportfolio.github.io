@@ -91,8 +91,8 @@
  --entry-top:max(72px,calc((100svh - var(--nav-height,104px) - 620px)/2));
  --stage-top:clamp(130px,calc((100svh - var(--nav-height,104px))/2 - 80px),340px);
  --knight-top:calc(var(--entry-top) - 64px);
- --badge-size:clamp(88px,26vw,180px);
- --badge-offset:calc(var(--badge-size)/2 + clamp(44px,8vw,100px));
+ --badge-size:clamp(76px,22vw,152px);
+ --badge-offset:calc(var(--badge-size)/2 + clamp(50px,9vw,120px));
  padding-top:var(--entry-top);
 }
 .pm-knight-intro{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:clip;}
@@ -106,7 +106,7 @@
 .pm-cert img{display:block;width:100%;height:100%;object-fit:contain;}
 .intro-badges .pm-cert{animation:pm-cert-in 600ms ease-out both;}
 .intro-departing .pm-cert{animation:pm-cert-out 1000ms cubic-bezier(.65,0,.35,1) both;}
-.pm-hello{position:absolute;top:calc(46px + var(--badge-size)/2 + 24px);left:0;right:0;display:flex;justify-content:center;gap:2px;font:20px/1.6 'JetBrains Mono',monospace;color:#d8f6ee;}
+.pm-hello{position:absolute;top:calc(46px + var(--badge-size)/2 + 36px);left:0;right:0;display:flex;justify-content:center;gap:2px;font:20px/1.6 'JetBrains Mono',monospace;color:#d8f6ee;}
 .pm-hello span{display:block;overflow:hidden;white-space:nowrap;width:12ch;}
 .intro-knight .pm-hello span{animation:pm-hello-type 1200ms 500ms steps(12,end) both;}
 .pm-hello b{font-weight:400;animation:pm-cursor 750ms step-end infinite;}
