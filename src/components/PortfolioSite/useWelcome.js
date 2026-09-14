@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 
 // Each visual stage finishes before the next content can mount.
-export const INTRO_STAGES = {knight:2200,greetingOut:950,badges:3200,departing:700,welcome:2400,revealing:500};
-const nextPhase = {knight:'greetingOut',greetingOut:'badges',badges:'departing',departing:'welcome',welcome:'revealing',revealing:'ready'};
+export const INTRO_STAGES = {knight:2200,badges:2200,departing:550,welcome:1800,revealing:450};
+const nextPhase = {knight:'badges',badges:'departing',departing:'welcome',welcome:'revealing',revealing:'ready'};
 
 // A bounded introduction, not a permanent scroll lock. Explicit navigation wins.
 export default function useWelcome(motion) {
@@ -19,7 +19,7 @@ export default function useWelcome(motion) {
       // Preserve each stage and its animation even during trackpad momentum.
       if(phase!=='badges' && phase!=='welcome')return;
       const now=Date.now();
-      const next=Math.min(deadline,Math.max(started+(phase==='badges'?2600:1800),now+350,deadline-Math.min(120,Math.max(0,distance)*1.5)));
+      const next=Math.min(deadline,Math.max(started+(phase==='badges'?1800:1400),now+350,deadline-Math.min(120,Math.max(0,distance)*1.5)));
       if(next===deadline)return;
       deadline=next;clearTimeout(timer);timer=setTimeout(advance,Math.max(0,deadline-now));
     };

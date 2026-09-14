@@ -91,27 +91,27 @@ test('résumé breakdown starts compact and expands without the removed role sec
  expect(screen.queryByText('Also important in this role')).toBeNull();
 });
 
-test('intro screens are mutually exclusive and leave no decorative elements behind',()=>{
+test('knight joins the badges and all three leave before welcome',()=>{
  jest.useFakeTimers();window.history.replaceState(null,'','#top');
  const {act}=require('@testing-library/react');
  const {container}=render(<ProjectMatcher motion={true}/>);
- expect(container.querySelector('.pm-knight-mark')).not.toBeNull();
+ const knight=container.querySelector('.pm-knight-mark');
+ expect(knight).not.toBeNull();
  expect(container.querySelectorAll('.pm-cert')).toHaveLength(0);
  act(()=>jest.advanceTimersByTime(2200));
- expect(container.querySelectorAll('.pm-cert')).toHaveLength(0);
- act(()=>jest.advanceTimersByTime(950));
- expect(container.querySelector('.pm-knight-mark')).toBeNull();
- expect(container.querySelector('.pm-hello')).toBeNull();
+ expect(container.querySelector('.pm-knight-mark')).toBe(knight);
  expect(container.querySelectorAll('.pm-cert')).toHaveLength(2);
  expect(container.querySelectorAll('.pm-cert span')).toHaveLength(0);
- act(()=>jest.advanceTimersByTime(3200));
+ act(()=>jest.advanceTimersByTime(2200));
  expect(container.querySelector('.pm-welcome')).toBeNull();
- act(()=>jest.advanceTimersByTime(700));
+ expect(container.querySelector('.pm-knight-mark')).toBe(knight);
+ expect(container.querySelectorAll('.pm-cert')).toHaveLength(2);
+ act(()=>jest.advanceTimersByTime(550));
  expect(container.querySelectorAll('.pm-cert')).toHaveLength(0);
- expect(container.querySelector('.pm-welcome')).not.toBeNull();
- act(()=>jest.advanceTimersByTime(2400));act(()=>jest.advanceTimersByTime(500));
- expect(container.querySelector('.pm-welcome')).toBeNull();
  expect(container.querySelector('.pm-knight-mark')).toBeNull();
+ expect(container.querySelector('.pm-welcome')).not.toBeNull();
+ act(()=>jest.advanceTimersByTime(1800));act(()=>jest.advanceTimersByTime(450));
+ expect(container.querySelector('.pm-welcome')).toBeNull();
  expect(container.querySelector('.pm-workbench')).not.toHaveAttribute('inert');
  jest.useRealTimers();
 });

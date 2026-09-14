@@ -85,28 +85,29 @@
 
 @media(min-width:900px){.pm-hero{padding-top:clamp(96px,calc((100svh - var(--nav-height,86px) - 440px)/2),240px);}}
 
-/* Intro choreography: separate greeting, certification and welcome screens.
+/* Intro choreography: greeting becomes a stacked knight and certification composition.
    Durations are paired with INTRO_STAGES in useWelcome.js. */
 .pm-hero{
  --entry-top:max(72px,calc((100svh - var(--nav-height,104px) - 620px)/2));
  --stage-top:clamp(130px,calc((100svh - var(--nav-height,104px))/2 - 80px),340px);
  --badge-size:clamp(76px,22vw,152px);
- --badge-offset:calc(var(--badge-size)/2 + clamp(18px,3vw,36px));
+ --badge-offset:calc(var(--badge-size)/2 + clamp(44px,6vw,56px));
  padding-top:var(--entry-top);
 }
 .pm-knight-intro{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:clip;}
 .pm-greeting-stage{position:absolute;left:0;right:0;top:var(--stage-top);}
-.pm-knight-mark{width:76px;height:92px;margin:auto;}
+.pm-knight-mark{width:76px;height:92px;margin:auto;transform-origin:50% 50%;transition:transform 700ms cubic-bezier(.65,0,.35,1);}
 .pm-knight-mark .pf-knight{width:76px;height:92px;}
 .intro-knight .pm-knight-mark{animation:pm-knight-arrive 450ms ease-out both;}
-.intro-greetingOut .pm-knight-mark{transform-origin:50% 50%;animation:pm-greeting-out 900ms cubic-bezier(.65,0,.35,1) both;}
-.intro-greetingOut .pm-hello{animation:pm-hello-out 350ms ease both;}
+.intro-badges .pm-knight-mark,.intro-departing .pm-knight-mark{transform:translateY(calc(-1 * var(--badge-size)/2 - 47px)) scale(.5);}
+.intro-badges .pm-hello{animation:pm-hello-out 350ms ease both;}
+.intro-departing .pm-hello{visibility:hidden;}
 .pm-cert-stage{position:absolute;left:0;right:0;top:var(--stage-top);height:calc(var(--badge-size) + 100px);}
 .pm-cert{position:absolute;left:calc(50% + var(--side)*var(--badge-offset));top:calc(46px - var(--badge-size)/2);width:var(--badge-size);height:var(--badge-size);transform:translateX(-50%);opacity:0;}
 .pm-cert-aws{--side:-1;}.pm-cert-claude{--side:1;}
 .pm-cert img{display:block;width:100%;height:100%;object-fit:contain;}
 .intro-badges .pm-cert{animation:pm-cert-in 600ms ease-out both;}
-.intro-departing .pm-cert{animation:pm-hello-out 650ms ease both;}
+.intro-departing .pm-cert,.intro-departing .pm-knight-mark{animation:pm-hello-out 500ms ease both;}
 .pm-hello{position:absolute;top:128px;left:0;right:0;display:flex;justify-content:center;gap:2px;font:20px/1.6 'JetBrains Mono',monospace;color:#d8f6ee;}
 .pm-hello span{display:block;overflow:hidden;white-space:nowrap;width:12ch;}
 .intro-knight .pm-hello span{animation:pm-hello-type 1200ms 500ms steps(12,end) both;}
@@ -120,13 +121,11 @@
 .pm-welcome-eyebrow{color:var(--teal);font-size:14px;letter-spacing:.08em;}
 .pm-welcome-line{display:block;width:84px;height:2px;margin:30px auto 18px;background:linear-gradient(90deg,transparent,var(--teal),transparent);}
 .pm-welcome button{background:transparent;border:0;color:#adc7d2;min-height:44px;padding:10px 16px;font-size:14px;}
-.intro-revealing .pm-welcome{pointer-events:none;animation:pm-hello-out 450ms ease both;}
+.intro-revealing .pm-welcome{pointer-events:none;animation:pm-hello-out 400ms ease both;}
 .pm-input .pm-privacy{margin-top:18px;}
 @keyframes pm-knight-arrive{from{opacity:0}to{opacity:1}}
 @keyframes pm-hello-type{from{width:0}to{width:12ch}}
 @keyframes pm-cert-in{from{opacity:0}to{opacity:1}}
-/* End at the former composer knight center: entry top - 64px + 23px. */
-@keyframes pm-greeting-out{from{opacity:1;transform:translateY(0) scale(1)}75%{opacity:1;transform:translateY(calc(var(--entry-top) - var(--stage-top) - 87px)) scale(.5)}to{opacity:0;transform:translateY(calc(var(--entry-top) - var(--stage-top) - 87px)) scale(.5)}}
 @keyframes pm-hello-out{from{opacity:1}to{opacity:0}}
 @keyframes pm-welcome-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @media(min-width:900px){
