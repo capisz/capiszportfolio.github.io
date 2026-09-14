@@ -4,6 +4,17 @@ export function createPlaybackCoordinator() {
   const paused = new Set();
   let automatic = true;
   let hidden = false;
+  function retryTransientPlay(e) {
+    if(e.retryTimer)return;
+    if(e.transientRetries>=2){e.blocked=true;e.notify('blocked');reconcile();return;}
+    e.transientRetries++;
+    const generation=e.generation;
+    e.retryTimer=setTimeout(()=>{
+      e.retryTimer=null;
+      if(entries.get(e.id)!==e||generation!==e.generation)return;
+      reconcile();
+    },120*e.transientRetries);
+  }
   function stop(e) {
     if(!e.video.paused) e.ignorePause++;
     e.video.pause();
@@ -20,11 +31,12 @@ export function createPlaybackCoordinator() {
       e.desired=true;
       const generation=++e.generation;
       Promise.resolve(e.video.play()).then(() => {
+        e.transientRetries=0;
         if (!e.desired || !entries.has(e.id)) stop(e);
       }).catch(error => {
         if (generation !== e.generation) return;
         e.desired=false;
-        if (error?.name === 'AbortError') return;
+        if (error?.name === 'AbortError') {retryTransientPlay(e);return;}
         e.blocked=true;
         e.notify('blocked');
         reconcile();
@@ -33,12 +45,12 @@ export function createPlaybackCoordinator() {
   }
   return {
     register(id,video,notify) {
-      const e={id,video,notify,ratio:0,distance:Infinity,auto:true,explicit:false,desired:false,blocked:false,failed:false,generation:0,ignorePause:0};
+      const e={id,video,notify,ratio:0,distance:Infinity,auto:true,explicit:false,desired:false,blocked:false,failed:false,generation:0,ignorePause:0,transientRetries:0,retryTimer:null};
       entries.set(id,e);
-      return () => {e.desired=false;e.generation++;video.pause();if(entries.get(id)===e)entries.delete(id);reconcile();};
+      return () => {e.desired=false;e.generation++;clearTimeout(e.retryTimer);video.pause();if(entries.get(id)===e)entries.delete(id);reconcile();};
     },
-    update(id,values) {const e=entries.get(id);if(!e)return;Object.assign(e,values);if(e.ratio===0||values.auto===false)e.explicit=false;reconcile();},
-    play(id) {const e=entries.get(id);if(!e)return;paused.delete(id);e.explicit=true;e.blocked=false;reconcile();},
+    update(id,values) {const e=entries.get(id);if(!e)return;Object.assign(e,values);if(e.ratio===0||values.auto===false){e.explicit=false;e.transientRetries=0;clearTimeout(e.retryTimer);e.retryTimer=null;}reconcile();},
+    play(id) {const e=entries.get(id);if(!e)return;paused.delete(id);e.explicit=true;e.blocked=false;e.transientRetries=0;clearTimeout(e.retryTimer);e.retryTimer=null;reconcile();},
     pause(id) {paused.add(id);const e=entries.get(id);if(e)e.explicit=false;reconcile();},
     nativePause(id) {const e=entries.get(id);if(e?.ignorePause){e.ignorePause--;return;}if(e?.desired)this.pause(id);},
     nativePlay(id,fromControls=false) {const e=entries.get(id);if(e&&!e.desired){stop(e);if(fromControls)this.play(id);}},

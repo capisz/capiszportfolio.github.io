@@ -29,6 +29,13 @@ test('autoplay requires at least half visibility and is stopped during matching'
 test('blocked autoplay releases its slot and can be explicitly retried',async()=>{
  const manager=createPlaybackCoordinator();const notify=jest.fn();const video={play:jest.fn().mockRejectedValueOnce({name:'NotAllowedError'}).mockResolvedValue(),pause:jest.fn()};manager.register('a',video,notify);manager.update('a',{ratio:1});await flush();expect(notify).toHaveBeenCalledWith('blocked');manager.update('a',{ratio:1});expect(video.play).toHaveBeenCalledTimes(1);manager.play('a');expect(video.play).toHaveBeenCalledTimes(2);
 });
+test('transient aborted autoplay retries without manual input',async()=>{
+ jest.useFakeTimers();
+ const manager=createPlaybackCoordinator();const notify=jest.fn();const video={play:jest.fn().mockRejectedValueOnce({name:'AbortError'}).mockResolvedValue(),pause:jest.fn()};
+ manager.register('a',video,notify);manager.update('a',{ratio:1});await flush();expect(video.play).toHaveBeenCalledTimes(1);
+ jest.advanceTimersByTime(120);await flush();expect(video.play).toHaveBeenCalledTimes(2);expect(notify).not.toHaveBeenCalled();
+ jest.useRealTimers();
+});
 test('a late play promise is paused after its slot has been revoked',async()=>{
  const manager=createPlaybackCoordinator();let resolve;const video={play:jest.fn(()=>new Promise(r=>resolve=r)),pause:jest.fn()};manager.register('a',video,jest.fn());manager.update('a',{ratio:1});manager.update('a',{ratio:0});resolve();await flush();expect(video.pause).toHaveBeenCalledTimes(2);
 });
