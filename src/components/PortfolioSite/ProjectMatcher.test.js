@@ -99,7 +99,7 @@ test('intro screens are mutually exclusive and leave no decorative elements behi
  expect(container.querySelectorAll('.pm-cert')).toHaveLength(0);
  act(()=>jest.advanceTimersByTime(2200));
  expect(container.querySelectorAll('.pm-cert')).toHaveLength(0);
- act(()=>jest.advanceTimersByTime(1300));
+ act(()=>jest.advanceTimersByTime(950));
  expect(container.querySelector('.pm-knight-mark')).toBeNull();
  expect(container.querySelector('.pm-hello')).toBeNull();
  expect(container.querySelectorAll('.pm-cert')).toHaveLength(2);
