@@ -55,6 +55,6 @@ test('document-review frontend brief breaks down technologies and separates unsc
  expect(r.skillBreakdown.map(s=>s.skill)).toEqual(expect.arrayContaining(['React','TypeScript','JavaScript','HTML','CSS','REST API','AI']));
  expect(r.skillBreakdown.find(s=>s.skill==='HTML')).toMatchObject({score:90,label:'Listed in résumé skills or coursework'});
  expect(r.skillBreakdown.find(s=>s.skill==='React').score).toBe(95);
- expect(r.resumeMatch.covered).toBe(6);
- expect(r.resumeMatch.skills.find(s=>s.skill==='AI').score).toBeNull();
+ expect(r.resumeMatch.covered).toBe(7);
+ expect(r.resumeMatch.skills.find(s=>s.skill==='AI').score).toBe(95);
 });
