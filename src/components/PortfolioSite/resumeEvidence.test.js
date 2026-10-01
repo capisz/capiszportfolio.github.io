@@ -8,6 +8,6 @@ test('résumé recognizes core web skills even when selected project omits them'
  expect(r.resumeMatch.score).toBe(93);
 });
 test('résumé recognizes demonstrated Python and leaves unlisted skills unknown without inventing evidence',()=>{
- expect(assessResume(['Python','Azure']).skills.map(s=>s.score)).toEqual([95,null]);
+ expect(assessResume(['Python','Rust']).skills.map(s=>s.score)).toEqual([95,null]);
  expect(assessResume([]).score).toBeNull();
 });
